@@ -16,12 +16,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ViewControllerScreen1 *m = [[ViewControllerScreen1 alloc]initWithNibName:@"ViewControllerScreen1" bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:m];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  //  ViewControllerScreen1 *m = [[ViewControllerScreen1 alloc]initWithNibName:@"ViewControllerScreen1" bundle:nil];
+  //  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:m];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Configure Window
-    [self.window setRootViewController:navigationController];
-    [self.window makeKeyAndVisible];
+    //[self.window setRootViewController:navigationController];
+   // [self.window makeKeyAndVisible];
     
     return YES;
 }

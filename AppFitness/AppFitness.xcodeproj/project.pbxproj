@@ -413,6 +413,9 @@
 					761B708618AB83A400545C6A = {
 						DevelopmentTeam = E579XBAZ6N;
 					};
+					761B70A618AB83A400545C6A = {
+						TestTargetID = 761B708618AB83A400545C6A;
+					};
 				};
 			};
 			buildConfigurationList = 761B708218AB83A400545C6A /* Build configuration list for PBXProject "AppFitness" */;
@@ -573,7 +576,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
@@ -606,7 +608,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};
@@ -622,7 +623,6 @@
 				GCC_PREFIX_HEADER = "AppFitness/AppFitness-Prefix.pch";
 				INFOPLIST_FILE = "AppFitness/AppFitness-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -639,7 +639,6 @@
 				GCC_PREFIX_HEADER = "AppFitness/AppFitness-Prefix.pch";
 				INFOPLIST_FILE = "AppFitness/AppFitness-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -647,6 +646,7 @@
 		761B70BD18AB83A400545C6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppFitness.app/AppFitness";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -659,8 +659,8 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "AppFitnessTests/AppFitnessTests-Info.plist";
-				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -668,6 +668,7 @@
 		761B70BE18AB83A400545C6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppFitness.app/AppFitness";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -676,8 +677,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppFitness/AppFitness-Prefix.pch";
 				INFOPLIST_FILE = "AppFitnessTests/AppFitnessTests-Info.plist";
-				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
