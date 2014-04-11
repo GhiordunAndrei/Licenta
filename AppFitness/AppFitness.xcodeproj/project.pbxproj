@@ -27,6 +27,17 @@
 		76139AB218F814D600653A75 /* ViewControllerChart.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76139AB018F814D600653A75 /* ViewControllerChart.xib */; };
 		76139AB518F8155900653A75 /* SimpleBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139AB418F8155900653A75 /* SimpleBarChart.m */; };
 		76139AB918F8160000653A75 /* NSMutableArray+TTMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139AB818F8160000653A75 /* NSMutableArray+TTMutableArray.m */; };
+		76139ABB18F81A3100653A75 /* calendar-36.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139ABA18F81A3100653A75 /* calendar-36.png */; };
+		76139ABF18F81B2300653A75 /* combo-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139ABE18F81B2300653A75 /* combo-32.png */; };
+		76139AC118F823BA00653A75 /* weightlift-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AC018F823BA00653A75 /* weightlift-32.png */; };
+		76139AC318F8245200653A75 /* screenshot-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AC218F8245200653A75 /* screenshot-32.png */; };
+		76139AC518F8296E00653A75 /* scale-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AC418F8296E00653A75 /* scale-32.png */; };
+		76139AC718F829E200653A75 /* email-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AC618F829E200653A75 /* email-32.png */; };
+		76139AC918F82A3300653A75 /* save-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AC818F82A3300653A75 /* save-32.png */; };
+		76139ACB18F82A5900653A75 /* cancel-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139ACA18F82A5900653A75 /* cancel-32.png */; };
+		76139ACD18F82A8900653A75 /* facebook-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139ACC18F82A8900653A75 /* facebook-32.png */; };
+		76139ACF18F82AC500653A75 /* right_round-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139ACE18F82AC500653A75 /* right_round-32.png */; };
+		76139AD118F82AD900653A75 /* left_round-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76139AD018F82AD900653A75 /* left_round-32.png */; };
 		761B708B18AB83A400545C6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708A18AB83A400545C6A /* Foundation.framework */; };
 		761B708D18AB83A400545C6A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708C18AB83A400545C6A /* CoreGraphics.framework */; };
 		761B708F18AB83A400545C6A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708E18AB83A400545C6A /* UIKit.framework */; };
@@ -110,6 +121,17 @@
 		76139AB618F815CD00653A75 /* SimpleBarChartExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleBarChartExample-Prefix.pch"; sourceTree = "<group>"; };
 		76139AB718F8160000653A75 /* NSMutableArray+TTMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+TTMutableArray.h"; sourceTree = "<group>"; };
 		76139AB818F8160000653A75 /* NSMutableArray+TTMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+TTMutableArray.m"; sourceTree = "<group>"; };
+		76139ABA18F81A3100653A75 /* calendar-36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-36.png"; sourceTree = "<group>"; };
+		76139ABE18F81B2300653A75 /* combo-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "combo-32.png"; sourceTree = "<group>"; };
+		76139AC018F823BA00653A75 /* weightlift-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weightlift-32.png"; sourceTree = "<group>"; };
+		76139AC218F8245200653A75 /* screenshot-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-32.png"; sourceTree = "<group>"; };
+		76139AC418F8296E00653A75 /* scale-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scale-32.png"; sourceTree = "<group>"; };
+		76139AC618F829E200653A75 /* email-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-32.png"; sourceTree = "<group>"; };
+		76139AC818F82A3300653A75 /* save-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save-32.png"; sourceTree = "<group>"; };
+		76139ACA18F82A5900653A75 /* cancel-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-32.png"; sourceTree = "<group>"; };
+		76139ACC18F82A8900653A75 /* facebook-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-32.png"; sourceTree = "<group>"; };
+		76139ACE18F82AC500653A75 /* right_round-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_round-32.png"; sourceTree = "<group>"; };
+		76139AD018F82AD900653A75 /* left_round-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_round-32.png"; sourceTree = "<group>"; };
 		761B708718AB83A400545C6A /* AppFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		761B708A18AB83A400545C6A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		761B708C18AB83A400545C6A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -242,6 +264,17 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76139AC218F8245200653A75 /* screenshot-32.png */,
+				76139AC018F823BA00653A75 /* weightlift-32.png */,
+				76139ABE18F81B2300653A75 /* combo-32.png */,
+				76139AC418F8296E00653A75 /* scale-32.png */,
+				76139AC618F829E200653A75 /* email-32.png */,
+				76139AC818F82A3300653A75 /* save-32.png */,
+				76139AD018F82AD900653A75 /* left_round-32.png */,
+				76139ACE18F82AC500653A75 /* right_round-32.png */,
+				76139ACC18F82A8900653A75 /* facebook-32.png */,
+				76139ACA18F82A5900653A75 /* cancel-32.png */,
+				76139ABA18F81A3100653A75 /* calendar-36.png */,
 				76139AA018F80BB700653A75 /* Chart */,
 				76139A9118F7F8B700653A75 /* Calendar */,
 				7650AE9518F425960022F153 /* Description */,
@@ -493,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7600C04C18EE9EE900101286 /* bg_05.jpg in Resources */,
+				76139AC918F82A3300653A75 /* save-32.png in Resources */,
 				7600C04B18EE9EE900101286 /* bg_04.jpg in Resources */,
 				7636B87018F2CA0B00D1EA99 /* rsz_musclemanrunning.png in Resources */,
 				7600C04E18EE9EE900101286 /* title2@2x.png in Resources */,
@@ -501,22 +535,32 @@
 				76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */,
 				761B70C818AB88E400545C6A /* Image640x960.png in Resources */,
 				761B70C718AB88E400545C6A /* 640x1136.png in Resources */,
+				76139AC318F8245200653A75 /* screenshot-32.png in Resources */,
+				76139ABF18F81B2300653A75 /* combo-32.png in Resources */,
 				76139AB218F814D600653A75 /* ViewControllerChart.xib in Resources */,
+				76139ACB18F82A5900653A75 /* cancel-32.png in Resources */,
+				76139AD118F82AD900653A75 /* left_round-32.png in Resources */,
+				76139ACD18F82A8900653A75 /* facebook-32.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
 				761B70CF18AB899D00545C6A /* ViewControllerScreen1.xib in Resources */,
 				761DDE3018B21F1600DAFBB5 /* ViewControllerNewAccount.xib in Resources */,
+				76139AC718F829E200653A75 /* email-32.png in Resources */,
+				76139ACF18F82AC500653A75 /* right_round-32.png in Resources */,
 				7652BCB718B0EB070011638F /* rsz_11rsz_logofitness.png in Resources */,
 				7600C04D18EE9EE900101286 /* title1@2x.png in Resources */,
 				761DDE3618B2264D00DAFBB5 /* ViewControllerNoModule.xib in Resources */,
 				761B70C218AB83F500545C6A /* Fitness58x58.png in Resources */,
 				761B70C418AB83F500545C6A /* Fitness120x120.png in Resources */,
+				76139ABB18F81A3100653A75 /* calendar-36.png in Resources */,
 				76313A7218D9B645008150D8 /* Default-568h@2x.png in Resources */,
+				76139AC118F823BA00653A75 /* weightlift-32.png in Resources */,
 				7600C04F18EE9EE900101286 /* title3@2x.png in Resources */,
 				7600C04A18EE9EE900101286 /* bg_03.jpg in Resources */,
 				761B70DA18ABA19200545C6A /* ViewControllerModule.xib in Resources */,
 				761B709718AB83A400545C6A /* InfoPlist.strings in Resources */,
 				7600C04818EE9EE900101286 /* bg_01.jpg in Resources */,
 				7652BCB518B0EA420011638F /* rsz_1rsz_logofitness.png in Resources */,
+				76139AC518F8296E00653A75 /* scale-32.png in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				761B70A218AB83A400545C6A /* Images.xcassets in Resources */,
 				761B70C318AB83F500545C6A /* Fitness80x80.png in Resources */,

@@ -151,7 +151,7 @@ dataSource	= _dataSource;
         
 		// Begin Drawing
 		// Set Frames
-		CGSize yLabelSize		= self.hasYLabels ? [[NSString stringWithFormat:@"%i", _topValue] sizeWithFont:self.yLabelFont] : CGSizeZero;
+		CGSize yLabelSize		= self.hasYLabels ? [[NSString stringWithFormat:@"%li", (long)_topValue] sizeWithFont:self.yLabelFont] : CGSizeZero;
 		_yLabelView.frame		= CGRectMake(0.0,
 											 0.0,
 											 self.hasYLabels ? yLabelSize.width + 5.0 : 0.0,
@@ -399,7 +399,7 @@ dataSource	= _dataSource;
 	CGFloat gridUnit			= _gridLayer.bounds.size.height / _topValue;
 	CGFloat gridSeperation		= gridUnit * (CGFloat)self.incrementValue;
     
-	CGSize yLabelSize			= [[NSString stringWithFormat:@"%i", _topValue] sizeWithFont:self.yLabelFont];
+	CGSize yLabelSize			= [[NSString stringWithFormat:@"%li", (long)_topValue] sizeWithFont:self.yLabelFont];
 	CGFloat yPos				= 0.0;
 	NSInteger maxVal			= _topValue;
 	while (yPos < _gridLayer.bounds.size.height)
@@ -414,7 +414,7 @@ dataSource	= _dataSource;
 		yLabel.textColor		= self.yLabelColor;
 		yLabel.textAlignment	= NSTextAlignmentRight;
 		yLabel.center			= CGPointMake(yLabel.center.x, yPos);
-		yLabel.text				= [NSString stringWithFormat:@"%i", maxVal];
+		yLabel.text				= [NSString stringWithFormat:@"%li", (long)maxVal];
         
 		[_yLabelView addSubview:yLabel];
         

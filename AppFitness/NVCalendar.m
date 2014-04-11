@@ -29,7 +29,7 @@
     NSCalendar *cal1=[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps1 = [cal1 components:NSWeekdayCalendarUnit fromDate:firstDayOfMonthDate];
     // 1 for mon 8 for sun
-    int startWithDay=[comps1 weekday]==1?8:[comps1 weekday];
+    int startWithDay=[comps1 weekday]==1?8:(int)[comps1 weekday];
     int x=2;
     int y=45;
     
@@ -115,10 +115,10 @@
 #pragma mark - Tapping Date
 -(void)lblDateTapped:(UITapGestureRecognizer *)tap//called when any date will be tapped
 {
-    NSLog(@"tap %d",tap.view.tag);
+  //  NSLog(@"tap %d",tap.view.tag);
     UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
     [self animationDrawCircleTime:0.6 label:lbl  completion:^{
-        NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:[lbl.text integerValue]]];
+        NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
         UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
         NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
         MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -226,18 +226,18 @@
     NSDateFormatter *dtFormatter = [[NSDateFormatter alloc] init];
     
     [dtFormatter setDateFormat:@"yyyy"];
-    int CurrentYear = [[dtFormatter stringFromDate:currentDate]integerValue];
-    int todayYear = [[dtFormatter stringFromDate:dtToday]integerValue];
+    int CurrentYear = (int)[[dtFormatter stringFromDate:currentDate]integerValue];
+    int todayYear = (int)[[dtFormatter stringFromDate:dtToday]integerValue];
     if(todayYear == CurrentYear)
     {
         [dtFormatter setDateFormat:@"MM"];
-        int CurrentMonth = [[dtFormatter stringFromDate:currentDate]integerValue];
-        int todayMonth = [[dtFormatter stringFromDate:dtToday]integerValue];
+        int CurrentMonth = (int)[[dtFormatter stringFromDate:currentDate]integerValue];
+        int todayMonth = (int)[[dtFormatter stringFromDate:dtToday]integerValue];
         if(todayMonth == CurrentMonth)
         {
             [dtFormatter setDateFormat:@"dd"];
-            int currentDay = [[dtFormatter stringFromDate:currentDate]integerValue];
-            int todayDay = [[dtFormatter stringFromDate:dtToday]integerValue];
+            int currentDay = (int)[[dtFormatter stringFromDate:currentDate]integerValue];
+            int todayDay = (int)[[dtFormatter stringFromDate:dtToday]integerValue];
             if(todayDay == currentDay)
                 return YES;
             else
