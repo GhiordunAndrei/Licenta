@@ -10,7 +10,7 @@
 #import "ViewControllerNoModule.h"
 #import "ViewControllerModule.h"
 #import "ViewControllerDescription.h"
-///#import "ViewControllerCalendar.h"
+#import "ViewControllerCalendar.h"
 //#import "ViewControllerChart.h"
 @interface ViewControllerMuscle ()
 @end
@@ -116,9 +116,9 @@ UIBarButtonItem *addBtn ;
 }
 - (IBAction)actionLogs:(id)sender {
   
- //   ViewControllerCalendar *viewScreenCalendar=[[ViewControllerCalendar alloc]init];
- //   viewScreenCalendar.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-   // [self presentViewController:viewScreenCalendar animated:YES completion:nil];
+    ViewControllerCalendar *viewScreenCalendar=[[ViewControllerCalendar alloc]init];
+    viewScreenCalendar.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewScreenCalendar animated:YES completion:nil];
 }
 
 

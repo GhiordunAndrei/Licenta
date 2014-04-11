@@ -20,6 +20,9 @@
 		7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */; };
 		7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */; };
 		760CF70F18EAABDA00875CBF /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 760CF70E18EAABDA00875CBF /* MLAlertView.m */; };
+		76139A9818F7F9CD00653A75 /* NVCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9718F7F9CD00653A75 /* NVCalendar.m */; };
+		76139A9E18F8085200653A75 /* ViewControllerCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9C18F8085200653A75 /* ViewControllerCalendar.m */; };
+		76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76139A9D18F8085200653A75 /* ViewControllerCalendar.xib */; };
 		761B708B18AB83A400545C6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708A18AB83A400545C6A /* Foundation.framework */; };
 		761B708D18AB83A400545C6A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708C18AB83A400545C6A /* CoreGraphics.framework */; };
 		761B708F18AB83A400545C6A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708E18AB83A400545C6A /* UIKit.framework */; };
@@ -89,6 +92,12 @@
 		7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerMuscle.xib; sourceTree = "<group>"; };
 		760CF70D18EAABDA00875CBF /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertView.h; sourceTree = "<group>"; };
 		760CF70E18EAABDA00875CBF /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertView.m; sourceTree = "<group>"; };
+		76139A9618F7F9CD00653A75 /* NVCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCalendar.h; sourceTree = "<group>"; };
+		76139A9718F7F9CD00653A75 /* NVCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCalendar.m; sourceTree = "<group>"; };
+		76139A9A18F8081C00653A75 /* NVCalendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NVCalendar-Prefix.pch"; sourceTree = "<group>"; };
+		76139A9B18F8085200653A75 /* ViewControllerCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCalendar.h; sourceTree = "<group>"; };
+		76139A9C18F8085200653A75 /* ViewControllerCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCalendar.m; sourceTree = "<group>"; };
+		76139A9D18F8085200653A75 /* ViewControllerCalendar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerCalendar.xib; sourceTree = "<group>"; };
 		761B708718AB83A400545C6A /* AppFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		761B708A18AB83A400545C6A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		761B708C18AB83A400545C6A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,9 +199,23 @@
 			name = MLAlert;
 			sourceTree = "<group>";
 		};
+		76139A9118F7F8B700653A75 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				76139A9618F7F9CD00653A75 /* NVCalendar.h */,
+				76139A9718F7F9CD00653A75 /* NVCalendar.m */,
+				76139A9A18F8081C00653A75 /* NVCalendar-Prefix.pch */,
+				76139A9B18F8085200653A75 /* ViewControllerCalendar.h */,
+				76139A9C18F8085200653A75 /* ViewControllerCalendar.m */,
+				76139A9D18F8085200653A75 /* ViewControllerCalendar.xib */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76139A9118F7F8B700653A75 /* Calendar */,
 				7650AE9518F425960022F153 /* Description */,
 				7650AE9318F423690022F153 /* rsz_abdomen.png */,
 				7636B86F18F2CA0B00D1EA99 /* rsz_musclemanrunning.png */,
@@ -447,6 +470,7 @@
 				7600C04E18EE9EE900101286 /* title2@2x.png in Resources */,
 				7600C04918EE9EE900101286 /* bg_02.jpg in Resources */,
 				7600C05018EE9EE900101286 /* title4@2x.png in Resources */,
+				76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */,
 				761B70C818AB88E400545C6A /* Image640x960.png in Resources */,
 				761B70C718AB88E400545C6A /* 640x1136.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
@@ -492,6 +516,7 @@
 				761DDE3918B22B9100DAFBB5 /* User.m in Sources */,
 				761B709D18AB83A400545C6A /* AppDelegate.m in Sources */,
 				761DDE3518B2264D00DAFBB5 /* ViewControllerNoModule.m in Sources */,
+				76139A9818F7F9CD00653A75 /* NVCalendar.m in Sources */,
 				761B70CE18AB899D00545C6A /* ViewControllerScreen1.m in Sources */,
 				7651D75E18DAEBCF00CE9CE2 /* ValidateEmail.m in Sources */,
 				761DDE2F18B21F1600DAFBB5 /* ViewControllerNewAccount.m in Sources */,
@@ -499,6 +524,7 @@
 				761B70D918ABA19200545C6A /* ViewControllerModule.m in Sources */,
 				7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */,
 				760CF70F18EAABDA00875CBF /* MLAlertView.m in Sources */,
+				76139A9E18F8085200653A75 /* ViewControllerCalendar.m in Sources */,
 				761B709918AB83A400545C6A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,3 +1,4 @@
+
 #import "NVCalendar.h"
 #import "MLAlertView.h"
 @implementation NVCalendar
@@ -45,7 +46,7 @@
     for (int d=1; d<=range.length;d++)
     {
         while (d < 8) {
-        
+            
             [self createWeekDays:(int)d];
             break;
         }
@@ -56,7 +57,7 @@
             }completion:^(BOOL finished) {
                 
             }];
-
+            
             UILabel *lblForDate=[[UILabel alloc]initWithFrame:CGRectMake(x, y, day_label_width, day_label_height)];
             lblForDate.text=[NSString stringWithFormat:@"%d",d-startWithDay+1];
             lblForDate.textColor = [UIColor blackColor];
@@ -84,7 +85,7 @@
             [UIView animateWithDuration:0.5 animations:^{
                 lblMonthName.alpha = 1.0;
                 lblForDate.alpha = 1.0;
-
+                
             }completion:^(BOOL finished) {
                 lblForDate.alpha = 1.0;
             }];
@@ -116,14 +117,14 @@
 {
     NSLog(@"tap %d",tap.view.tag);
     UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
-     [self animationDrawCircleTime:0.6 label:lbl  completion:^{
-         NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:[lbl.text integerValue]]];
-         UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
-         NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
-         MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-         [alert show];
-
-     }];
+    [self animationDrawCircleTime:0.6 label:lbl  completion:^{
+        NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:[lbl.text integerValue]]];
+        UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
+        NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
+        MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+    }];
 }
 #pragma mark - Draw Circle around date when particular Date is clicked
 -(void)animationDrawCircleTime:(CGFloat)time label:(UILabel *)lbl completion:(void (^)(void))completion{
@@ -168,7 +169,7 @@
     drawAnimation.repeatCount         = 1.0;  // Animate only once..
     drawAnimation.removedOnCompletion = YES;   // Remain stroked after the animation..
     [CATransaction setCompletionBlock:^{
-//        [circle removeAllAnimations];
+        //        [circle removeAllAnimations];
         [circle removeFromSuperlayer];
         completion();
     }];
@@ -220,10 +221,10 @@
 #pragma mark - For Matching Date
 -(BOOL)checkDate:(NSDate *)currentDate//for checking current date.....
 {
-   // NSLog(@"currentDate %@",currentDate);
+    // NSLog(@"currentDate %@",currentDate);
     NSDate *dtToday = [NSDate date];
     NSDateFormatter *dtFormatter = [[NSDateFormatter alloc] init];
-
+    
     [dtFormatter setDateFormat:@"yyyy"];
     int CurrentYear = [[dtFormatter stringFromDate:currentDate]integerValue];
     int todayYear = [[dtFormatter stringFromDate:dtToday]integerValue];
@@ -242,10 +243,17 @@
             else
                 return NO;
         }
-
+        
     }
     return NO;
 }
-
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

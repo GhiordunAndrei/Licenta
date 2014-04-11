@@ -1,4 +1,4 @@
-//
+
 //  ViewControllerNewAccount.m
 //  AppFitness
 //
