@@ -1,9 +1,9 @@
 //
 //  NSMutableArray+TTMutableArray.h
-//  TypeTeacher
+//  AppFitness
 //
-//  Created by Mohammed Islam on 11/18/13.
-//  Copyright (c) 2013 KSITechnology. All rights reserved.
+//  Created by Andrei on 11/04/14.
+//  Copyright (c) 2014 Licenta. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

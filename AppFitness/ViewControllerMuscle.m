@@ -11,7 +11,7 @@
 #import "ViewControllerModule.h"
 #import "ViewControllerDescription.h"
 #import "ViewControllerCalendar.h"
-//#import "ViewControllerChart.h"
+#import "ViewControllerChart.h"
 @interface ViewControllerMuscle ()
 @end
 UIBarButtonItem *addBtn ;
@@ -221,10 +221,10 @@ shouldReloadTableForSearchString:(NSString *)searchString
 }
 - (IBAction)buttonStatistics:(id)sender {
     
-//    ViewControllerChart *viewScreenChart=[[ViewControllerChart alloc]init];
-//    viewScreenChart.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-//    [self presentViewController:viewScreenChart animated:YES completion:nil];
-//    
+    ViewControllerChart *viewScreenChart=[[ViewControllerChart alloc]init];
+    viewScreenChart.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewScreenChart animated:YES completion:nil];
+   
 }
 
 @end

@@ -42,7 +42,7 @@ dataSource	= _dataSource;
 {
     if (!(self = [super initWithFrame:frame]))
         return self;
-
+    
 	self.animationDuration	= 1.0;
 	self.hasGrids			= YES;
 	self.incrementValue		= 10;
@@ -59,7 +59,7 @@ dataSource	= _dataSource;
 	self.barTextFont		= [UIFont fontWithName:@"Helvetica" size:12.0];
 	self.barTextColor		= [UIColor whiteColor];
 	self.barTextType		= SimpleBarChartBarTextTypeTop;
-
+    
 	_barPathLayers			= [[NSMutableArray alloc] init];
 	_barHeights				= [[NSMutableArray alloc] init];
 	_barLabels				= [[NSMutableArray alloc] init];
@@ -68,25 +68,25 @@ dataSource	= _dataSource;
 	// Grid
 	_gridLayer				= [CALayer layer];
 	[self.layer addSublayer:_gridLayer];
-
+    
 	_barLayer				= [CALayer layer];
 	[self.layer addSublayer:_barLayer];
-
+    
 	_borderLayer			= [CALayer layer];
 	[self.layer addSublayer:_borderLayer];
-
+    
 	_yLabelView				= [[UIView alloc] init];
 	_yLabelView.alpha		= 0.0;
 	[self addSubview:_yLabelView];
-
+    
 	_xLabelView				= [[UIView alloc] init];
 	_xLabelView.alpha		= 0.0;
 	[self addSubview:_xLabelView];
-
+    
 	_barTextView			= [[UIView alloc] init];
 	_barTextView.alpha		= 0.0;
 	[self addSubview:_barTextView];
-
+    
     return self;
 }
 
@@ -103,10 +103,10 @@ dataSource	= _dataSource;
 		for (NSInteger i = 0; i < _numberOfBars; i++)
 		{
 			[_barHeights addObject:[NSNumber numberWithFloat:[_dataSource barChart:self valueForBarAtIndex:i]]];
-
+            
 			if (_dataSource && [_dataSource respondsToSelector:@selector(barChart:xLabelForBarAtIndex:)])
 				[_barLabels addObject:[_dataSource barChart:self xLabelForBarAtIndex:i]];
-
+            
 			if (_dataSource && [_dataSource respondsToSelector:@selector(barChart:textForBarAtIndex:)])
 				[_barTexts addObject:[_dataSource barChart:self textForBarAtIndex:i]];
 		}
@@ -116,7 +116,7 @@ dataSource	= _dataSource;
 		
 		// Round up to the next increment value
 		_topValue		= (self.incrementValue - (_maxHeight.integerValue % self.incrementValue)) + _maxHeight.integerValue;
-
+        
 		// Find max height of the x Labels based on the angle of rotation of the text
 		switch (self.xLabelType)
 		{
@@ -124,11 +124,11 @@ dataSource	= _dataSource;
 			default:
 				_xLabelRotation = 90.0;
 				break;
-
+                
 			case SimpleBarChartXLabelTypeHorizontal:
 				_xLabelRotation = 0.0;
 				break;
-
+                
 			case SimpleBarChartXLabelTypeAngled:
 				_xLabelRotation = 45.0;
 				break;
@@ -138,7 +138,7 @@ dataSource	= _dataSource;
 		{
 			CGSize labelSize = [label sizeWithFont:self.xLabelFont];
 			CGFloat labelHeightWithAngle = sin(DEGREES_TO_RADIANS(_xLabelRotation)) * labelSize.width;
-
+            
 			if (labelSize.height > labelHeightWithAngle)
 			{
 				_xLabelMaxHeight = (_xLabelMaxHeight > labelSize.height) ? _xLabelMaxHeight : labelSize.height;
@@ -148,9 +148,9 @@ dataSource	= _dataSource;
 				_xLabelMaxHeight = (_xLabelMaxHeight > labelHeightWithAngle) ? _xLabelMaxHeight : labelHeightWithAngle;
 			}
 		}
-
+        
 		// Begin Drawing
-		// Set Frames		
+		// Set Frames
 		CGSize yLabelSize		= self.hasYLabels ? [[NSString stringWithFormat:@"%i", _topValue] sizeWithFont:self.yLabelFont] : CGSizeZero;
 		_yLabelView.frame		= CGRectMake(0.0,
 											 0.0,
@@ -169,25 +169,25 @@ dataSource	= _dataSource;
 		_barLayer.frame			= _gridLayer.frame;
 		_borderLayer.frame		= _gridLayer.frame;
 		_barTextView.frame		= _gridLayer.frame;
-
+        
 		// Draw dem stuff
 		[self setupBorders];
 		[self drawBorders];
-
+        
 		@autoreleasepool {
 			[self setupBars];
 			[self animateBarAtIndex:0];
 		}
-
+        
 		if (self.hasGrids)
 		{
 			[self setupGrid];
 			[self drawGrid];
 		}
-
+        
 		[self setupYAxisLabels];
 		[self setupXAxisLabels];
-
+        
 		[self setupBarTexts];
 	}
 }
@@ -201,19 +201,19 @@ dataSource	= _dataSource;
 		[_borderPathLayer removeFromSuperlayer];
 		_borderPathLayer = nil;
 	}
-
+    
 	CGPoint bottomLeft 	= CGPointMake(CGRectGetMinX(_borderLayer.bounds), CGRectGetMinY(_borderLayer.bounds));
 	CGPoint bottomRight = CGPointMake(CGRectGetMaxX(_borderLayer.bounds), CGRectGetMinY(_borderLayer.bounds));
 	CGPoint topLeft		= CGPointMake(CGRectGetMinX(_borderLayer.bounds), CGRectGetMaxY(_borderLayer.bounds));
 	CGPoint topRight	= CGPointMake(CGRectGetMaxX(_borderLayer.bounds), CGRectGetMaxY(_borderLayer.bounds));
-
+    
 	UIBezierPath *path	= [UIBezierPath bezierPath];
 	[path moveToPoint:bottomRight];
 	[path addLineToPoint:topRight];
 	[path addLineToPoint:topLeft];
 	[path addLineToPoint:bottomLeft];
 	[path addLineToPoint:bottomRight];
-
+    
 	_borderPathLayer					= [CAShapeLayer layer];
 	_borderPathLayer.frame				= _borderLayer.bounds;
 	_borderPathLayer.bounds				= _borderLayer.bounds;
@@ -223,7 +223,7 @@ dataSource	= _dataSource;
 	_borderPathLayer.fillColor			= nil;
 	_borderPathLayer.lineWidth			= 1.0f;
 	_borderPathLayer.lineJoin			= kCALineJoinBevel;
-
+    
 	[_borderLayer addSublayer:_borderPathLayer];
 }
 
@@ -233,7 +233,7 @@ dataSource	= _dataSource;
 		return;
 	
 	[_borderPathLayer removeAllAnimations];
-
+    
     CABasicAnimation *pathAnimation	= [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     pathAnimation.duration			= self.animationDuration;
     pathAnimation.fromValue			= [NSNumber numberWithFloat:0.0f];
@@ -254,7 +254,7 @@ dataSource	= _dataSource;
 		}
 	}
 	[_barPathLayers removeAllObjects];
-
+    
 	CGFloat barHeightRatio	= _barLayer.bounds.size.height / (CGFloat)_topValue;
 	CGFloat	xPos			= _barLayer.bounds.size.width / (_numberOfBars + 1);
 	
@@ -263,15 +263,15 @@ dataSource	= _dataSource;
 		CGPoint bottom					= CGPointMake(xPos, _barLayer.bounds.origin.y);
 		CGPoint top						= CGPointMake(xPos, ((NSNumber *)[_barHeights objectAtIndex:i]).floatValue * barHeightRatio);
 		xPos							+= _barLayer.bounds.size.width / (_numberOfBars + 1);
-
+        
 		UIBezierPath *path				= [UIBezierPath bezierPath];
 		[path moveToPoint:bottom];
 		[path addLineToPoint:top];
-
+        
 		UIColor *barColor				= [UIColor darkGrayColor];
 		if (_dataSource && [_dataSource respondsToSelector:@selector(barChart:colorForBarAtIndex:)])
 			barColor = [_dataSource barChart:self colorForBarAtIndex:i];
-
+        
 		CAShapeLayer *barPathLayer		= [CAShapeLayer layer];
 		barPathLayer.frame				= _barLayer.bounds;
 		barPathLayer.bounds				= _barLayer.bounds;
@@ -286,21 +286,21 @@ dataSource	= _dataSource;
 		barPathLayer.shadowColor		= self.barShadowColor.CGColor;
 		barPathLayer.shadowOpacity		= self.barShadowAlpha;
 		barPathLayer.shadowRadius		= self.barShadowRadius;
-
+        
 		[_barLayer addSublayer:barPathLayer];
 		[_barPathLayers addObject:barPathLayer];
 	}
 }
 
 - (void)animateBarAtIndex:(NSInteger)index
-{	
+{
 	if (index >= _barPathLayers.count)
 	{
 		// Last bar, begin drawing grids
 		[self displayAxisLabels];
 		return;
 	}
-
+    
 	__block NSInteger i				= index + 1;
 	__weak SimpleBarChart *weakSelf = self;
 	[CATransaction begin];
@@ -309,11 +309,11 @@ dataSource	= _dataSource;
 	[CATransaction setCompletionBlock:^{
 		[weakSelf animateBarAtIndex:i];
 	}];
-
+    
 	CAShapeLayer *barPathLayer		= [_barPathLayers objectAtIndex:index];
 	barPathLayer.hidden				= NO;
 	[self drawBar:barPathLayer];
-
+    
 	[CATransaction commit];
 }
 
@@ -323,7 +323,7 @@ dataSource	= _dataSource;
 		return;
 	
 	[barPathLayer removeAllAnimations];
-
+    
 	CABasicAnimation *pathAnimation	= [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
 	pathAnimation.fromValue			= [NSNumber numberWithFloat:0.0f];
 	pathAnimation.toValue			= [NSNumber numberWithFloat:1.0f];
@@ -342,7 +342,7 @@ dataSource	= _dataSource;
 	
 	CGFloat gridUnit		= _gridLayer.bounds.size.height / _topValue;
 	CGFloat gridSeperation	= gridUnit * (CGFloat)self.incrementValue;
-
+    
 	CGFloat yPos			= gridSeperation;
 	UIBezierPath *path		= [UIBezierPath bezierPath];
 	while (yPos <= _gridLayer.bounds.size.height)
@@ -350,11 +350,11 @@ dataSource	= _dataSource;
 		CGPoint left	= CGPointMake(0.0, yPos);
 		CGPoint right	= CGPointMake(_gridLayer.bounds.size.width, yPos);
 		yPos			+= gridSeperation;
-
+        
 		[path moveToPoint:left];
 		[path addLineToPoint:right];
 	}
-
+    
 	_gridPathLayer					= [CAShapeLayer layer];
 	_gridPathLayer.frame			= _gridLayer.bounds;
 	_gridPathLayer.bounds			= _gridLayer.bounds;
@@ -364,7 +364,7 @@ dataSource	= _dataSource;
 	_gridPathLayer.fillColor		= nil;
 	_gridPathLayer.lineWidth		= 1.0f;
 	_gridPathLayer.lineJoin			= kCALineJoinBevel;
-
+    
 	[_gridLayer addSublayer:_gridPathLayer];
 }
 
@@ -374,7 +374,7 @@ dataSource	= _dataSource;
 		return;
 	
 	[_gridPathLayer removeAllAnimations];
-
+    
     CABasicAnimation *pathAnimation	= [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     pathAnimation.duration			= self.animationDuration;
     pathAnimation.fromValue			= [NSNumber numberWithFloat:0.0f];
@@ -389,16 +389,16 @@ dataSource	= _dataSource;
 {
 	if (!self.hasYLabels)
 		return;
-
+    
 	if (_yLabelView.alpha > 0.0)
 	{
 		_yLabelView.alpha = 0.0;
 		[[_yLabelView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	}
-
+    
 	CGFloat gridUnit			= _gridLayer.bounds.size.height / _topValue;
 	CGFloat gridSeperation		= gridUnit * (CGFloat)self.incrementValue;
-
+    
 	CGSize yLabelSize			= [[NSString stringWithFormat:@"%i", _topValue] sizeWithFont:self.yLabelFont];
 	CGFloat yPos				= 0.0;
 	NSInteger maxVal			= _topValue;
@@ -415,9 +415,9 @@ dataSource	= _dataSource;
 		yLabel.textAlignment	= NSTextAlignmentRight;
 		yLabel.center			= CGPointMake(yLabel.center.x, yPos);
 		yLabel.text				= [NSString stringWithFormat:@"%i", maxVal];
-
+        
 		[_yLabelView addSubview:yLabel];
-
+        
 		maxVal					-= self.incrementValue;
 		yPos					+= gridSeperation;
 	}
@@ -427,15 +427,15 @@ dataSource	= _dataSource;
 {
 	if (_barLabels.count == 0)
 		return;
-
+    
 	if (_xLabelView.alpha > 0.0)
 	{
 		_xLabelView.alpha = 0.0;
 		[[_xLabelView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	}
-
+    
 	CGFloat	xPos				= _barLayer.bounds.size.width / (_numberOfBars + 1);
-
+    
 	for (NSInteger i = 0; i < _numberOfBars; i++)
 	{
 		NSString *xLabelText	= [_barLabels objectAtIndex:i];
@@ -451,7 +451,7 @@ dataSource	= _dataSource;
 		xLabel.textAlignment	= NSTextAlignmentRight;
 		xLabel.text				= xLabelText;
 		xLabel.transform		= CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-_xLabelRotation));
-
+        
 		// Position the label appropriately
 		switch (self.xLabelType)
 		{
@@ -459,11 +459,11 @@ dataSource	= _dataSource;
 			default:
 				xLabel.center = CGPointMake(xPos, (xLabelSize.width / 2.0));
 				break;
-
+                
 			case SimpleBarChartXLabelTypeHorizontal:
 				xLabel.center = CGPointMake(xPos, _xLabelMaxHeight / 2.0);
 				break;
-
+                
 			case SimpleBarChartXLabelTypeAngled:
 			{
 				CGFloat labelHeightWithAngle	= sin(DEGREES_TO_RADIANS(_xLabelRotation)) * xLabelSize.width;
@@ -471,9 +471,9 @@ dataSource	= _dataSource;
 				break;
 			}
 		}
-
+        
 		[_xLabelView addSubview:xLabel];
-
+        
 		xPos					+= _barLayer.bounds.size.width / (_numberOfBars + 1);
 	}
 }
@@ -488,9 +488,9 @@ dataSource	= _dataSource;
 		_barTextView.alpha = 0.0;
 		[[_barTextView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	}
-
+    
 	CGFloat	xPos				= _barLayer.bounds.size.width / (_numberOfBars + 1);
-
+    
 	for (NSInteger i = 0; i < _numberOfBars; i++)
 	{
 		NSString *barLabelText	= [_barTexts objectAtIndex:i];
@@ -505,7 +505,7 @@ dataSource	= _dataSource;
 		barText.textColor		= self.barTextColor;
 		barText.textAlignment	= NSTextAlignmentCenter;
 		barText.text			= barLabelText;
-
+        
 		CGFloat barHeight		= (_barLayer.bounds.size.height / (CGFloat)_topValue) * ((NSNumber *)[_barHeights objectAtIndex:i]).floatValue;
 		
 		// Position the label appropriately
@@ -515,11 +515,11 @@ dataSource	= _dataSource;
 			default:
 				barText.center = CGPointMake(xPos, _barLayer.bounds.size.height - (barHeight - (barTextSize.height / 2.0)));
 				break;
-
+                
 			case SimpleBarChartBarTextTypeRoof:
 				barText.center = CGPointMake(xPos, _barLayer.bounds.size.height - (barHeight + (barTextSize.height / 2.0)));
 				break;
-
+                
 			case SimpleBarChartBarTextTypeMiddle:
 			{
 				CGFloat minBarHeight	= (_barLayer.bounds.size.height / (CGFloat)_topValue) * _minHeight.floatValue;
@@ -527,9 +527,9 @@ dataSource	= _dataSource;
 				break;
 			}
 		}
-
+        
 		[_barTextView addSubview:barText];
-
+        
 		xPos += _barLayer.bounds.size.width / (_numberOfBars + 1);
 	}
 }

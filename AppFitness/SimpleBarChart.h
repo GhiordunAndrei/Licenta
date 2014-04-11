@@ -73,7 +73,7 @@ typedef enum
 {
 	__weak id <SimpleBarChartDataSource> _dataSource;
 	__weak id <SimpleBarChartDelegate> _delegate;
-
+    
 	NSNumber *_maxHeight;
 	NSNumber *_minHeight;
 	CGFloat _xLabelMaxHeight;
@@ -86,20 +86,20 @@ typedef enum
 	// Borders
 	CALayer *_borderLayer;
 	CAShapeLayer *_borderPathLayer;
-
+    
 	// Bars
 	CALayer *_barLayer;
 	NSMutableArray *_barPathLayers;
-
+    
 	// Grid
 	CALayer *_gridLayer;
 	CAShapeLayer *_gridPathLayer;
-
+    
 	// Labels
 	UIView *_yLabelView;
 	UIView *_xLabelView;
 	CGFloat _xLabelRotation;
-
+    
 	UIView *_barTextView;
 }
 

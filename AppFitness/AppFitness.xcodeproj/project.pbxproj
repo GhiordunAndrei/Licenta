@@ -23,6 +23,10 @@
 		76139A9818F7F9CD00653A75 /* NVCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9718F7F9CD00653A75 /* NVCalendar.m */; };
 		76139A9E18F8085200653A75 /* ViewControllerCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9C18F8085200653A75 /* ViewControllerCalendar.m */; };
 		76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76139A9D18F8085200653A75 /* ViewControllerCalendar.xib */; };
+		76139AB118F814D600653A75 /* ViewControllerChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139AAF18F814D600653A75 /* ViewControllerChart.m */; };
+		76139AB218F814D600653A75 /* ViewControllerChart.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76139AB018F814D600653A75 /* ViewControllerChart.xib */; };
+		76139AB518F8155900653A75 /* SimpleBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139AB418F8155900653A75 /* SimpleBarChart.m */; };
+		76139AB918F8160000653A75 /* NSMutableArray+TTMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139AB818F8160000653A75 /* NSMutableArray+TTMutableArray.m */; };
 		761B708B18AB83A400545C6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708A18AB83A400545C6A /* Foundation.framework */; };
 		761B708D18AB83A400545C6A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708C18AB83A400545C6A /* CoreGraphics.framework */; };
 		761B708F18AB83A400545C6A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761B708E18AB83A400545C6A /* UIKit.framework */; };
@@ -98,6 +102,14 @@
 		76139A9B18F8085200653A75 /* ViewControllerCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCalendar.h; sourceTree = "<group>"; };
 		76139A9C18F8085200653A75 /* ViewControllerCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCalendar.m; sourceTree = "<group>"; };
 		76139A9D18F8085200653A75 /* ViewControllerCalendar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerCalendar.xib; sourceTree = "<group>"; };
+		76139AAE18F814D600653A75 /* ViewControllerChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerChart.h; sourceTree = "<group>"; };
+		76139AAF18F814D600653A75 /* ViewControllerChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerChart.m; sourceTree = "<group>"; };
+		76139AB018F814D600653A75 /* ViewControllerChart.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerChart.xib; sourceTree = "<group>"; };
+		76139AB318F8155900653A75 /* SimpleBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleBarChart.h; sourceTree = "<group>"; };
+		76139AB418F8155900653A75 /* SimpleBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleBarChart.m; sourceTree = "<group>"; };
+		76139AB618F815CD00653A75 /* SimpleBarChartExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleBarChartExample-Prefix.pch"; sourceTree = "<group>"; };
+		76139AB718F8160000653A75 /* NSMutableArray+TTMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+TTMutableArray.h"; sourceTree = "<group>"; };
+		76139AB818F8160000653A75 /* NSMutableArray+TTMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+TTMutableArray.m"; sourceTree = "<group>"; };
 		761B708718AB83A400545C6A /* AppFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		761B708A18AB83A400545C6A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		761B708C18AB83A400545C6A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -212,9 +224,25 @@
 			name = Calendar;
 			sourceTree = "<group>";
 		};
+		76139AA018F80BB700653A75 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				76139AAE18F814D600653A75 /* ViewControllerChart.h */,
+				76139AAF18F814D600653A75 /* ViewControllerChart.m */,
+				76139AB018F814D600653A75 /* ViewControllerChart.xib */,
+				76139AB318F8155900653A75 /* SimpleBarChart.h */,
+				76139AB418F8155900653A75 /* SimpleBarChart.m */,
+				76139AB618F815CD00653A75 /* SimpleBarChartExample-Prefix.pch */,
+				76139AB718F8160000653A75 /* NSMutableArray+TTMutableArray.h */,
+				76139AB818F8160000653A75 /* NSMutableArray+TTMutableArray.m */,
+			);
+			name = Chart;
+			sourceTree = "<group>";
+		};
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76139AA018F80BB700653A75 /* Chart */,
 				76139A9118F7F8B700653A75 /* Calendar */,
 				7650AE9518F425960022F153 /* Description */,
 				7650AE9318F423690022F153 /* rsz_abdomen.png */,
@@ -473,6 +501,7 @@
 				76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */,
 				761B70C818AB88E400545C6A /* Image640x960.png in Resources */,
 				761B70C718AB88E400545C6A /* 640x1136.png in Resources */,
+				76139AB218F814D600653A75 /* ViewControllerChart.xib in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
 				761B70CF18AB899D00545C6A /* ViewControllerScreen1.xib in Resources */,
 				761DDE3018B21F1600DAFBB5 /* ViewControllerNewAccount.xib in Resources */,
@@ -515,14 +544,17 @@
 				7695CD2B18F56FE000169CF9 /* AppFitness.xcdatamodeld in Sources */,
 				761DDE3918B22B9100DAFBB5 /* User.m in Sources */,
 				761B709D18AB83A400545C6A /* AppDelegate.m in Sources */,
+				76139AB118F814D600653A75 /* ViewControllerChart.m in Sources */,
 				761DDE3518B2264D00DAFBB5 /* ViewControllerNoModule.m in Sources */,
 				76139A9818F7F9CD00653A75 /* NVCalendar.m in Sources */,
 				761B70CE18AB899D00545C6A /* ViewControllerScreen1.m in Sources */,
 				7651D75E18DAEBCF00CE9CE2 /* ValidateEmail.m in Sources */,
 				761DDE2F18B21F1600DAFBB5 /* ViewControllerNewAccount.m in Sources */,
+				76139AB918F8160000653A75 /* NSMutableArray+TTMutableArray.m in Sources */,
 				7650AE9918F425B10022F153 /* ViewControllerDescription.m in Sources */,
 				761B70D918ABA19200545C6A /* ViewControllerModule.m in Sources */,
 				7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */,
+				76139AB518F8155900653A75 /* SimpleBarChart.m in Sources */,
 				760CF70F18EAABDA00875CBF /* MLAlertView.m in Sources */,
 				76139A9E18F8085200653A75 /* ViewControllerCalendar.m in Sources */,
 				761B709918AB83A400545C6A /* main.m in Sources */,
