@@ -74,7 +74,7 @@ int testDate;
 }
 -(BOOL)verifyCoreData:(NSString*)email
 {
-    BOOL value = false;
+    BOOL value;
     NSMutableArray *dataAccount;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Account"];
@@ -82,7 +82,7 @@ int testDate;
     NSLog(@"Count array form core Data %lu",(unsigned long)[dataAccount count]);
     
    
-        {
+        if (0 < [dataAccount count]) {
             for(int i=0;i<[dataAccount count];i++)
             {
                 if (![[[dataAccount objectAtIndex:i] valueForKey:@"email"]isEqualToString:email] ) {
@@ -95,7 +95,10 @@ int testDate;
             }
             
         
-    }
+        }else{
+        
+            value=YES;
+        }
     return value;
 
 }

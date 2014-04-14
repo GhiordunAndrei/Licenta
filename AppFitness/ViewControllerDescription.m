@@ -7,7 +7,9 @@
 //
 
 #import "ViewControllerDescription.h"
-
+#import "ViewControllerChart.h"
+#import "ViewControllerModule.h"
+#import "ViewControllerCalendar.h"
 @interface ViewControllerDescription ()
 
 @end
@@ -36,6 +38,37 @@
 }
 - (IBAction)buttonExercise:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)logs:(id)sender {
+    ViewControllerCalendar *viewScreenCalendar=[[ViewControllerCalendar alloc]init];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenCalendar animated:NO];
+    self.navigationController.navigationBarHidden=NO;
+}
+- (IBAction)program:(id)sender {
+    ViewControllerModule *viewScreenNoMudul=[[ViewControllerModule alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenNoMudul animated:NO];
+    self.navigationController.navigationBarHidden=NO;
+}
+- (IBAction)chart:(id)sender {
+    ViewControllerChart *viewScreenChart=[[ViewControllerChart alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenChart animated:NO];
+    self.navigationController.navigationBarHidden=NO;
 }
 
 @end

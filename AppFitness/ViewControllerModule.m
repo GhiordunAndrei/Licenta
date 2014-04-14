@@ -32,6 +32,8 @@ UIBarButtonItem *backBtn ;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewLabels.hidden=false;
+    self.viewImage.hidden=true;
     _alert = [[UIAlertView alloc] initWithTitle:@"Enter your friend email!"
                                         message:@"please press ok or cancel"
                                        delegate:self

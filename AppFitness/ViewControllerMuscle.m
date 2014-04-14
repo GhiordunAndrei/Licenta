@@ -117,8 +117,16 @@ UIBarButtonItem *addBtn ;
 - (IBAction)actionLogs:(id)sender {
   
     ViewControllerCalendar *viewScreenCalendar=[[ViewControllerCalendar alloc]init];
-    viewScreenCalendar.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:viewScreenCalendar animated:YES completion:nil];
+
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenCalendar animated:NO];
+    self.navigationController.navigationBarHidden=NO;
+    
+
 }
 
 
@@ -176,8 +184,13 @@ UIBarButtonItem *addBtn ;
 - (IBAction)buttonProgram:(id)sender {
     
     ViewControllerModule *viewScreenNoMudul=[[ViewControllerModule alloc]init];
-    viewScreenNoMudul.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:viewScreenNoMudul animated:YES completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenNoMudul animated:NO];
+    self.navigationController.navigationBarHidden=NO;
     
 }
 - (NSManagedObjectContext *)managedObjectContext
@@ -222,8 +235,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)buttonStatistics:(id)sender {
     
     ViewControllerChart *viewScreenChart=[[ViewControllerChart alloc]init];
-    viewScreenChart.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:viewScreenChart animated:YES completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:viewScreenChart animated:NO];
+    self.navigationController.navigationBarHidden=NO;
    
 }
 

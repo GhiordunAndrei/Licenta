@@ -57,11 +57,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bte-6P-bgh">
-                            <rect key="frame" x="124" y="8" width="36" height="36"/>
+                            <rect key="frame" x="99" y="8" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="calendar-36.png" backgroundImage="calendar-36.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="logs:" destination="-1" eventType="touchUpInside" id="gel-0W-aUI"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpg-h6-LYw">
                             <rect key="frame" x="255" y="10" width="32" height="32"/>
@@ -69,6 +72,19 @@
                             <state key="normal" image="scale-32.png" backgroundImage="scale-32.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="program:" destination="-1" eventType="touchUpInside" id="geo-Q1-tR2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbf-AC-bWD">
+                            <rect key="frame" x="174" y="10" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="combo-32.png" backgroundImage="combo-32.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="chart:" destination="-1" eventType="touchUpInside" id="Pko-Ln-lsB"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,6 +97,7 @@
     </objects>
     <resources>
         <image name="calendar-36.png" width="36" height="36"/>
+        <image name="combo-32.png" width="32" height="32"/>
         <image name="scale-32.png" width="32" height="32"/>
         <image name="weightlift-32.png" width="32" height="32"/>
     </resources>

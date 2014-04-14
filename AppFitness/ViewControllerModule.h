@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressViewEx2;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressViewEx3;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressViewEx4;
+@property (weak, nonatomic) IBOutlet UIView *viewLabels;
 
 @property (weak, nonatomic) IBOutlet UIView *viewFacebook;
 @property(weak,nonatomic)UITextField *textFieldEmail;

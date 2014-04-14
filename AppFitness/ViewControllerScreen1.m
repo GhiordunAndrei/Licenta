@@ -36,9 +36,12 @@ ViewControllerMuscle *viewScreenMuscle;
     [self.ImageViewLogo.layer setCornerRadius:30.0];
     _activitiIndicator.hidden=TRUE;
     self.navigationController.navigationBarHidden=YES;
-    
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ghback.png"]];
     self.textUsername.clearButtonMode  = UITextFieldViewModeWhileEditing;
     self.textPassword.clearButtonMode =UITextFieldViewModeWhileEditing;
+    self.buttonAccount.layer.cornerRadius=8.0f;
+    self.buttonLogin.layer.cornerRadius=8.0f;
+     
 }
 - (IBAction)actionButtonAccount:(id)sender {
     CATransition *transition = [CATransition animation];
