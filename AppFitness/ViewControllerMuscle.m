@@ -14,7 +14,7 @@
 #import "ViewControllerChart.h"
 @interface ViewControllerMuscle ()
 @end
-UIBarButtonItem *addBtn ;
+UIBarButtonItem *logOut ;
 @implementation ViewControllerMuscle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,7 +31,11 @@ UIBarButtonItem *addBtn ;
     [super viewDidLoad];
     self.title=@"Muscle Group!";
     self.viewExerciseMuscle.hidden=YES;
-  
+    logOut =[[UIBarButtonItem alloc]initWithTitle:@"LogOut" style:UIBarButtonItemStyleDone target:self action:@selector(ActionLogOut:)];
+    self.navigationItem.leftBarButtonItem=logOut;
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"EditCell" style:UIBarButtonItemStylePlain target:self action:@selector(editCell:)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
     
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MuscleGroup"];
@@ -51,10 +55,54 @@ UIBarButtonItem *addBtn ;
  
 }
 
+
+
+
+
+- (void)ActionLogOut:(UIBarButtonItem*)sender
+{
+    self.navigationController.navigationBarHidden=YES;
+    [self.navigationController popViewControllerAnimated:NO];
+    
+}
+
+-(void)editCell:(NSNotification *)notif {
+    
+    [self.tableViewMuscleGroup setEditing:!self.tableViewMuscleGroup.editing animated:YES];
+    
+    if (self.tableViewMuscleGroup.editing) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Edit mode"];
+    } else {
+        [self.navigationItem.rightBarButtonItem setTitle:@"EditCell"];
+    }
+}
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    NSInteger sourceRow = sourceIndexPath.row;
+    NSInteger destRow = destinationIndexPath.row;
+    id object = [arrayMuscleGroup objectAtIndex:sourceRow];
+    
+    [arrayMuscleGroup removeObjectAtIndex:sourceRow];
+    [arrayMuscleGroup  insertObject:object atIndex:destRow];
+    
 }
 
 
@@ -88,6 +136,7 @@ UIBarButtonItem *addBtn ;
     cell.textLabel.text = [arrayMuscleGroup objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:@"rsz_musclemanrunning.png"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+       cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_circular-32.png"]];
          
            return cell;
     }else 

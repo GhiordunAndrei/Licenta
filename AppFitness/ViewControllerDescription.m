@@ -29,7 +29,8 @@
 {
     [super viewDidLoad];
     self.title=@"Exercise Details";
-    self.navigationItem.hidesBackButton = NO;}
+    self.navigationItem.hidesBackButton = NO;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,6 +51,7 @@
     [self.navigationController pushViewController:viewScreenCalendar animated:NO];
     self.navigationController.navigationBarHidden=NO;
 }
+
 - (IBAction)program:(id)sender {
     ViewControllerModule *viewScreenNoMudul=[[ViewControllerModule alloc]init];
     CATransition *transition = [CATransition animation];

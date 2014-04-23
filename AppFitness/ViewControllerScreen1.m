@@ -31,7 +31,7 @@ ViewControllerMuscle *viewScreenMuscle;
 {
     [super viewDidLoad];
     viewScreenNewAccount=[[ViewControllerNewAccount alloc]init];
-    viewScreenMuscle =[[ViewControllerMuscle alloc]init];
+
     _activitiIndicator.hidden=true;
     [self.ImageViewLogo.layer setCornerRadius:30.0];
     _activitiIndicator.hidden=TRUE;
@@ -91,32 +91,25 @@ ViewControllerMuscle *viewScreenMuscle;
                 {
                     if ([[[dataAccount objectAtIndex:i] valueForKey:@"email"]isEqualToString:self.textUsername.text]  && [[[dataAccount objectAtIndex:i] valueForKey:@"password"]isEqualToString:self.textPassword.text]) {
                       
-                      NSNumber *first= [[dataAccount objectAtIndex:i]valueForKey:@"first"];
-                      NSNumber *haveModule=[[dataAccount objectAtIndex:i]valueForKey:@"haveModule"];
+                   //   NSNumber *first= [[dataAccount objectAtIndex:i]valueForKey:@"first"];
+                    //  NSNumber *haveModule=[[dataAccount objectAtIndex:i]valueForKey:@"haveModule"];
                     //  NSString *nameUser =[[dataAccount objectAtIndex:i]valueForKey:@"name"];
                         
-                        if ([haveModule intValue ]== 1 && [first intValue]== 1) {
-                            
+                     //   if ([haveModule intValue ]== 1 && [first intValue]== 1) {
+                      
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLog" object:[NSString stringWithFormat:@"b"]];
+                        viewScreenMuscle =[[ViewControllerMuscle alloc]init];
+                        
                             CATransition *transition = [CATransition animation];
                             transition.duration = 0.1f;
                             transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
                             transition.type = kCATransitionReveal;
                             [self.navigationController.view.layer addAnimation:transition forKey:nil];
+                        
                             [self.navigationController pushViewController:viewScreenMuscle animated:NO];
                             self.navigationController.navigationBarHidden=NO;
-
-                            
-                        } else if ([haveModule intValue]!= 1 && [first intValue]== 1){
-                            
-                            CATransition *transition = [CATransition animation];
-                            transition.duration = 0.1f;
-                            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                            transition.type = kCATransitionReveal;
-                            [self.navigationController.view.layer addAnimation:transition forKey:nil];
-                            [self.navigationController pushViewController:viewScreenMuscle animated:NO];
-                            self.navigationController.navigationBarHidden=NO;
-                            
-                        }
+                        
                     }
 
                 }

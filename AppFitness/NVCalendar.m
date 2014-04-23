@@ -7,7 +7,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        myDateProgram =[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -80,8 +80,7 @@
             }
             else
             {
-                lblForDate.backgroundColor = [UIColor clearColor];
-            }
+                          }
             [UIView animateWithDuration:0.5 animations:^{
                 lblMonthName.alpha = 1.0;
                 lblForDate.alpha = 1.0;
@@ -117,14 +116,41 @@
 {
   //  NSLog(@"tap %d",tap.view.tag);
     UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
-    [self animationDrawCircleTime:0.6 label:lbl  completion:^{
+    
+      if (lbl.backgroundColor== [UIColor clearColor]) {
+          
+    [self animationDrawCircleTime:1.6 label:lbl  completion:^{
+       
         NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
         UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
         NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
-        MLAlertView *alert = [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        MLAlertView *alert ;
+        if ([myDateProgram containsObject:msg]) {
+             alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:@"Already date added" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        }
+        else {
+            alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            
+            [myDateProgram addObject:msg]; /// aici am ramas .
+        }
         [alert show];
         
     }];
+
+        
+    lbl.backgroundColor = [UIColor colorWithRed:250.0/255.0 green:156.0/255.0 blue:120.0/255.0 alpha:1.0];
+    lbl.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:10.0];
+    lbl.layer.cornerRadius = 9.0;
+    lbl.clipsToBounds = YES;
+    lbl.layer.borderWidth = 1.0;
+          
+ 
+  }else{
+            lbl.backgroundColor = [UIColor clearColor];
+            lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
+            lbl.layer.borderWidth = 0.0;
+      
+   }
 }
 #pragma mark - Draw Circle around date when particular Date is clicked
 -(void)animationDrawCircleTime:(CGFloat)time label:(UILabel *)lbl completion:(void (^)(void))completion{

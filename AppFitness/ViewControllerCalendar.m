@@ -28,7 +28,24 @@
     [super viewDidLoad];
     dtForMonth = [NSDate date];
     [self createCalendar];
-    [super viewDidLoad];}
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getEmail:) name:@"UserLog" object:nil];
+    
+}
+- (IBAction)SaveAll:(id)sender {
+    NVCalendar *calendar =[[NVCalendar alloc]init];
+    
+    
+}
+
+
+-(void)getEmail:(NSNotification *)notif
+{
+    
+    NSLog(@"%@",notif.object);
+    
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
