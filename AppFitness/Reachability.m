@@ -155,6 +155,25 @@ static void logReachabilityFlags_(const char *name, int line, SCNetworkReachabil
 
 #define logNetworkStatus(status) (logNetworkStatus_(__PRETTY_FUNCTION__, __LINE__, status))
 
+static void logNetworkStatus_(const char *name, int line, NetworkStatus status) {
+	
+	NSString *statusString = nil;
+	
+	switch (status) {
+		case kNotReachable:
+			statusString = @"Not Reachable";
+			break;
+		case kReachableViaWWAN:
+			statusString = @"Reachable via WWAN";
+			break;
+		case kReachableViaWiFi:
+			statusString = @"Reachable via WiFi";
+			break;
+	}
+	
+	NSLog(@"%s (%d) \n\tNetwork Status: %@", name, line, statusString);
+	
+} // logNetworkStatus_()
 
 #else
 #define logReachabilityFlags(flags)
@@ -423,9 +442,9 @@ const SCNetworkReachabilityFlags kConnectionDown =  kSCNetworkReachabilityFlagsC
 		if (flags & kSCNetworkReachabilityFlagsIsWWAN) { return kReachableViaWWAN; }
 		
 		// Clear moot bits.
-		flags &= ~kSCNetworkReachabilityFlagsReachable;
-		flags &= ~kSCNetworkReachabilityFlagsIsDirect;
-		flags &= ~kSCNetworkReachabilityFlagsIsLocalAddress; // kInternetConnection is local.
+		flags &= ~(uint32_t)kSCNetworkReachabilityFlagsReachable;
+		flags &= ~(uint32_t)kSCNetworkReachabilityFlagsIsDirect;
+		flags &= ~(uint32_t)kSCNetworkReachabilityFlagsIsLocalAddress; // kInternetConnection is local.
 		
 		// Reachability Flag Status: -R ct---xx Connection down.
 		if (flags == kConnectionDown) { return kNotReachable; }

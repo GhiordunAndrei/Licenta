@@ -8,7 +8,7 @@
 
 #import "RequestManager.h"
 #import "ASIHTTPRequest.h"
-#import "UIApplication-Additions.h"
+//#import "UIApplication-Additions.h"
 #import "ASIFormDataRequest.h"
 
 static RequestManager *kRequestManager = nil;

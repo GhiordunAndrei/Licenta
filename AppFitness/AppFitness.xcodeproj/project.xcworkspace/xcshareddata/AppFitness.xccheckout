@@ -10,6 +10,8 @@
 	<string>AppFitness</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>9BDE32B1-AA15-49BA-9047-67AE9E633236</key>
+		<string>https://github.com/meegenius/ios.git</string>
 		<key>B5CD18B2-AB23-4DA8-B17B-A74B5A534750</key>
 		<string>https://github.com/GhiordunAndrei/Licenta.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>AppFitness/AppFitness.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>9BDE32B1-AA15-49BA-9047-67AE9E633236</key>
+		<string>../../../../ios</string>
 		<key>B5CD18B2-AB23-4DA8-B17B-A74B5A534750</key>
 		<string>../../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>B5CD18B2-AB23-4DA8-B17B-A74B5A534750</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9BDE32B1-AA15-49BA-9047-67AE9E633236</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
