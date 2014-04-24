@@ -3,11 +3,13 @@
 #import "MLAlertView.h"
 @implementation NVCalendar
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         myDateProgram =[[NSMutableArray alloc]init];
+        taps=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -111,27 +113,58 @@
     }
     return self;
 }
+#pragma mark - UnmarkDate
+-(void)unMarkTapped{
+
+    for (UITapGestureRecognizer * tap in taps) {
+        UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
+        NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
+        //UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
+        NSString *dateSelected = [NSString stringWithFormat:@"%@,%@",strFormatted,[self viewWithTag:1999]];
+        if ([myDateProgram containsObject:dateSelected]) {
+            
+            [myDateProgram removeObject:dateSelected];
+            lbl.backgroundColor = [UIColor clearColor];
+            lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
+            lbl.layer.borderWidth = 0.0;
+            
+        }    }
+}
+
+#pragma mark - Singleton
++(NVCalendar*)sharedInstance
+{
+    static dispatch_once_t predicate=0;
+    __strong static id sharedObject=nil;
+    dispatch_once(&predicate,^{
+        sharedObject=[[self alloc]init];
+    });
+    return sharedObject;
+}
+
 #pragma mark - Tapping Date
 -(void)lblDateTapped:(UITapGestureRecognizer *)tap//called when any date will be tapped
 {
-  //  NSLog(@"tap %d",tap.view.tag);
+   
     UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
     
-      if (lbl.backgroundColor== [UIColor clearColor]) {
+    if (lbl.backgroundColor== [UIColor clearColor]) {
           
     [self animationDrawCircleTime:1.6 label:lbl  completion:^{
        
         NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
         UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
+        NSString *dateSelected=[NSString stringWithFormat:@"%@,%@",strFormatted,[self viewWithTag:1999]];
         NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
         MLAlertView *alert ;
-        if ([myDateProgram containsObject:msg]) {
+         [taps addObject:tap];
+        if ([myDateProgram containsObject:dateSelected]) {
              alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:@"Already date added" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         }
         else {
             alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             
-            [myDateProgram addObject:msg]; /// aici am ramas .
+            [myDateProgram addObject:dateSelected]; /// aici am ramas .
         }
         [alert show];
         
@@ -146,9 +179,19 @@
           
  
   }else{
-            lbl.backgroundColor = [UIColor clearColor];
-            lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
-            lbl.layer.borderWidth = 0.0;
+      
+      UILabel *lbl = (UILabel *)[self viewWithTag:tap.view.tag];
+      NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
+      //UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
+      NSString *dateSelected = [NSString stringWithFormat:@"%@,%@",strFormatted,[self viewWithTag:1999]];
+      if ([myDateProgram containsObject:dateSelected]) {
+          
+          [myDateProgram removeObject:dateSelected];
+          lbl.backgroundColor = [UIColor clearColor];
+          lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
+          lbl.layer.borderWidth = 0.0;
+
+      }
       
    }
 }
@@ -273,13 +316,5 @@
     }
     return NO;
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end

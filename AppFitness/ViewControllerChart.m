@@ -27,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.view.backgroundColor=[UIColor whiteColor];
+    self.toolbar.backgroundColor=[UIColor redColor];
    // self.navigationItem.hidesBackButton = YES;
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -46,7 +47,7 @@
 {
 	[super loadView];
     
-	_values							= @[@30, @45, @44, @60, @95, @2, @8, @9];
+	_values							= @[@30, @45, @44, @60];
 	_barColors						= @[[UIColor blueColor], [UIColor redColor], [UIColor blackColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor greenColor]];
 	_currentBarColor				= 0;
     
@@ -93,6 +94,7 @@
     
 	if (_chart.xLabelType == SimpleBarChartXLabelTypeVerticle)
 		_chart.xLabelType = SimpleBarChartXLabelTypeHorizontal;
+    
 	else
 		_chart.xLabelType = SimpleBarChartXLabelTypeVerticle;
     

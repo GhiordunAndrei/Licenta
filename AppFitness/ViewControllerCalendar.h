@@ -24,8 +24,16 @@
     BOOL isLeft;
     NSDate *dtForMonth;
     int originX,originY;
+    NSMutableArray *arrayDate;
 }
 -(void)createCalendar;
 -(IBAction)next;
 -(IBAction)previous;
+@property (weak, nonatomic) IBOutlet UILabel *labelback;
+@property (weak, nonatomic) IBOutlet UILabel *labelSaveall;
+@property (weak, nonatomic) IBOutlet UILabel *labelforward;
+
+@property (weak, nonatomic) IBOutlet UIButton *buttonback;
+@property (weak, nonatomic) IBOutlet UIButton *buttonforward;
+@property (weak, nonatomic) IBOutlet UIButton *buttonsaveall;
 @end

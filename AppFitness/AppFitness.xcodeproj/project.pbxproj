@@ -90,6 +90,11 @@
 		76DB419418FC0AB8009FCDB1 /* right_circular-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 76DB419318FC0AB8009FCDB1 /* right_circular-64.png */; };
 		76DB419618FC0AD7009FCDB1 /* right_circular-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 76DB419518FC0AD7009FCDB1 /* right_circular-48.png */; };
 		76DB41F418FC1588009FCDB1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DB41F318FC1588009FCDB1 /* CFNetwork.framework */; };
+		76FA102019090814005F59DF /* trash-36.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA101F19090814005F59DF /* trash-36.png */; };
+		76FA102219090838005F59DF /* trash-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102119090838005F59DF /* trash-32.png */; };
+		76FA102419090898005F59DF /* delete-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102319090898005F59DF /* delete-32.png */; };
+		76FA102619091F7D005F59DF /* checklist-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102519091F7D005F59DF /* checklist-32.png */; };
+		76FA102819091FE8005F59DF /* today-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102719091FE8005F59DF /* today-32.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +210,11 @@
 		76DB419318FC0AB8009FCDB1 /* right_circular-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_circular-64.png"; sourceTree = "<group>"; };
 		76DB419518FC0AD7009FCDB1 /* right_circular-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_circular-48.png"; sourceTree = "<group>"; };
 		76DB41F318FC1588009FCDB1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		76FA101F19090814005F59DF /* trash-36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-36.png"; sourceTree = "<group>"; };
+		76FA102119090838005F59DF /* trash-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-32.png"; sourceTree = "<group>"; };
+		76FA102319090898005F59DF /* delete-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete-32.png"; sourceTree = "<group>"; };
+		76FA102519091F7D005F59DF /* checklist-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checklist-32.png"; sourceTree = "<group>"; };
+		76FA102719091FE8005F59DF /* today-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "today-32.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +472,11 @@
 		76DB417A18FBD814009FCDB1 /* imageApp */ = {
 			isa = PBXGroup;
 			children = (
+				76FA102519091F7D005F59DF /* checklist-32.png */,
+				76FA102719091FE8005F59DF /* today-32.png */,
+				76FA102319090898005F59DF /* delete-32.png */,
+				76FA101F19090814005F59DF /* trash-36.png */,
+				76FA102119090838005F59DF /* trash-32.png */,
 				76A657D01907CB1900CA112A /* multiple_input-32.png */,
 				7650AE9318F423690022F153 /* rsz_abdomen.png */,
 				76DB418518FBF58B009FCDB1 /* message_outline-32.png */,
@@ -588,8 +603,10 @@
 				76139AD118F82AD900653A75 /* left_round-32.png in Resources */,
 				76139ACD18F82A8900653A75 /* facebook-32.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
+				76FA102419090898005F59DF /* delete-32.png in Resources */,
 				761B70CF18AB899D00545C6A /* ViewControllerScreen1.xib in Resources */,
 				761DDE3018B21F1600DAFBB5 /* ViewControllerNewAccount.xib in Resources */,
+				76FA102219090838005F59DF /* trash-32.png in Resources */,
 				76139AC718F829E200653A75 /* email-32.png in Resources */,
 				76139ACF18F82AC500653A75 /* right_round-32.png in Resources */,
 				7652BCB718B0EB070011638F /* rsz_11rsz_logofitness.png in Resources */,
@@ -609,7 +626,9 @@
 				7600C04818EE9EE900101286 /* bg_01.jpg in Resources */,
 				7652BCB518B0EA420011638F /* rsz_1rsz_logofitness.png in Resources */,
 				76139AC518F8296E00653A75 /* scale-32.png in Resources */,
+				76FA102819091FE8005F59DF /* today-32.png in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
+				76FA102019090814005F59DF /* trash-36.png in Resources */,
 				761B70A218AB83A400545C6A /* Images.xcassets in Resources */,
 				76DB419618FC0AD7009FCDB1 /* right_circular-48.png in Resources */,
 				761B70C318AB83F500545C6A /* Fitness80x80.png in Resources */,
@@ -619,6 +638,7 @@
 				7650AE9A18F425B10022F153 /* ViewControllerDescription.xib in Resources */,
 				76DB419218FC0A77009FCDB1 /* lock-64.png in Resources */,
 				76DB418A18FBFA5E009FCDB1 /* background.png in Resources */,
+				76FA102619091F7D005F59DF /* checklist-32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

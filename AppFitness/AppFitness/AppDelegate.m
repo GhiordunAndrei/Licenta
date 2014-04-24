@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewControllerScreen1.h"
+#import "ViewControllerCalendar.h"
+#import "ViewControllerChart.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;

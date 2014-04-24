@@ -17,5 +17,6 @@
 	NSArray *_barColors;
 	NSInteger _currentBarColor;
 }
+@property (weak, nonatomic) IBOutlet UIView *toolbar;
 
 @end

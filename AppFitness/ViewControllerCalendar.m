@@ -9,9 +9,10 @@
 #import "ViewControllerCalendar.h"
 #import "NVCalendar.h"
 @interface ViewControllerCalendar ()
-
+{
+    NSUInteger bolbackforw;
+}
 @end
-
 @implementation ViewControllerCalendar
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,10 +31,11 @@
     [self createCalendar];
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getEmail:) name:@"UserLog" object:nil];
-    
+  
 }
+
 - (IBAction)SaveAll:(id)sender {
-    NVCalendar *calendar =[[NVCalendar alloc]init];
+  
     
     
 }
@@ -87,7 +89,7 @@
             originY = (i*Origin_of_calendarView)+Static_Y_Space;
         }
         
-        NVCalendar  *vwCal = [[NVCalendar alloc] initWithFrame:CGRectMake(X, originY, Width_calendarView,Height_calendarView)];
+        NVCalendar  *vwCal = [[NVCalendar alloc] initWithFrame:CGRectMake(X, originY+60, Width_calendarView,Height_calendarView)];
         X++;
         vwCal.tag = i+100;
         vwCal.layer.masksToBounds = NO;
@@ -104,17 +106,59 @@
         isLeft = !isLeft;
     }
 }
+
+
 -(IBAction)next
 {
+    [NSTimer scheduledTimerWithTimeInterval:0.01
+                                     target:self
+                                   selector:@selector(targetMethod:)
+                                   userInfo:nil
+                                    repeats:NO];
+
     [self createCalendar];
+     self.labelforward.textColor = [UIColor whiteColor];
+    bolbackforw=1;
+    
+    
+}
+-(void)targetMethod:(NSTimer *)timer {
+    
+    if(bolbackforw==1){
+        self.labelforward.textColor = [UIColor blackColor];}
+    else if(bolbackforw==2)
+    {
+        self.labelback.textColor = [UIColor blackColor];
+        
+    }
+
+}
+- (IBAction)actionsaveall:(id)sender {
+ 
 }
 -(IBAction)previous
 {
+         self.labelback.textColor = [UIColor whiteColor];
+      bolbackforw=2;
+    [NSTimer scheduledTimerWithTimeInterval:0.01
+                                     target:self
+                                   selector:@selector(targetMethod:)
+                                   userInfo:nil
+                                    repeats:NO];
+
+  
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setMonth:-Minus_month_for_Previous_Action];
     dtForMonth = [gregorian dateByAddingComponents:components toDate:dtForMonth options:0];
     [self createCalendar];
+    
+  
+}
+- (IBAction)actionunmark:(id)sender {
+   
+    [[NVCalendar sharedInstance] unMarkTapped];
+    
 }
 
 @end
