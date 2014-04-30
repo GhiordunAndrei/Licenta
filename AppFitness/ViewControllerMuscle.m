@@ -20,42 +20,28 @@ UIBarButtonItem *logOut ;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    if (self)  {}
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title=@"Muscle Group!";
     self.viewExerciseMuscle.hidden=YES;
     logOut =[[UIBarButtonItem alloc]initWithTitle:@"LogOut" style:UIBarButtonItemStyleDone target:self action:@selector(ActionLogOut:)];
     self.navigationItem.leftBarButtonItem=logOut;
-    
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"EditCell" style:UIBarButtonItemStylePlain target:self action:@selector(editCell:)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MuscleGroup"];
-    NSMutableArray  *dataAccount = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    arrayMuscleGroup = [[NSMutableArray alloc]init];
-    
-    for(int i=0;i<[dataAccount count];i++)
-    {
-        [arrayMuscleGroup addObject: [[dataAccount objectAtIndex:i]valueForKey:@"name"]];
-
-    }
     
     if([arrayMuscleGroup count]==0){
     
         arrayMuscleGroup = [NSMutableArray arrayWithObjects:@"Abdominals",@"Arms",@"Back",@"Chest",@"Shoulders",@"Legs",@"Cardio",@"Stretch", nil];
     }
- 
+  
 }
-
-
 
 
 
@@ -99,7 +85,6 @@ UIBarButtonItem *logOut ;
     NSInteger sourceRow = sourceIndexPath.row;
     NSInteger destRow = destinationIndexPath.row;
     id object = [arrayMuscleGroup objectAtIndex:sourceRow];
-    
     [arrayMuscleGroup removeObjectAtIndex:sourceRow];
     [arrayMuscleGroup  insertObject:object atIndex:destRow];
     
@@ -110,54 +95,53 @@ UIBarButtonItem *logOut ;
 {
     if(tableView==self.tableViewMuscleGroup)
     {
-    return [arrayMuscleGroup count];
+        return [arrayMuscleGroup count];
     }else{
         
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return [searchExercise count];
-            
-        }else{
-        return [arrayExerciseMuscle count];
-        }
+            if (tableView == self.searchDisplayController.searchResultsTableView) {
+                    return [searchExercise count];
+                }else{
+                        return [arrayExerciseMuscle count];
+                }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
      if(tableView==self.tableViewMuscleGroup){
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+            static NSString *simpleTableIdentifier = @"SimpleTableItem";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
+            if (cell == nil) {
+                                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+                                }
    
-    cell.textLabel.text = [arrayMuscleGroup objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@"rsz_musclemanrunning.png"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-       cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_circular-32.png"]];
-         
-           return cell;
+            cell.textLabel.text = [arrayMuscleGroup objectAtIndex:indexPath.row];
+            cell.imageView.image = [UIImage imageNamed:@"rsz_musclemanrunning.png"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_circular-32.png"]];
+       return cell;
     }else 
     {
-        static NSString *simpleTableIdentifier = @"SimpleTableItem1";
+            static NSString *simpleTableIdentifier = @"SimpleTableItem1";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        }
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+            }
 
         
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            cell.textLabel.text = [searchExercise objectAtIndex:indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"rsz_abdomen.png"];
-        } else {
-            cell.textLabel.text = [arrayExerciseMuscle objectAtIndex:indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"rsz_abdomen.png"];        }
-        
-        
+            if (tableView == self.searchDisplayController.searchResultsTableView) {
+                cell.textLabel.text = [searchExercise objectAtIndex:indexPath.row];
+            
+                cell.imageView.image = [UIImage imageNamed:@"rsz_abdomen.png"];
+            } else {
+                cell.textLabel.text = [arrayExerciseMuscle objectAtIndex:indexPath.row];
+                cell.imageView.image = [UIImage imageNamed:@"rsz_abdomen.png"];
+            }
+            cell.textLabel.font=[UIFont fontWithName:@"Helvetica Neue" size:15.0];
+            cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping; // Pre-iOS6 use UILineBreakModeWordWrap
+            cell.textLabel.numberOfLines = 2;
         
       return cell;
     }
@@ -166,7 +150,6 @@ UIBarButtonItem *logOut ;
 - (IBAction)actionLogs:(id)sender {
   
     ViewControllerCalendar *viewScreenCalendar=[[ViewControllerCalendar alloc]init];
-
     CATransition *transition = [CATransition animation];
     transition.duration = 0.1f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -186,12 +169,6 @@ UIBarButtonItem *logOut ;
 }
 
 
-/*
-- (IBAction)buttonNoModule:(id)sender {
-    ViewControllerNoModule *viewScreenNoMudul=[[ViewControllerNoModule alloc]init];
-    viewScreenNoMudul.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:viewScreenNoMudul animated:YES completion:nil];
-}*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -211,9 +188,39 @@ UIBarButtonItem *logOut ;
             
         }
         
-        if([arrayExerciseMuscle count]==0){
+        muscleselected=[arrayMuscleGroup objectAtIndex:indexPath.row];
+        if([muscleselected isEqual:@"Abdominals"]){
             
-            arrayExerciseMuscle  = [NSMutableArray arrayWithObjects:@"Bent Knee Hip Raise", @"Cross Body Crunch", @"Crunches", @"Decline Crunch", @"Leg Raise", @"Seated Ab Crunch", @"Side Bend", @"Side Plank", nil];        }
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Bent Knee Hip Raise",@"Cross Body Crunch",@"Crunches",@"Decline Crunch",@"Leg Raise",@"Seated Ab Crunch",@"Side Bend",@"Side Plank", nil];
+            
+        }else if([muscleselected isEqual:@"Arms"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Alternate Hammer Curl",@"Biceps Curl Barbell",@"Biceps Curl Dumbbell",@" Biceps Curl with Deadlift",@"Concentration Curl",@"Overhead Curl",@"Rope Hammer Curl", nil];
+            armstriceps =[NSMutableArray arrayWithObjects:@"Barbell Incline Triceps Extension",@"Bench Dips",@"JM Press",@"Lying Triceps Press",@"One Arm Triceps Extension",@"Seated Triceps Press",@"Standing One Arm Triceps Extension",@"Tricep Dumbbell Kickback",@"Triceps Pushdown V-Bar", nil];
+            
+        }else if([muscleselected isEqual:@"Back"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Back Flyes With Resistance Bands",@"Hyperextensions",@"Rear Deltoid Row",@"Reverse Grip Bent-Over Rows",@"Seated Cable Rows",@"T-Bar Row",@"V-Bar Pulldown", nil];
+            
+        }else if([muscleselected isEqual:@"Chest"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Barbell Incline Bench Press",@"Bench Press",@"Butterfly",@"Cable Crossover",@"Decline Dumbbell Bench Press",@"Dumbbell Incline Bench Press",@"Dumbbell Pullover",@"Incline Dumbbell Fyes",@"Smith Machine Bench Press", nil ];
+        }else if([muscleselected isEqual:@"Shoulders"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Arnold Dumbbell Press",@"Barbell Upright Row",@"Bent Over Low-Pulley Side Lateral",@"Bent Over Rear Delt Row With Head On Bench",@"Cable Seated Rear Lateral Raise",@"Dumbbell Shoulder Press",@"Front Cable Raise",@"Machine Shoulder(Military) Press",@"Seated Barbell Military Press",@"Side Lateral Raise", nil];
+            
+        }else if([muscleselected isEqual:@"Legs"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Barbell Lunge",@"Barbell Squat",@"Butt Lift(Bridge)",@"Leg Extensions",@"Leg Press",@"One-Legged Cable Kickback",@"Romanian Deadlift",@"Seated Calf Raise",@"Seated Leg Curl",@"Standing Leg Curl",@"Thigh Abductor",@"Thigh Adductor ", nil];
+            
+        }else if([muscleselected isEqual:@"Cardio"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"Biking",@"Elliptical",@"Recumbent Biking",@"Rowing",@"Step Machine",@"Treadmill", nil];
+            
+        }else if([muscleselected isEqual:@"Stretch"])
+        {
+            arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"", nil];
+        }
 
         
         group=[arrayExerciseMuscle  objectAtIndex:indexPath.row];
@@ -225,8 +232,17 @@ UIBarButtonItem *logOut ;
     {
         ViewControllerDescription *new_description =[[ViewControllerDescription alloc]init];
         new_description.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:new_description animated:YES completion:nil];
-   
+
+         NSString *nameExercise=[arrayExerciseMuscle objectAtIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults]setObject:nameExercise forKey:@"nameExercise"];
+        [[NSUserDefaults standardUserDefaults]setObject:muscleselected forKey:@"groupMuscle"];
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.1f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionReveal;
+        [self.navigationController.view.layer addAnimation:transition forKey:nil];
+        [self.navigationController pushViewController:new_description animated:NO];
+        self.navigationController.navigationBarHidden=NO;
     }
     
 }

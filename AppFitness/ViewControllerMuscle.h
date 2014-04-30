@@ -13,6 +13,9 @@
     NSMutableArray *arrayExerciseMuscle;
     NSArray *searchExercise;
     NSMutableString *group;
+    NSMutableString *muscleselected;
+    NSMutableArray *armstriceps;
+   
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewExerciseGroup;

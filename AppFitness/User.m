@@ -39,26 +39,80 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder
+-(BOOL)verifyCoreData:(NSString*)newemail
 {
-    [coder encodeObject:FullName forKey:@"FullName"];
-    [coder encodeObject:Password forKey:@"Password"];
-    [coder encodeObject:email forKey:@"Email"];
-    [coder encodeInteger:first forKey:@"First"];
-    //[coder]
+    BOOL value;
+    NSMutableArray *dataAccount;
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Account"];
+    dataAccount = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSLog(@"Count array form core Data %lu",(unsigned long)[dataAccount count]);
+    
+    
+    if (0 < [dataAccount count]) {
+        for(int i=0;i<[dataAccount count];i++)
+        {
+            if (![[[dataAccount objectAtIndex:i] valueForKey:@"email"]isEqualToString:newemail] ) {
+                
+                value=YES;
+                
+            }else{
+                value=FALSE;
+            }
+        }
+        
+        
+    }else{
+        
+        value=YES;
+    }
+    return value;
+    
 }
 
-- (id)initWithCoder:(NSCoder *)coder
+-(BOOL)saveData
 {
-    self = [super init];
-    if (self!=NULL)
+    if ([self verifyCoreData:email]) {
+
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSNumber *startkg=[NSNumber numberWithInt:self.startKg];
+    NSNumber *endkg=[NSNumber numberWithInt:self.endKg];
+    NSNumber *newage=[NSNumber numberWithInt:self.age];
+    NSManagedObject *newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" inManagedObjectContext:context];
+    [newAccount setValue:self.FullName forKey:@"name"];
+    [newAccount setValue:self.email forKey:@"email"];
+    [newAccount setValue:self.Password forKey:@"password"];
+    [newAccount setValue:[NSNumber numberWithBool:YES]  forKey:@"first"];
+    [newAccount setValue:startkg forKey:@"startKg"];
+    [newAccount setValue:endkg forKey:@"endKg"];
+    [newAccount setValue:newage forKey:@"age"];
+    [newAccount setValue:self.endDate forKey:@"endDate"];
+    [newAccount setValue:self.beginDate forKey:@"startDate"];
+    [newAccount setValue:[NSNumber numberWithBool:self.haveModul] forKey:@"haveModule"];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        return false;
+    }else{
+        return true;
+        
+        }
+    }else
     {
-        FullName = [coder decodeObjectForKey:@"FullName"];
-        Password = [coder decodeObjectForKey:@"Password"];
-        email = [coder decodeObjectForKey:@"Email"];
-        first = [coder decodeIntForKey:@"First"];
+        return false;
     }
-    return self;
+
+}
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 

@@ -72,36 +72,7 @@ int testDate;
     }
     return context;
 }
--(BOOL)verifyCoreData:(NSString*)email
-{
-    BOOL value;
-    NSMutableArray *dataAccount;
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Account"];
-    dataAccount = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    NSLog(@"Count array form core Data %lu",(unsigned long)[dataAccount count]);
-    
-   
-        if (0 < [dataAccount count]) {
-            for(int i=0;i<[dataAccount count];i++)
-            {
-                if (![[[dataAccount objectAtIndex:i] valueForKey:@"email"]isEqualToString:email] ) {
-                
-                    value=YES;
-                
-                }else{
-                    value=FALSE;
-                }
-            }
-            
-        
-        }else{
-        
-            value=YES;
-        }
-    return value;
 
-}
 
 
 - (IBAction)actionButtonNewAccount:(id)sender {
@@ -129,33 +100,25 @@ int testDate;
                 if([self.textAge.text intValue] < 70){
                 
                     if([self.textStartKg.text intValue] > 30 && [self.textEndKg.text intValue]< 110){
-                    
-                        if([self verifyCoreData:self.textEmail.text]){
                           
-                        NSManagedObjectContext *context = [self managedObjectContext];
-                        NSNumber *startkg=[NSNumber numberWithInt:[self.textStartKg.text intValue]];
-                        NSNumber *endkg=[NSNumber numberWithInt:[self.textEndKg.text  intValue]];
-                        NSNumber *age=[NSNumber numberWithInt:[self.textAge.text  intValue]];
+                            
+                            NSString *str = [self.textAge text];
+                            int age = [str intValue];
+                            
+                            NSString *str1 = [self.textEndKg text];
+                            int endkg = [str1 intValue];
+                            
+                            
+                            NSString *str2 = [self.textStartKg text];
+                            int startkg = [str2 intValue];
+                            
+                            
+                            User *newuser =[[User alloc]init:self.textFullName.text Password:self.textPassword.text Email:self.textEmail.text Age:age BeginDate:self.startDate EndDate:self.endDate HaveModule:1 StartKg:startkg EndKg:endkg];
                         
-                        
-                        NSManagedObject *newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" inManagedObjectContext:context];
-                        [newAccount setValue:self.textFullName.text forKey:@"name"];
-                        [newAccount setValue:self.textEmail.text forKey:@"email"];
-                        [newAccount setValue:self.textPassword.text forKey:@"password"];
-                        [newAccount setValue:[NSNumber numberWithBool:YES]  forKey:@"first"];
-                        [newAccount setValue:startkg forKey:@"startKg"];
-                        [newAccount setValue:endkg forKey:@"endKg"];
-                        [newAccount setValue:age forKey:@"age"];
-                        [newAccount setValue:endDate forKey:@"endDate"];
-                        [newAccount setValue:startDate forKey:@"startDate"];
-                        [newAccount setValue:[NSNumber numberWithBool:self.haveModul] forKey:@"haveModule"];
-                        
-                        NSError *error = nil;
-                        if (![context save:&error]) {
-                            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-                        }
-                        
-                        alert=[[MLAlertView alloc]initWithTitle:@"Succes" message:@"Account Completed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+
+                        if([newuser saveData]){
+                            
+                              alert=[[MLAlertView alloc]initWithTitle:@"Succes" message:@"Account Completed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                         }
                         else{
                         

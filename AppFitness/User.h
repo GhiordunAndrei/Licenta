@@ -33,4 +33,5 @@
 @property(strong,nonatomic)NSDate *endDate;
 
 -(id)init:(NSString*)fullName Password:(NSString*)password Email:(NSString*)newemail  Age:(NSUInteger)newage BeginDate:(NSDate*)begindate EndDate:(NSDate*)endDate HaveModule:(Boolean)havemodule StartKg:(NSUInteger)startkg EndKg:(NSUInteger)endkg;
+-(BOOL)saveData;
 @end

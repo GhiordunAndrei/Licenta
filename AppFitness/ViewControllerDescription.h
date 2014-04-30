@@ -7,7 +7,48 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewControllerDescription : UIViewController
-
+#import "Description.h"
+@interface ViewControllerDescription : UIViewController 
+{
+    NSString *nameExercise;
+    NSString *nameGroupMuscle;
+    NSMutableDictionary *exerciseDescription;
+    NSMutableDictionary *exerciseImage;
+    NSMutableDictionary *exerciseMuscle;
+    UITextView *exampleTxt;
+    NSMutableString *textDescription;
+}
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segBarexercise;
+@property (weak, nonatomic) IBOutlet UILabel *labelexercise;
+@property (weak, nonatomic) IBOutlet UIView *viewSegmentControl;
+@property (weak, nonatomic) IBOutlet UILabel *labelgroup;
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
