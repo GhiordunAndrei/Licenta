@@ -81,6 +81,10 @@
 		7695CD2B18F56FE000169CF9 /* AppFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7695CD2918F56FE000169CF9 /* AppFitness.xcdatamodeld */; };
 		76A657D11907CB1900CA112A /* multiple_input-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A657D01907CB1900CA112A /* multiple_input-32.png */; };
 		76C5FD2C190C3CCF00998CF0 /* main_background_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */; };
+		76D632B9191121CF00514D62 /* 2338.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632B8191121CF00514D62 /* 2338.jpg */; };
+		76D632BC1911232100514D62 /* BentKneeHipRaise.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */; };
+		76D632BE191123E800514D62 /* CrossBodyCrunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */; };
+		76D632C01911249200514D62 /* LegRaise.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632BF1911249200514D62 /* LegRaise.jpg */; };
 		76DB417C18FBF17F009FCDB1 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 76DB417B18FBF17F009FCDB1 /* login.png */; };
 		76DB418618FBF58B009FCDB1 /* message_outline-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76DB418518FBF58B009FCDB1 /* message_outline-32.png */; };
 		76DB418818FBF5FF009FCDB1 /* lock-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76DB418718FBF5FF009FCDB1 /* lock-32.png */; };
@@ -219,6 +223,10 @@
 		7695CD2A18F56FE000169CF9 /* AppFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppFitness.xcdatamodel; sourceTree = "<group>"; };
 		76A657D01907CB1900CA112A /* multiple_input-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple_input-32.png"; sourceTree = "<group>"; };
 		76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_background_dark.png; sourceTree = "<group>"; };
+		76D632B8191121CF00514D62 /* 2338.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2338.jpg; sourceTree = "<group>"; };
+		76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BentKneeHipRaise.jpg; sourceTree = "<group>"; };
+		76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CrossBodyCrunch.jpg; sourceTree = "<group>"; };
+		76D632BF1911249200514D62 /* LegRaise.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LegRaise.jpg; sourceTree = "<group>"; };
 		76DB417B18FBF17F009FCDB1 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		76DB418518FBF58B009FCDB1 /* message_outline-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_outline-32.png"; sourceTree = "<group>"; };
 		76DB418718FBF5FF009FCDB1 /* lock-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-32.png"; sourceTree = "<group>"; };
@@ -354,6 +362,7 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76D632B8191121CF00514D62 /* 2338.jpg */,
 				76E84735190A6EF0009AFC2D /* Program */,
 				76FA11DD19093A0A005F59DF /* Server */,
 				76DB417A18FBD814009FCDB1 /* imageApp */,
@@ -530,9 +539,20 @@
 			name = Email;
 			sourceTree = "<group>";
 		};
+		76D632BA1911223F00514D62 /* imageExercises */ = {
+			isa = PBXGroup;
+			children = (
+				76D632BF1911249200514D62 /* LegRaise.jpg */,
+				76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */,
+				76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */,
+			);
+			name = imageExercises;
+			sourceTree = "<group>";
+		};
 		76DB417A18FBD814009FCDB1 /* imageApp */ = {
 			isa = PBXGroup;
 			children = (
+				76D632BA1911223F00514D62 /* imageExercises */,
 				76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */,
 				76313A7118D9B645008150D8 /* Default-568h@2x.png */,
 				76FA102519091F7D005F59DF /* checklist-32.png */,
@@ -726,6 +746,8 @@
 			files = (
 				7600C04C18EE9EE900101286 /* bg_05.jpg in Resources */,
 				76DB419418FC0AB8009FCDB1 /* right_circular-64.png in Resources */,
+				76D632C01911249200514D62 /* LegRaise.jpg in Resources */,
+				76D632BC1911232100514D62 /* BentKneeHipRaise.jpg in Resources */,
 				76139AC918F82A3300653A75 /* save-32.png in Resources */,
 				7600C04B18EE9EE900101286 /* bg_04.jpg in Resources */,
 				7636B87018F2CA0B00D1EA99 /* rsz_musclemanrunning.png in Resources */,
@@ -753,6 +775,7 @@
 				76139ACF18F82AC500653A75 /* right_round-32.png in Resources */,
 				7652BCB718B0EB070011638F /* rsz_11rsz_logofitness.png in Resources */,
 				76DB418C18FC0065009FCDB1 /* Bookworm.png in Resources */,
+				76D632BE191123E800514D62 /* CrossBodyCrunch.jpg in Resources */,
 				76C5FD2C190C3CCF00998CF0 /* main_background_dark.png in Resources */,
 				7600C04D18EE9EE900101286 /* title1@2x.png in Resources */,
 				761DDE3618B2264D00DAFBB5 /* ViewControllerNoModule.xib in Resources */,
@@ -771,6 +794,7 @@
 				76139AC518F8296E00653A75 /* scale-32.png in Resources */,
 				76FA122419093F51005F59DF /* ViewControllerRequest.xib in Resources */,
 				76FA102819091FE8005F59DF /* today-32.png in Resources */,
+				76D632B9191121CF00514D62 /* 2338.jpg in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				76FA102019090814005F59DF /* trash-36.png in Resources */,
 				761B70A218AB83A400545C6A /* Images.xcassets in Resources */,

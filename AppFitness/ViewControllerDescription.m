@@ -29,12 +29,12 @@
 {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = NO;
-   
+    self.segBarexercise.tintColor=[UIColor grayColor];
 
     [self setupDescription];
-   self.labelexercise.text=nameExercise;
+    self.labelexercise.text=nameExercise;
     self.labelgroup.text=nameGroupMuscle;
-    
+
 }
 -(void)setupDescription
 {
@@ -286,15 +286,24 @@
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
     if (selectedSegment == 0 ) {
+        UIImage *image=[UIImage imageNamed: @"2338.jpg"];
+        imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 298,303)];
+        [imageview setImage:image];
+        [self.viewSegmentControl  addSubview:imageview];
         [exampleTxt removeFromSuperview];
 
     }else if(selectedSegment==1)
     {
         [exampleTxt removeFromSuperview];
+        [imageview removeFromSuperview];
+        
     } else if(selectedSegment==2)
     {
-        exampleTxt = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 272, 303)];
+        exampleTxt = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 298, 303)];
         [exampleTxt setText:textDescription];
+        exampleTxt.textColor =[UIColor grayColor];
+        [ exampleTxt setFont:[UIFont fontWithName:@"ArialMT" size:18]];
+        [imageview removeFromSuperview];
         [self.viewSegmentControl addSubview: exampleTxt];
     }
 }

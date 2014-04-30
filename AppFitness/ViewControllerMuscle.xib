@@ -80,7 +80,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.40907276460000003" green="0.95920360329999999" blue="0.21313367590000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.97775829079999999" green="0.57439260029999994" blue="0.092615756440000002" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zj4-tO-ETv" userLabel="ViewExerciseMuscle">
                     <rect key="frame" x="0.0" y="67" width="320" height="438"/>
@@ -108,7 +108,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-Xg-jOq">
-                    <rect key="frame" x="0.0" y="506" width="320" height="7"/>
+                    <rect key="frame" x="0.0" y="506" width="320" height="8"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
