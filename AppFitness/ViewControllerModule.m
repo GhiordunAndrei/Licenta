@@ -7,14 +7,15 @@
 //
 
 #import "ViewControllerModule.h"
-
+#import  "IMViewController.h"
 NSString *email;
 @interface ViewControllerModule ()
 
 @end
-
+IMViewController *viewPhoto;
 @implementation ViewControllerModule
 UIBarButtonItem *backBtn ;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -81,13 +82,9 @@ UIBarButtonItem *backBtn ;
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     
-    
-        self.peripheralConnected=peripheral;
+    self.peripheralConnected=peripheral;
     [self.central connectPeripheral:self.peripheralConnected options:nil];
-
     self.sensorName.text=peripheral.name;
-    
-    
     
 }
 
@@ -219,18 +216,31 @@ UIBarButtonItem *backBtn ;
     self.viewImage.hidden=NO;
     @try
     {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        picker.delegate = self;
         
-        [self presentViewController:picker animated:YES completion:nil];
+        
+        viewPhoto =[[IMViewController alloc] initWithNibName:@"IMViewController_iPhone" bundle:nil];
+        
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.7f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionReveal;
+        [self.navigationController.view.layer addAnimation:transition forKey:nil];
+        [self.navigationController pushViewController:viewPhoto animated:NO];
+        self.navigationController.navigationBarHidden=YES;
+        
+        
+       // UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+       // picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+      //  picker.delegate = self;
+        
+       // [self presentViewController:picker animated:YES completion:nil];
       //  [self presentModalViewController:picker animated:YES];
       //  [picker release];
     }
     @catch (NSException *exception)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        //[alert show];
         //[alert release];
     }
     self.viewFacebook.hidden=NO;

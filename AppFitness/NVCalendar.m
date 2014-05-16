@@ -8,7 +8,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        myDateProgram =[[NSMutableArray alloc]init];
+    //    myDateProgram =[[NSMutableArray alloc]init];
         taps=[[NSMutableArray alloc]init];
     }
     return self;
@@ -62,7 +62,7 @@
             
             UILabel *lblForDate=[[UILabel alloc]initWithFrame:CGRectMake(x, y, day_label_width, day_label_height)];
             lblForDate.text=[NSString stringWithFormat:@"%d",d-startWithDay+1];
-            lblForDate.textColor = [UIColor blackColor];
+            lblForDate.textColor = [UIColor blackColor];  // aici se coloreaza numerele
             lblForDate.alpha = 0.3;
             lblForDate.userInteractionEnabled = YES;
             lblForDate.tag = d+2000;
@@ -80,9 +80,8 @@
                 lblForDate.clipsToBounds = YES;
                 lblForDate.layer.borderWidth = 1.0;
             }
-            else
-            {
-                          }
+            
+            
             [UIView animateWithDuration:0.5 animations:^{
                 lblMonthName.alpha = 1.0;
                 lblForDate.alpha = 1.0;
@@ -121,14 +120,15 @@
         NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
         //UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
         NSString *dateSelected = [NSString stringWithFormat:@"%@,%@",strFormatted,[self viewWithTag:1999]];
-        if ([myDateProgram containsObject:dateSelected]) {
-            
-            [myDateProgram removeObject:dateSelected];
+       // if ([myDateProgram containsObject:dateSelected]) {
+        
+        //    [myDateProgram removeObject:dateSelected];
             lbl.backgroundColor = [UIColor clearColor];
             lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
             lbl.layer.borderWidth = 0.0;
             
-        }    }
+        //}
+}
 }
 
 #pragma mark - Singleton
@@ -158,14 +158,14 @@
         NSString *msg = [NSString stringWithFormat:@"You have tapped %@, %@",strFormatted,lblMonth_Year.text];
         MLAlertView *alert ;
          [taps addObject:tap];
-        if ([myDateProgram containsObject:dateSelected]) {
-             alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:@"Already date added" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        }
-        else {
-            alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+       // if ([myDateProgram containsObject:dateSelected]) {
+        //     alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:@"Already date added" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+      //  }
+      //  else {
+        //    alert= [[MLAlertView alloc] initWithTitle:@"Calendar" message:msg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             
-            [myDateProgram addObject:dateSelected]; /// aici am ramas .
-        }
+          //  [myDateProgram addObject:dateSelected]; /// aici am ramas .
+        //}
         [alert show];
         
     }];
@@ -184,14 +184,14 @@
       NSString *strFormatted = [NVCalendar buildRankString:[NSNumber numberWithInt:(int)[lbl.text integerValue]]];
       //UILabel *lblMonth_Year = (UILabel *)[self viewWithTag:1999];
       NSString *dateSelected = [NSString stringWithFormat:@"%@,%@",strFormatted,[self viewWithTag:1999]];
-      if ([myDateProgram containsObject:dateSelected]) {
+     // if ([myDateProgram containsObject:dateSelected]) {
           
-          [myDateProgram removeObject:dateSelected];
+         // [myDateProgram removeObject:dateSelected];
           lbl.backgroundColor = [UIColor clearColor];
           lbl.font=[UIFont fontWithName:@"HelveticaNeue-Thin" size:10.0];
           lbl.layer.borderWidth = 0.0;
 
-      }
+      //}
       
    }
 }
@@ -316,5 +316,7 @@
     }
     return NO;
 }
+
+
 
 @end

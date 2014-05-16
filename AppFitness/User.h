@@ -7,23 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import  <Parse/Parse.h>
 
-@interface User : NSObject<NSCoding>
-{
-    NSString *FullName;
-    NSString *Password;
-    Boolean first;
-    NSString *email;
-    NSUInteger startKg;
-    NSUInteger endKg;
-    NSUInteger age;
-    Boolean haveModul;
-    NSDate *beginDate;
-    NSDate *endDate;
-}
-@property(assign)NSUInteger startKg;
-@property(assign)NSUInteger endKg;
-@property(assign)NSUInteger age;
+@interface User : NSObject
+
+@property(strong,nonatomic)NSNumber *startKg;
+@property(strong,nonatomic)NSNumber *endKg;
+@property(strong,nonatomic)NSNumber *age;
 @property(strong,nonatomic)NSString *FullName;
 @property(strong,nonatomic)NSString *Password;
 @property(assign)Boolean first;
@@ -31,7 +21,8 @@
 @property(assign)Boolean haveModul;
 @property(strong,nonatomic)NSDate *beginDate;
 @property(strong,nonatomic)NSDate *endDate;
-
--(id)init:(NSString*)fullName Password:(NSString*)password Email:(NSString*)newemail  Age:(NSUInteger)newage BeginDate:(NSDate*)begindate EndDate:(NSDate*)endDate HaveModule:(Boolean)havemodule StartKg:(NSUInteger)startkg EndKg:(NSUInteger)endkg;
+@property(strong,nonatomic)NSString *uuid;
+@property(strong,nonatomic)NSNumber *numberProgram;
+-(id)init:(NSString*)fullName Password:(NSString*)password Email:(NSString*)newemail  Age:(NSUInteger)newage BeginDate:(NSDate*)begindate EndDate:(NSDate*)newendDate HaveModule:(Boolean)havemodule StartKg:(NSUInteger)nstartkg EndKg:(NSUInteger)nendkg;
 -(BOOL)saveData;
 @end

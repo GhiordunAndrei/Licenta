@@ -19,6 +19,11 @@
 		7600C05118EE9EE900101286 /* title5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7600C04718EE9EE900101286 /* title5@2x.png */; };
 		7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */; };
 		7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */; };
+		7605E65C191963850013CD87 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65B191963850013CD87 /* Parse.framework */; };
+		7605E65E191963D00013CD87 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65D191963D00013CD87 /* AudioToolbox.framework */; };
+		7605E660191963E40013CD87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65F191963E40013CD87 /* CoreLocation.framework */; };
+		7605E662191964050013CD87 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E661191964050013CD87 /* Security.framework */; };
+		7605E6641919640F0013CD87 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E6631919640F0013CD87 /* StoreKit.framework */; };
 		760CF70F18EAABDA00875CBF /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 760CF70E18EAABDA00875CBF /* MLAlertView.m */; };
 		76139A9818F7F9CD00653A75 /* NVCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9718F7F9CD00653A75 /* NVCalendar.m */; };
 		76139A9E18F8085200653A75 /* ViewControllerCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76139A9C18F8085200653A75 /* ViewControllerCalendar.m */; };
@@ -80,7 +85,13 @@
 		7652BCB718B0EB070011638F /* rsz_11rsz_logofitness.png in Resources */ = {isa = PBXBuildFile; fileRef = 7652BCB618B0EB070011638F /* rsz_11rsz_logofitness.png */; };
 		7695CD2B18F56FE000169CF9 /* AppFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7695CD2918F56FE000169CF9 /* AppFitness.xcdatamodeld */; };
 		76A657D11907CB1900CA112A /* multiple_input-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A657D01907CB1900CA112A /* multiple_input-32.png */; };
+		76B09CE01924DF1D00DB25C0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B09CDF1924DF1D00DB25C0 /* MBProgressHUD.m */; };
 		76C5FD2C190C3CCF00998CF0 /* main_background_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */; };
+		76D60721191664E0005904B6 /* IMViewWithBorderedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D60718191664E0005904B6 /* IMViewWithBorderedImage.m */; };
+		76D60722191664E0005904B6 /* IMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D6071A191664E0005904B6 /* IMViewController.m */; };
+		76D60723191664E0005904B6 /* IMColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D6071C191664E0005904B6 /* IMColorTableViewController.m */; };
+		76D60724191664E0005904B6 /* IMContentModeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D6071E191664E0005904B6 /* IMContentModeTableViewController.m */; };
+		76D60725191664E0005904B6 /* IMViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D6071F191664E0005904B6 /* IMViewController_iPhone.xib */; };
 		76D632B9191121CF00514D62 /* 2338.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632B8191121CF00514D62 /* 2338.jpg */; };
 		76D632BC1911232100514D62 /* BentKneeHipRaise.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */; };
 		76D632BE191123E800514D62 /* CrossBodyCrunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */; };
@@ -117,6 +128,12 @@
 		76FA122319093F51005F59DF /* ViewControllerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FA122119093F51005F59DF /* ViewControllerRequest.m */; };
 		76FA122419093F51005F59DF /* ViewControllerRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76FA122219093F51005F59DF /* ViewControllerRequest.xib */; };
 		76FA12271909403A005F59DF /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FA12261909403A005F59DF /* RequestManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		76FB6128191511510053F7FC /* 55.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FB6127191511510053F7FC /* 55.png */; };
+		76FB612A191511680053F7FC /* 56.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FB6129191511680053F7FC /* 56.png */; };
+		76FB612C191511BD0053F7FC /* 1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76FB612B191511BD0053F7FC /* 1001.jpg */; };
+		76FB612E191511D40053F7FC /* 1002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76FB612D191511D40053F7FC /* 1002.jpg */; };
+		76FB6130191511E70053F7FC /* 1003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76FB612F191511E70053F7FC /* 1003.jpg */; };
+		76FB6132191511F80053F7FC /* 1004.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76FB6131191511F80053F7FC /* 1004.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +160,11 @@
 		7600C05718EEA6AD00101286 /* ViewControllerMuscle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerMuscle.h; sourceTree = "<group>"; };
 		7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMuscle.m; sourceTree = "<group>"; };
 		7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerMuscle.xib; sourceTree = "<group>"; };
+		7605E65B191963850013CD87 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		7605E65D191963D00013CD87 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7605E65F191963E40013CD87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7605E661191964050013CD87 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7605E6631919640F0013CD87 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		760CF70D18EAABDA00875CBF /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAlertView.h; sourceTree = "<group>"; };
 		760CF70E18EAABDA00875CBF /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAlertView.m; sourceTree = "<group>"; };
 		76139A9618F7F9CD00653A75 /* NVCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCalendar.h; sourceTree = "<group>"; };
@@ -222,7 +244,19 @@
 		7652BCB618B0EB070011638F /* rsz_11rsz_logofitness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_11rsz_logofitness.png; sourceTree = "<group>"; };
 		7695CD2A18F56FE000169CF9 /* AppFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppFitness.xcdatamodel; sourceTree = "<group>"; };
 		76A657D01907CB1900CA112A /* multiple_input-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple_input-32.png"; sourceTree = "<group>"; };
+		76B09CDE1924DF1D00DB25C0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		76B09CDF1924DF1D00DB25C0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_background_dark.png; sourceTree = "<group>"; };
+		76D60717191664E0005904B6 /* IMViewWithBorderedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMViewWithBorderedImage.h; sourceTree = "<group>"; };
+		76D60718191664E0005904B6 /* IMViewWithBorderedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMViewWithBorderedImage.m; sourceTree = "<group>"; };
+		76D60719191664E0005904B6 /* IMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMViewController.h; sourceTree = "<group>"; };
+		76D6071A191664E0005904B6 /* IMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMViewController.m; sourceTree = "<group>"; };
+		76D6071B191664E0005904B6 /* IMColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMColorTableViewController.h; sourceTree = "<group>"; };
+		76D6071C191664E0005904B6 /* IMColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMColorTableViewController.m; sourceTree = "<group>"; };
+		76D6071D191664E0005904B6 /* IMContentModeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMContentModeTableViewController.h; sourceTree = "<group>"; };
+		76D6071E191664E0005904B6 /* IMContentModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMContentModeTableViewController.m; sourceTree = "<group>"; };
+		76D6071F191664E0005904B6 /* IMViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IMViewController_iPhone.xib; sourceTree = "<group>"; };
+		76D60720191664E0005904B6 /* IMViewWithBorderedImage-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMViewWithBorderedImage-Prefix.pch"; sourceTree = "<group>"; };
 		76D632B8191121CF00514D62 /* 2338.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2338.jpg; sourceTree = "<group>"; };
 		76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BentKneeHipRaise.jpg; sourceTree = "<group>"; };
 		76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CrossBodyCrunch.jpg; sourceTree = "<group>"; };
@@ -277,6 +311,12 @@
 		76FA122219093F51005F59DF /* ViewControllerRequest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerRequest.xib; sourceTree = "<group>"; };
 		76FA12251909403A005F59DF /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
 		76FA12261909403A005F59DF /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
+		76FB6127191511510053F7FC /* 55.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 55.png; sourceTree = "<group>"; };
+		76FB6129191511680053F7FC /* 56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 56.png; sourceTree = "<group>"; };
+		76FB612B191511BD0053F7FC /* 1001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1001.jpg; sourceTree = "<group>"; };
+		76FB612D191511D40053F7FC /* 1002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1002.jpg; sourceTree = "<group>"; };
+		76FB612F191511E70053F7FC /* 1003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1003.jpg; sourceTree = "<group>"; };
+		76FB6131191511F80053F7FC /* 1004.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1004.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,16 +324,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76E84734190A42DA009AFC2D /* libz.dylib in Frameworks */,
 				76FA120019093BAB005F59DF /* SystemConfiguration.framework in Frameworks */,
-				76FA11FE19093B8A005F59DF /* MobileCoreServices.framework in Frameworks */,
-				76DB41F418FC1588009FCDB1 /* CFNetwork.framework in Frameworks */,
+				7605E6641919640F0013CD87 /* StoreKit.framework in Frameworks */,
+				7605E662191964050013CD87 /* Security.framework in Frameworks */,
 				7633DF8318F6AB910081DA63 /* QuartzCore.framework in Frameworks */,
+				76FA11FE19093B8A005F59DF /* MobileCoreServices.framework in Frameworks */,
+				7605E660191963E40013CD87 /* CoreLocation.framework in Frameworks */,
+				7605E65E191963D00013CD87 /* AudioToolbox.framework in Frameworks */,
+				76E84734190A42DA009AFC2D /* libz.dylib in Frameworks */,
+				76DB41F418FC1588009FCDB1 /* CFNetwork.framework in Frameworks */,
 				7651D75A18DADF6000CE9CE2 /* MessageUI.framework in Frameworks */,
 				7651D75818DADF1D00CE9CE2 /* CoreBluetooth.framework in Frameworks */,
 				761B708D18AB83A400545C6A /* CoreGraphics.framework in Frameworks */,
 				761B709118AB83A400545C6A /* CoreData.framework in Frameworks */,
 				761B708F18AB83A400545C6A /* UIKit.framework in Frameworks */,
+				7605E65C191963850013CD87 /* Parse.framework in Frameworks */,
 				761B708B18AB83A400545C6A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +407,7 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76B09CDD1924DEFC00DB25C0 /* ProgressHud */,
 				76D632B8191121CF00514D62 /* 2338.jpg */,
 				76E84735190A6EF0009AFC2D /* Program */,
 				76FA11DD19093A0A005F59DF /* Server */,
@@ -396,7 +442,12 @@
 		761B708918AB83A400545C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7605E6631919640F0013CD87 /* StoreKit.framework */,
+				7605E661191964050013CD87 /* Security.framework */,
+				7605E65F191963E40013CD87 /* CoreLocation.framework */,
+				7605E65D191963D00013CD87 /* AudioToolbox.framework */,
 				76E84733190A42DA009AFC2D /* libz.dylib */,
+				7605E65B191963850013CD87 /* Parse.framework */,
 				76FA11FF19093BAB005F59DF /* SystemConfiguration.framework */,
 				76FA11FD19093B8A005F59DF /* MobileCoreServices.framework */,
 				76DB41F318FC1588009FCDB1 /* CFNetwork.framework */,
@@ -491,6 +542,7 @@
 		761B70DB18ABA19800545C6A /* ControllerAccountModule */ = {
 			isa = PBXGroup;
 			children = (
+				76D60716191664A4005904B6 /* Foto */,
 				761B70D618ABA19200545C6A /* ViewControllerModule.h */,
 				761B70D718ABA19200545C6A /* ViewControllerModule.m */,
 				761B70D818ABA19200545C6A /* ViewControllerModule.xib */,
@@ -539,6 +591,32 @@
 			name = Email;
 			sourceTree = "<group>";
 		};
+		76B09CDD1924DEFC00DB25C0 /* ProgressHud */ = {
+			isa = PBXGroup;
+			children = (
+				76B09CDE1924DF1D00DB25C0 /* MBProgressHUD.h */,
+				76B09CDF1924DF1D00DB25C0 /* MBProgressHUD.m */,
+			);
+			name = ProgressHud;
+			sourceTree = "<group>";
+		};
+		76D60716191664A4005904B6 /* Foto */ = {
+			isa = PBXGroup;
+			children = (
+				76D60717191664E0005904B6 /* IMViewWithBorderedImage.h */,
+				76D60718191664E0005904B6 /* IMViewWithBorderedImage.m */,
+				76D60719191664E0005904B6 /* IMViewController.h */,
+				76D6071A191664E0005904B6 /* IMViewController.m */,
+				76D6071B191664E0005904B6 /* IMColorTableViewController.h */,
+				76D6071C191664E0005904B6 /* IMColorTableViewController.m */,
+				76D6071D191664E0005904B6 /* IMContentModeTableViewController.h */,
+				76D6071E191664E0005904B6 /* IMContentModeTableViewController.m */,
+				76D6071F191664E0005904B6 /* IMViewController_iPhone.xib */,
+				76D60720191664E0005904B6 /* IMViewWithBorderedImage-Prefix.pch */,
+			);
+			name = Foto;
+			sourceTree = "<group>";
+		};
 		76D632BA1911223F00514D62 /* imageExercises */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +630,12 @@
 		76DB417A18FBD814009FCDB1 /* imageApp */ = {
 			isa = PBXGroup;
 			children = (
+				76FB612F191511E70053F7FC /* 1003.jpg */,
+				76FB6131191511F80053F7FC /* 1004.jpg */,
+				76FB612D191511D40053F7FC /* 1002.jpg */,
+				76FB612B191511BD0053F7FC /* 1001.jpg */,
+				76FB6129191511680053F7FC /* 56.png */,
+				76FB6127191511510053F7FC /* 55.png */,
 				76D632BA1911223F00514D62 /* imageExercises */,
 				76C5FD2B190C3CCF00998CF0 /* main_background_dark.png */,
 				76313A7118D9B645008150D8 /* Default-568h@2x.png */,
@@ -744,6 +828,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76FB612A191511680053F7FC /* 56.png in Resources */,
 				7600C04C18EE9EE900101286 /* bg_05.jpg in Resources */,
 				76DB419418FC0AB8009FCDB1 /* right_circular-64.png in Resources */,
 				76D632C01911249200514D62 /* LegRaise.jpg in Resources */,
@@ -754,7 +839,9 @@
 				76A657D11907CB1900CA112A /* multiple_input-32.png in Resources */,
 				7600C04E18EE9EE900101286 /* title2@2x.png in Resources */,
 				7600C04918EE9EE900101286 /* bg_02.jpg in Resources */,
+				76FB612E191511D40053F7FC /* 1002.jpg in Resources */,
 				7600C05018EE9EE900101286 /* title4@2x.png in Resources */,
+				76D60725191664E0005904B6 /* IMViewController_iPhone.xib in Resources */,
 				76DB418618FBF58B009FCDB1 /* message_outline-32.png in Resources */,
 				76139A9F18F8085200653A75 /* ViewControllerCalendar.xib in Resources */,
 				76DB417C18FBF17F009FCDB1 /* login.png in Resources */,
@@ -765,6 +852,7 @@
 				76139AB218F814D600653A75 /* ViewControllerChart.xib in Resources */,
 				76139ACB18F82A5900653A75 /* cancel-32.png in Resources */,
 				76139AD118F82AD900653A75 /* left_round-32.png in Resources */,
+				76FB6130191511E70053F7FC /* 1003.jpg in Resources */,
 				76139ACD18F82A8900653A75 /* facebook-32.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
 				76FA102419090898005F59DF /* delete-32.png in Resources */,
@@ -779,6 +867,7 @@
 				76C5FD2C190C3CCF00998CF0 /* main_background_dark.png in Resources */,
 				7600C04D18EE9EE900101286 /* title1@2x.png in Resources */,
 				761DDE3618B2264D00DAFBB5 /* ViewControllerNoModule.xib in Resources */,
+				76FB6128191511510053F7FC /* 55.png in Resources */,
 				761B70C218AB83F500545C6A /* Fitness58x58.png in Resources */,
 				761B70C418AB83F500545C6A /* Fitness120x120.png in Resources */,
 				76139ABB18F81A3100653A75 /* calendar-36.png in Resources */,
@@ -795,12 +884,14 @@
 				76FA122419093F51005F59DF /* ViewControllerRequest.xib in Resources */,
 				76FA102819091FE8005F59DF /* today-32.png in Resources */,
 				76D632B9191121CF00514D62 /* 2338.jpg in Resources */,
+				76FB612C191511BD0053F7FC /* 1001.jpg in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				76FA102019090814005F59DF /* trash-36.png in Resources */,
 				761B70A218AB83A400545C6A /* Images.xcassets in Resources */,
 				76DB419618FC0AD7009FCDB1 /* right_circular-48.png in Resources */,
 				761B70C318AB83F500545C6A /* Fitness80x80.png in Resources */,
 				7600C05118EE9EE900101286 /* title5@2x.png in Resources */,
+				76FB6132191511F80053F7FC /* 1004.jpg in Resources */,
 				7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */,
 				76DB418E18FC00EC009FCDB1 /* ghback.png in Resources */,
 				7650AE9A18F425B10022F153 /* ViewControllerDescription.xib in Resources */,
@@ -825,8 +916,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76D60723191664E0005904B6 /* IMColorTableViewController.m in Sources */,
 				76FA11FC19093B63005F59DF /* Reachability.m in Sources */,
 				7695CD2B18F56FE000169CF9 /* AppFitness.xcdatamodeld in Sources */,
+				76D60722191664E0005904B6 /* IMViewController.m in Sources */,
 				761DDE3918B22B9100DAFBB5 /* User.m in Sources */,
 				761B709D18AB83A400545C6A /* AppDelegate.m in Sources */,
 				76139AB118F814D600653A75 /* ViewControllerChart.m in Sources */,
@@ -835,6 +928,7 @@
 				76FA11E719093AA3005F59DF /* ASIDataCompressor.m in Sources */,
 				76FA11ED19093ACD005F59DF /* ASIFormDataRequest.m in Sources */,
 				761B70CE18AB899D00545C6A /* ViewControllerScreen1.m in Sources */,
+				76D60724191664E0005904B6 /* IMContentModeTableViewController.m in Sources */,
 				7651D75E18DAEBCF00CE9CE2 /* ValidateEmail.m in Sources */,
 				76FA11F319093AF6005F59DF /* ASINetworkQueue.m in Sources */,
 				76FA11EA19093AAE005F59DF /* ASIDataDecompressor.m in Sources */,
@@ -849,6 +943,8 @@
 				7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */,
 				76139AB518F8155900653A75 /* SimpleBarChart.m in Sources */,
 				76FA121D19093EF6005F59DF /* NSString+MD5.m in Sources */,
+				76B09CE01924DF1D00DB25C0 /* MBProgressHUD.m in Sources */,
+				76D60721191664E0005904B6 /* IMViewWithBorderedImage.m in Sources */,
 				76FA11F019093AE1005F59DF /* ASIInputStream.m in Sources */,
 				760CF70F18EAABDA00875CBF /* MLAlertView.m in Sources */,
 				76FA11F919093B56005F59DF /* ASIAuthenticationDialog.m in Sources */,
@@ -973,6 +1069,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppFitness/AppFitness-Prefix.pch";
@@ -994,6 +1091,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppFitness/AppFitness-Prefix.pch";

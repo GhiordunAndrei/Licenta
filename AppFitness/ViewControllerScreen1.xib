@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerScreen1">
             <connections>
-                <outlet property="activitiIndicator" destination="mNc-AZ-ZVq" id="Zrn-Tf-ojD"/>
                 <outlet property="buttonAccount" destination="qJt-5b-AsY" id="PkQ-jR-ADe"/>
+                <outlet property="buttonForgotPass" destination="NgV-Xv-80v" id="UYV-TA-Pzi"/>
                 <outlet property="buttonLogin" destination="9as-3M-HYH" id="e7z-Q7-dj5"/>
                 <outlet property="textPassword" destination="oRb-LO-MKO" id="5nL-Vp-bQx"/>
                 <outlet property="textUsername" destination="3Dt-bv-BQt" id="IZS-8Y-a5U"/>
@@ -41,22 +41,17 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="LOGIN HERE">
-                        <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.97775829079999999" green="0.57439260029999994" blue="0.092615756440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="logIn:" destination="-1" eventType="touchUpInside" id="mdf-Su-43g"/>
                     </connections>
                 </button>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mNc-AZ-ZVq">
-                    <rect key="frame" x="127" y="441" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="color" red="0.84915098850000004" green="0.0" blue="0.0092141427579999994" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome back please login below " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2L-0V-elJ">
                     <rect key="frame" x="0.0" y="159" width="320" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Cochin-Italic" family="Cochin" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -65,9 +60,12 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                     <state key="normal" title="Forgot Password?">
-                        <color key="titleColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.97775829079999999" green="0.57439260029999994" blue="0.092615756440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="forgotPass:" destination="-1" eventType="touchUpInside" id="KLW-ab-HLC"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJt-5b-AsY">
                     <rect key="frame" x="165" y="298" width="127" height="30"/>
@@ -75,7 +73,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="NEW ACCOUNT">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.97775829079999999" green="0.57439260029999994" blue="0.092615756440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

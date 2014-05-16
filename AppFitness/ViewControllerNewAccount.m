@@ -8,18 +8,20 @@
 
 #import "ViewControllerNewAccount.h"
 #import "MLAlertView.h"
+#import "Reachability.h"
+#import "Training.h"
 @interface ViewControllerNewAccount ()
 
 @end
 UIBarButtonItem *backBtn ;
 @implementation ViewControllerNewAccount
 @synthesize haveModul;
-@synthesize startDate;
-@synthesize endDate;
+@synthesize startDate1;
+@synthesize endDate1;
 
 
 int testDate;
-
+UIActivityIndicatorView *indicator;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,7 +47,14 @@ int testDate;
         self.textEmail.clearButtonMode =UITextFieldViewModeWhileEditing;
         self.textEndKg.clearButtonMode =UITextFieldViewModeWhileEditing;
         self.textStartKg.clearButtonMode =UITextFieldViewModeWhileEditing;
-    
+        startDate1=nil;
+        endDate1=nil;
+//        CGRect mainBounds=[[UIScreen mainScreen]bounds];
+//        CGRect indicatorBounds=CGRectMake(mainBounds.size.width/2-12, mainBounds.size.height/2-12, 24, 24);
+//        indicator =[[UIActivityIndicatorView alloc]initWithFrame:indicatorBounds];
+//        indicator.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+//        [indicator startAnimating];
+        
         
     }
     
@@ -73,15 +82,32 @@ int testDate;
     return context;
 }
 
-
+-(BOOL)verifyInternet
+{
+    Reachability *internetReachable=[Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus=[internetReachable currentReachabilityStatus];
+    if(internetStatus==NotReachable)
+    {
+        UIAlertView *errorView;;
+        errorView=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Network error",@"Network error") message:NSLocalizedString(@"No internet connection found , this application requires an internet connection to gather the data required.", @"Network error") delegate:self cancelButtonTitle:NSLocalizedString(@"Close", @"Network error") otherButtonTitles: nil];
+        [errorView show];
+        return FALSE;
+        
+    }
+    else{
+        return TRUE;
+    }
+}
 
 - (IBAction)actionButtonNewAccount:(id)sender {
     
-    
-    
-    
+
+//    [self.viewPrincipal addSubview:indicator];
     
     MLAlertView *alert;
+    if ([self verifyInternet]) {
+        
+    
     if ( [self.textFullName.text length]==0 ||[self.textEmail.text length]==0 ||[self.textPassword.text length]==0||[self.textRetypeEmail.text length]==0 ||[self.textStartKg.text length ]==0|| [self.textEndKg.text length]==0 || [self.textAge.text length]==0 || [self.textStartDate.text length]==0 ||[self.textEndDate.text length]==0 ) {
         alert =[[MLAlertView alloc]initWithTitle:@"Error" message:@"Campuri goale"cancelButtonTitle:nil otherButtonTitles:@[@"OK"]];
         alert.buttonDidTappedBlock = ^(MLAlertView *alertView, NSInteger buttonIndex) {
@@ -97,7 +123,7 @@ int testDate;
            
             if ([self.textPassword.text length]>6) {
              
-                if([self.textAge.text intValue] < 70){
+                if([self.textAge.text intValue] < 70 && [self.textAge.text intValue]>16){
                 
                     if([self.textStartKg.text intValue] > 30 && [self.textEndKg.text intValue]< 110){
                           
@@ -112,13 +138,18 @@ int testDate;
                             NSString *str2 = [self.textStartKg text];
                             int startkg = [str2 intValue];
                             
-                            
-                            User *newuser =[[User alloc]init:self.textFullName.text Password:self.textPassword.text Email:self.textEmail.text Age:age BeginDate:self.startDate EndDate:self.endDate HaveModule:1 StartKg:startkg EndKg:endkg];
+                        
+                        
+                        
+                        Training *program=[[Training alloc]initWithUser:self.textEmail.text Age:[NSNumber numberWithInt:age] KgStart:[NSNumber numberWithInt:startkg] KgEnd:[NSNumber numberWithInt:endkg] DateStart:self.startDate1 DateEnd:self.endDate1];
+                       [program saveData];
+
+                        User *newuser =[[User alloc]init:self.textFullName.text Password:self.textPassword.text Email:self.textEmail.text Age:age BeginDate:self.startDate1 EndDate:self.endDate1 HaveModule:1 StartKg:startkg EndKg:endkg];
                         
 
-                        if([newuser saveData]){
+                        if(![newuser saveData]){
                             
-                              alert=[[MLAlertView alloc]initWithTitle:@"Succes" message:@"Account Completed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                              alert=[[MLAlertView alloc]initWithTitle:@"Account Completed!" message:[NSString stringWithFormat:@"Program number: "] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                         }
                         else{
                         
@@ -157,6 +188,7 @@ int testDate;
       
     }
      [alert show];
+    }
 }
 
 
@@ -183,15 +215,22 @@ int testDate;
 
 - (IBAction)displayDate:(id)sender {
     if (testDate==0) {
-        self.textStartDate.text = [NSDateFormatter localizedStringFromDate:[self.datePicker date]
-                                                                 dateStyle:NSDateFormatterShortStyle
-                                                                 timeStyle:NSDateFormatterFullStyle];
-        startDate =[self.datePicker date];
+     
+        
+        
+        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+        self.textStartDate.text =[dateFormatter stringFromDate: self.datePicker.date];
+        startDate1 =[self.datePicker date];
     } else if(testDate==1){
-        self.textEndDate.text = [NSDateFormatter localizedStringFromDate:[self.datePicker date]
-                                                                 dateStyle:NSDateFormatterShortStyle
-                                                                 timeStyle:NSDateFormatterFullStyle];
-        endDate=[self.datePicker date];
+        
+       
+            NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            self.textEndDate.text =[dateFormatter stringFromDate: self.datePicker.date];
+            
+        
+        endDate1=[self.datePicker date];
     }
     
   

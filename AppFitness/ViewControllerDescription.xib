@@ -40,7 +40,6 @@
                     <segments>
                         <segment title="Image"/>
                         <segment title="Muscle"/>
-                        <segment title="Description"/>
                     </segments>
                     <connections>
                         <action selector="segmentSwitch:" destination="-1" eventType="valueChanged" id="eAu-f2-NMM"/>

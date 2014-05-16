@@ -11,6 +11,7 @@
 #import "ViewControllerCalendar.h"
 #import "ViewControllerChart.h"
 #import "ViewControllerRequest.h"
+#import "Parse/Parse.h"
 
 @implementation AppDelegate
 
@@ -20,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ViewControllerScreen1 *m = [[ViewControllerScreen1 alloc]initWithNibName:@"ViewControllerScreen1" bundle:nil];
+    ViewControllerCalendar *m = [[ViewControllerCalendar alloc]initWithNibName:@"ViewControllerCalendar" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:m];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   //   Configure Window
@@ -28,6 +29,9 @@
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
     
+    [Parse setApplicationId:@"vA5bNOOviedX5pUyadKglDzm0OjZZSwJ4tDKVg4T"
+                  clientKey:@"rriYmjEgAFY0hAZsFDaDoezkClwFFBBOkxzpyh0e"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 

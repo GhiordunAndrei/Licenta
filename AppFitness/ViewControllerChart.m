@@ -47,7 +47,7 @@
 {
 	[super loadView];
     
-	_values							= @[@30, @45, @44, @60];
+	_values							= @[@1, @2, @40, @4,@5,@6];
 	_barColors						= @[[UIColor blueColor], [UIColor redColor], [UIColor blackColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor greenColor]];
 	_currentBarColor				= 0;
     
@@ -88,7 +88,7 @@
 - (void)changeClicked
 {
 	NSMutableArray *valuesCopy = _values.mutableCopy;
-	[valuesCopy shuffle];
+	//[valuesCopy shuffle];
     
 	_values = valuesCopy;
     

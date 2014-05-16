@@ -409,10 +409,10 @@ dataSource	= _dataSource;
 	}
     
 	CGFloat	xPos				= _barLayer.bounds.size.width / (_numberOfBars + 1);
-    
+    NSArray *muscle =[NSArray arrayWithObjects:@"Abds",@"Arms",@"Back",@"Chest",@"Shold",@"Legs", nil];
 	for (NSInteger i = 0; i < _numberOfBars; i++)
 	{
-		NSString *xLabelText	= [_barLabels objectAtIndex:i];
+		NSString *xLabelText	= muscle[i];//[_barLabels objectAtIndex:i];
 		CGSize xLabelSize		= [xLabelText sizeWithFont:self.xLabelFont];
 		CGRect xLabelFrame		= CGRectMake(0.0,
 											 0.0,
@@ -424,7 +424,7 @@ dataSource	= _dataSource;
 		xLabel.textColor		= self.xLabelColor;
 		xLabel.textAlignment	= NSTextAlignmentRight;
 		xLabel.text				= xLabelText;
-		xLabel.transform		= CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-_xLabelRotation));
+	//	xLabel.transform		= CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-_xLabelRotation));
         
 		// Position the label appropriately
 		switch (self.xLabelType)

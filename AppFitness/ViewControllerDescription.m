@@ -294,11 +294,6 @@
 
     }else if(selectedSegment==1)
     {
-        [exampleTxt removeFromSuperview];
-        [imageview removeFromSuperview];
-        
-    } else if(selectedSegment==2)
-    {
         exampleTxt = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 298, 303)];
         [exampleTxt setText:textDescription];
         exampleTxt.textColor =[UIColor grayColor];

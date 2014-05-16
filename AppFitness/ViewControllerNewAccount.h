@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "ValidateEmail.h"
+#import <Parse/Parse.h>
+
 @interface ViewControllerNewAccount : UIViewController
 {
     BOOL haveModul;
     NSDate *startDate;
     NSDate *endDate;
 }
-@property(strong,nonatomic)NSDate *startDate;
-@property(strong,nonatomic)NSDate *endDate;
+@property(strong,nonatomic)NSDate *startDate1;
+@property(strong,nonatomic)NSDate *endDate1;
 @property(assign)BOOL haveModul;
 @property (weak, nonatomic) IBOutlet UITextField *textFullName;
 @property (weak, nonatomic) IBOutlet UITextField *textEmail;
@@ -32,5 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIView *viewDatePicker;
 @property (weak, nonatomic) IBOutlet UILabel *textStartDate;
 @property (weak, nonatomic) IBOutlet UILabel *textEndDate;
+@property (strong, nonatomic) IBOutlet UIView *viewPrincipal;
 
 @end

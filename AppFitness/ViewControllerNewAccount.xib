@@ -20,6 +20,7 @@
                 <outlet property="textStartKg" destination="HKS-aM-oCY" id="At1-BM-LsF"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="viewDatePicker" destination="gA7-NK-60v" id="vhg-0H-xEG"/>
+                <outlet property="viewPrincipal" destination="1" id="myS-hS-43W"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
