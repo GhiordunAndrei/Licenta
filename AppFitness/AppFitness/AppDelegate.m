@@ -11,6 +11,7 @@
 #import "ViewControllerCalendar.h"
 #import "ViewControllerChart.h"
 #import "ViewControllerRequest.h"
+#import "ViewControllerModule.h"
 #import "Parse/Parse.h"
 
 @implementation AppDelegate
@@ -21,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ViewControllerCalendar *m = [[ViewControllerCalendar alloc]initWithNibName:@"ViewControllerCalendar" bundle:nil];
+    ViewControllerModule *m = [[ViewControllerModule alloc]initWithNibName:@"ViewControllerModule" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:m];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   //   Configure Window

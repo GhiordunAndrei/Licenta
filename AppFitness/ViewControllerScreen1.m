@@ -122,6 +122,12 @@ bool existUser;
     MLAlertView *alert;
     NSNumber *typeProgram;
     NSNumber *workout;
+    NSString *groupMuscle;
+    NSMutableArray *exercises=[[NSMutableArray alloc]init];
+    NSNumber *secoundEx;
+    NSNumber *pause;
+    NSNumber *greutate;
+    
     
     if ([self verifyInternet]) {
         
@@ -145,10 +151,40 @@ bool existUser;
                 for (PFObject *pro in users) {
                     
                     if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
-                        UIAlertView *alerprogram =[[UIAlertView alloc]initWithTitle:@"asdada" message:[NSString stringWithFormat:@"%@",pro[@"TypeProgram"]] delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
-                        [alerprogram show];
+                        typeProgram=pro[@"NrProgram"];
+                       
+
+                        PFQuery *queryProgram=[PFQuery queryWithClassName:@"Result"];
+                        NSArray *users=[queryProgram findObjects];
+                        for (PFObject *pro in users) {
+                            
+                            if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
+                        
+                                workout=pro[@"NrAntrenament"];
+                                int value=[workout intValue];
+                                workout=[NSNumber numberWithInt:value+1];
+                                
+                                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Antrenament"];
+                                NSArray *users=[queryProgram findObjects];
+                                for (PFObject *pro in users) {
+                                    
+                                    if ([pro[@"NrAntrenament"] isEqualToNumber: workout]) {
+                                        groupMuscle=pro[@"GroupMuscle"];
+                                        [exercises addObject:pro[@"Exercise"]];
+                                        secoundEx=pro[@"SecoundExecution"];
+                                        pause=pro[@"Pause"];
+                                        greutate=pro[@"Greutate"];
+                                        
+                                    }
+                                }
+                                
+                            }
+                        
+                        }
                     }
                 }
+                MLAlertView *alerprogram =[[MLAlertView alloc]initWithTitle:@"Your date" message:[NSString stringWithFormat:@"NumberProgram=%@ \n NumberWorkout=%@ \n Group Muscle=%@ ",typeProgram,workout,groupMuscle] delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                [alerprogram show];
 
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLog" object:[NSString stringWithFormat:@"b"]];
@@ -172,7 +208,7 @@ bool existUser;
 
         
     }
-
+            
     
 }
 

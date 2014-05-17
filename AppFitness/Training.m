@@ -210,13 +210,31 @@ int typeProgram;
 -(void)saveData
 {
 
-        PFObject *testObject=[PFObject objectWithClassName:@"Program"];
-        testObject[@"Email"]=self.nEmail;
-        testObject[@"TypeProgram"]=[NSNumber numberWithInt:typeProgram];
-        testObject[@"NumarRepetariAntrenament"]=[NSNumber numberWithInt:0];
-        testObject[@"NrAntrenament"]=[NSNumber numberWithInt:0];
-        [testObject saveInBackground];
+    BOOL userExist=false;
     
+    PFQuery *query = [PFQuery queryWithClassName:@"Program"];
+    NSArray *a=[query findObjects];
+    
+    for (PFObject *us in a) {
+        if (([us[@"Email"] isEqualToString:self.nEmail]))
+        {
+            userExist=true;
+        }
+    }
+    
+    if (!userExist) {
+    
+            PFObject *testObject=[PFObject objectWithClassName:@"Program"];
+            testObject[@"Email"]=self.nEmail;
+            testObject[@"NrProgram"]=[NSNumber numberWithInt:typeProgram];
+            if (self.nendDate!=nil || self.nstartDate!=nil) {
+                testObject[@"DateBegin"]=self.nstartDate;
+                testObject[@"DateEnd"]=self.nendDate;
+            }
+    [testObject saveInBackground];
+    
+
+    }
 }
 
 -(void)trainingArmsBiceps

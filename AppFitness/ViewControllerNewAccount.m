@@ -149,7 +149,7 @@ UIActivityIndicatorView *indicator;
 
                         if(![newuser saveData]){
                             
-                              alert=[[MLAlertView alloc]initWithTitle:@"Account Completed!" message:[NSString stringWithFormat:@"Program number: "] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                              alert=[[MLAlertView alloc]initWithTitle:@"Account Completed!" message:[NSString stringWithFormat:@"Program number: %d",[program setupExercise]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                         }
                         else{
                         
