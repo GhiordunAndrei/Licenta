@@ -47,7 +47,49 @@
 {
 	[super loadView];
     
-	_values							= @[@1, @2, @40, @4,@5,@6];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email =[standardUserDefaults stringForKey:@"Email"];
+    int totalAbs = 0;
+    int totalArms=0;
+    int totalback=0;
+    int totalChest=0;
+    int totalShold=0;
+    int totalLegs=0;
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Result"];
+    NSArray *a=[query findObjects];
+    
+    for (PFObject *us in a) {
+        if (([us[@"Email"] isEqualToString:email]))
+        {
+            if ( [us[@"GroupMuscle"] isEqualToString:@"Abdominals"]) {
+                
+                totalAbs+=[us[@"Reps"] intValue];
+            }else if ([us[@"GroupMuscle"] isEqualToString:@"Arms"])
+            {
+            totalArms+=[us[@"Reps"] intValue];
+            
+            }else if ([us[@"GroupMuscle"] isEqualToString:@"Back"])
+            {
+                
+                totalback+=[us[@"Reps"] intValue];
+            }else if ([us[@"GroupMuscle"] isEqualToString:@"Chest"])
+            {
+             totalChest+=[us[@"Reps"] intValue];
+                
+            }else if ([us[@"GroupMuscle"] isEqualToString:@"Shoulders"])
+            {
+                
+                totalShold+=[us[@"Reps"] intValue];
+            }else if ([us[@"GroupMuscle"] isEqualToString:@"Legs"])
+            {
+                totalLegs+=[us[@"Reps"] intValue];
+                
+            }
+        }
+    }
+    
+	_values							= @[[NSNumber numberWithInt:totalAbs], [NSNumber numberWithInt:totalArms], [NSNumber numberWithInt:totalback], [NSNumber numberWithInt:totalChest],[NSNumber numberWithInt:totalShold],[NSNumber numberWithInt:totalLegs]];
 	_barColors						= @[[UIColor blueColor], [UIColor redColor], [UIColor blackColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor greenColor]];
 	_currentBarColor				= 0;
     

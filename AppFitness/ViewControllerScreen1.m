@@ -45,15 +45,7 @@ bool existUser;
     self.buttonLogin.layer.cornerRadius=8.0f;
     
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    HUD.labelText = @"Wait";
-    HUD.detailsLabelText = @"Connecting...";
-    HUD.mode = MBProgressHUDModeAnnularDeterminate;
-    [self.view addSubview:HUD];
-    
-    [HUD showWhileExecuting:@selector(waitConnection) onTarget:self withObject:nil animated:YES];    [self verifyInternet];
-
-    
+        
 }
 
 - (void)waitConnection {
@@ -185,6 +177,16 @@ bool existUser;
                 }
                 MLAlertView *alerprogram =[[MLAlertView alloc]initWithTitle:@"Your date" message:[NSString stringWithFormat:@"NumberProgram=%@ \n NumberWorkout=%@ \n Group Muscle=%@ ",typeProgram,workout,groupMuscle] delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
                 [alerprogram show];
+
+                NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+                [standardDefaults setObject:self.textUsername.text  forKey:@"Email"];
+                [standardDefaults setObject:typeProgram  forKey:@"NrProgram"];
+                [standardDefaults setObject:workout forKey:@"NrAntrenament"];
+                [standardDefaults setObject:groupMuscle forKey:@"GroupMuscle"];
+                [standardDefaults setObject:exercises forKey:@"Exercise"];
+                [standardDefaults setObject:secoundEx forKey:@"SecExecution"];
+                [standardDefaults setObject:pause forKey:@"SecPause"];
+                [standardDefaults setObject:greutate forKey:@"Greutate"];
 
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLog" object:[NSString stringWithFormat:@"b"]];

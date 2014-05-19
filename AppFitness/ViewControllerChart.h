@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SimpleBarChart.h"
+#import <Parse/Parse.h>
+
 @interface ViewControllerChart : UIViewController<SimpleBarChartDataSource, SimpleBarChartDelegate>
 {
 	NSArray *_values;

@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ViewControllerModule *m = [[ViewControllerModule alloc]initWithNibName:@"ViewControllerModule" bundle:nil];
+    ViewControllerScreen1 *m = [[ViewControllerScreen1 alloc]initWithNibName:@"ViewControllerScreen1" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:m];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   //   Configure Window

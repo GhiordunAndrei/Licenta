@@ -22,22 +22,25 @@ int timeExecution;
 bool unpause;
 int timePause;
 NSTimer *timeex;
+NSTimer *timepau;
+bool redGreen;
+NSNumber *greutate;
+NSArray *exercise;
+NSString *groupMuscle;
+NSNumber *numberAntrenament;
+NSNumber *numberProgram;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         unpause=true;
     self.central=[[CBCentralManager alloc]initWithDelegate:self queue:nil];
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getnameEmail:) name:@"sendNameEmail" object:nil];
     
     }
     return self;
 }
 
--(void)getnameEmail:(NSNotification *)notif {
 
-    email=notif.object;
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,22 +53,50 @@ NSTimer *timeex;
 //     [[_alert textFieldAtIndex:0] setPlaceholder:@"e-mail@yahoo.com"];\
     
    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    // getting an NSString object
+    numberProgram =[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"NrProgram"]];
+    numberAntrenament= [NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"NrAntrenament"]];
+    groupMuscle= [standardUserDefaults stringForKey:@"GroupMuscle"];
+    exercise=[standardUserDefaults arrayForKey:@"Exercise"];
+    NSNumber *timeExec=[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"SecExecution"]];
+    NSNumber *timePaus=[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"SecPause"]];
+    greutate =[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"Greutate"]];
+    email=[standardUserDefaults stringForKey:@"Email"];
+    timeExecution =[timeExec intValue];
+    timePause=[timePaus intValue];
+    
+ 
+    self.textFieldEx1.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx2.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx3.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx4.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx5.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx6.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx7.keyboardType=UIKeyboardTypeDecimalPad;
+    self.textFieldEx8.keyboardType=UIKeyboardTypeDecimalPad;
 
+    self.labelDisplayMuscle.text=groupMuscle;
+    self.labelNrProgram.text=[NSString stringWithFormat:@"%i",[numberProgram intValue]];
+    self.labelNrAntrenament.text=[NSString stringWithFormat:@"%i",[numberAntrenament intValue]];
+    [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
 
+    
+    [self.segmentexercise setTitle:exercise[0] forSegmentAtIndex:0];
+    [self.segmentexercise setTitle:exercise[1] forSegmentAtIndex:1];
+    [self.segmentexercise setTitle:exercise[2] forSegmentAtIndex:2];
+    [self.segmentexercise setTitle:exercise[3] forSegmentAtIndex:3];
+    
     self.navigationController.navigationBarHidden=NO;
     self.navigationItem.hidesBackButton = YES;
     backBtn =[[UIBarButtonItem alloc]initWithTitle:@"LogOut" style:UIBarButtonItemStyleDone target:self action:@selector(ActionLogOut:)];
     self.navigationItem.leftBarButtonItem=backBtn;
     [self setViews];
-
-    
+    buttonBeep = [self setupAudioPlayerWithFile:@"ButtonTap" type:@"wav"];
+    endBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
     self.buttonSecunde.layer.cornerRadius=40;
 
-    HUD.labelText = @"Wait";
-    HUD.detailsLabelText = @"Connecting...";
-    HUD.mode = MBProgressHUDModeAnnularDeterminate;
-    
-    [HUD showWhileExecuting:@selector(waitConnection) onTarget:self withObject:nil animated:YES];
 
 }
 - (void)waitConnection {
@@ -76,9 +107,27 @@ NSTimer *timeex;
         HUD.progress = progress;
         usleep(50000);
     }
+    
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch * touch = [touches anyObject];
+    if(touch.phase == UITouchPhaseBegan) {
+        [self.textFieldEx1 resignFirstResponder];
+        [self.textFieldEx2 resignFirstResponder];
+        [self.textFieldEx3 resignFirstResponder];
+        [self.textFieldEx4 resignFirstResponder];
+        [self.textFieldEx5 resignFirstResponder];
+        [self.textFieldEx6 resignFirstResponder];
+        [self.textFieldEx7 resignFirstResponder];
+        [self.textFieldEx8 resignFirstResponder];
+
+    }
+}
+
 - (IBAction)buttonPause:(id)sender {
     
+    if (redGreen) {
     if (unpause ) {
     self.buttonSecunde.backgroundColor=[UIColor redColor];
     [self.buttonSecunde setTitle:@"Pause" forState:UIControlStateNormal];
@@ -86,47 +135,93 @@ NSTimer *timeex;
         unpause=false;
     }else{
         self.buttonSecunde.backgroundColor=[UIColor greenColor ];
-        timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpExecutie) userInfo:nil repeats:YES];
+        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
+        [self setTimeExecution:5];
         unpause=true;
-    }
+            }
+        
+        }
 }
 
 - (IBAction)buttonStart:(id)sender {
     
     
-    timeExecution=30;
-    timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpExecutie) userInfo:nil repeats:YES];
-
+    [self setTimeExecution:4];
+    redGreen=true;
+   
     NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpAntrenament) userInfo:nil repeats:YES];
 
 }
+-(void)setPause:(int)secunde
+{
+    timePause=secunde;
+    timepau=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timePause) userInfo:nil repeats:YES];
 
+}
+-(void)setTimeExecution:(int)secunde
+{
+    timeExecution=secunde;
+    
+    timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpExecutie) userInfo:nil repeats:YES];
+
+}
 -(void)timpExecutie
 {
+    
+    redGreen=true;
     timeExecution--;
     if (timeExecution>=0) {
+        if ([self.swSoundTime isOn]) {
+            [buttonBeep setVolume:0.6f];
+            [buttonBeep play];
+        }else
+        {
+            [buttonBeep stop];
+        }
+       
         [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
     }else
     {
-        self.buttonSecunde.backgroundColor=[UIColor redColor];
-        timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timePause) userInfo:nil repeats:YES];
-        timePause=20;
+        if([self.swSoundEnd isOn])
+        {
+            [endBeep setVolume:1.6f];
+            [endBeep play];
+        }else{
+            [endBeep stop];
+        }
         
+        [timeex invalidate];
+        self.buttonSecunde.backgroundColor=[UIColor redColor];
+        [self setPause:5];
     }
     
 }
 -(void)timePause
 {
+    redGreen=false;
     timePause--;
-    if (timePause>0) {
+    if (timePause>-1) {
         [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timePause] forState:UIControlStateNormal];
+        if ([self.swSoundTime isOn]) {
+            [buttonBeep setVolume:0.6f];
+            [buttonBeep play];
+        }else
+        {
+            [buttonBeep stop];
+        }
 
     }else
     {
-        timeExecution=30;
-        timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpExecutie) userInfo:nil repeats:YES];
+        if([self.swSoundEnd isOn])
+        {
+            [endBeep setVolume:1.6f];
+            [endBeep play];
+        }else{
+            [endBeep stop];
+        }
+        [timepau invalidate];
         self.buttonSecunde.backgroundColor=[UIColor greenColor];
-
+        [self setTimeExecution:5];
     }
 
 }
@@ -159,7 +254,6 @@ NSTimer *timeex;
     self.viewtwo.layer.cornerRadius=30;
     self.viewthird.layer.cornerRadius=30;
     self.viewforth.layer.cornerRadius=30;
-    self.viewSec.layer.cornerRadius=50;
     self.viewoneVert.layer.opacity=0.6;
     self.viewtwoVert.layer.opacity=0.6;
     self.viewthirdVert.layer.opacity=0.6;
@@ -168,7 +262,18 @@ NSTimer *timeex;
     self.labelTime.layer.cornerRadius=15;
     
 }
-
+-(AVAudioPlayer *)setupAudioPlayerWithFile:(NSString *)file type:(NSString *)type{
+    
+    NSString *path=[[NSBundle mainBundle] pathForResource:file ofType:type];
+    NSString *url=[NSURL fileURLWithPath:path];
+    NSError *error;
+    AVAudioPlayer *audioPlayer =[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
+    if(!audioPlayer)
+    {
+        NSLog(@"%@",[error description]);
+    }
+    return audioPlayer;
+}
 
 - (void)ActionLogOut:(UIBarButtonItem*)sender
 {
@@ -177,12 +282,85 @@ NSTimer *timeex;
 
 }
 
+- (IBAction)insertReps:(id)sender {
+    
+    if (self.viewInsertReps.hidden) {
+        [self.viewInsertReps setHidden:NO];
+        
+        self.labelEx1.text=exercise[0];
+        self.labelEx2.text=exercise[1];
+        self.labelEx3.text=exercise[2];
+        self.labelEx4.text=exercise[3];
+ 
+        self.viewInsertReps.frame=CGRectMake(0, -303, 0, 0);
+        [UIView animateWithDuration:1 animations:^{
+            self.viewInsertReps.frame =  CGRectMake(0, 60, 320, 303);
+            self.viewInsertReps.alpha = 1.0f;
+            self.viewPrin.alpha=1.0f;
+        } completion:^(BOOL finished) {
+        }];
+        
+
+        self.viewInsertReps.hidden=NO;
+        [self.buttonInsertReps setTitle:@"Save" forState:UIControlStateNormal];
+    }else
+    {
+        MLAlertView *alert;
+        
+        
+        if (![self.textFieldEx1.text isEqual:@""] && ![self.textFieldEx2.text isEqual:@""] &&![self.textFieldEx3.text isEqual:@""] && ![self.textFieldEx4.text isEqual:@""] &&![self.textFieldEx5.text isEqual:@""] &&![self.textFieldEx6.text isEqual:@""] &&![self.textFieldEx7.text isEqual:@""] &&![self.textFieldEx8.text isEqual:@""] ) {
+            
+            for (int i=0;i<exercise.count;i++  ) {
+                PFObject *testObject=[PFObject objectWithClassName:@"Result"];
+                testObject[@"Email"]=email;
+                testObject[@"NrAntrenament"]=numberAntrenament;
+                testObject[@"Exercise"]=exercise[i];
+                switch (i) {
+                    case 0:
+                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx1.text intValue]];
+                        break;
+                        
+                    case 1:
+                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx2.text intValue]];                        break;
+                        
+                    case 2:
+                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx3.text intValue]];
+                        break;
+                    
+                    case 3:
+                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx4.text intValue]];
+                        break;
+                    default:
+                        break;
+                }
+                NSDate *currDate = [NSDate date];
+                testObject[@"DateExecution"]=currDate;
+                
+                [testObject saveInBackground];
+
+            }
+            alert=[[MLAlertView alloc]initWithTitle:@"Workout Completed" message:[NSString stringWithFormat:@"NextWorkout %i",[numberAntrenament intValue]+1] cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        }else
+        {
+            alert=[[MLAlertView alloc]initWithTitle:@"Workout Uncompleted" message:@"Complet all fields Please!" cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+        }
+        [alert show];
+        [UIView animateWithDuration:1 animations:^{
+            self.viewInsertReps.frame =  CGRectMake(0, -303,0 , 0);
+            [self.viewPrin setAlpha:0.55f];
+        } completion:^(BOOL finished) {
+            [ self.viewInsertReps setHidden:YES];
+        }];
+        
+        [self.buttonInsertReps setTitle:@"Insert Reps" forState:UIControlStateNormal];
+    }
+}
 
 
 - (IBAction)Disconnect:(id)sender {
     
-    [self.viewtwoVert setHidden:NO];
-    self.viewtwoVert.frame =  CGRectMake(130, 20, 0, 0);
+
     [self.viewoneVert setHidden:NO];
     self.viewoneVert.frame=CGRectMake(130, 500, 0, 0);
     [UIView animateWithDuration:1 animations:^{

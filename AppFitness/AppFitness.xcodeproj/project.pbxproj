@@ -108,6 +108,8 @@
 		76DB41F418FC1588009FCDB1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DB41F318FC1588009FCDB1 /* CFNetwork.framework */; };
 		76E84734190A42DA009AFC2D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E84733190A42DA009AFC2D /* libz.dylib */; };
 		76E84738190A6F40009AFC2D /* Training.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E84737190A6F40009AFC2D /* Training.m */; };
+		76F599351928C401005167E9 /* ButtonTap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 76F599341928C401005167E9 /* ButtonTap.wav */; };
+		76F599371928C40B005167E9 /* SecondBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 76F599361928C40B005167E9 /* SecondBeep.wav */; };
 		76FA102019090814005F59DF /* trash-36.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA101F19090814005F59DF /* trash-36.png */; };
 		76FA102219090838005F59DF /* trash-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102119090838005F59DF /* trash-32.png */; };
 		76FA102419090898005F59DF /* delete-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FA102319090898005F59DF /* delete-32.png */; };
@@ -274,6 +276,8 @@
 		76E84733190A42DA009AFC2D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		76E84736190A6F40009AFC2D /* Training.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Training.h; sourceTree = "<group>"; };
 		76E84737190A6F40009AFC2D /* Training.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Training.m; sourceTree = "<group>"; };
+		76F599341928C401005167E9 /* ButtonTap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ButtonTap.wav; sourceTree = "<group>"; };
+		76F599361928C40B005167E9 /* SecondBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SecondBeep.wav; sourceTree = "<group>"; };
 		76F996D4190D38B0007FA64D /* Description.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Description.h; sourceTree = "<group>"; };
 		76FA101F19090814005F59DF /* trash-36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-36.png"; sourceTree = "<group>"; };
 		76FA102119090838005F59DF /* trash-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-32.png"; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76F599331928C3F5005167E9 /* Sound */,
 				76B09CDD1924DEFC00DB25C0 /* ProgressHud */,
 				76D632B8191121CF00514D62 /* 2338.jpg */,
 				76E84735190A6EF0009AFC2D /* Program */,
@@ -681,6 +686,15 @@
 			name = Program;
 			sourceTree = "<group>";
 		};
+		76F599331928C3F5005167E9 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				76F599361928C40B005167E9 /* SecondBeep.wav */,
+				76F599341928C401005167E9 /* ButtonTap.wav */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		76F996D3190D387F007FA64D /* Description */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +884,7 @@
 				76FB6128191511510053F7FC /* 55.png in Resources */,
 				761B70C218AB83F500545C6A /* Fitness58x58.png in Resources */,
 				761B70C418AB83F500545C6A /* Fitness120x120.png in Resources */,
+				76F599371928C40B005167E9 /* SecondBeep.wav in Resources */,
 				76139ABB18F81A3100653A75 /* calendar-36.png in Resources */,
 				76313A7218D9B645008150D8 /* Default-568h@2x.png in Resources */,
 				76139AC118F823BA00653A75 /* weightlift-32.png in Resources */,
@@ -884,6 +899,7 @@
 				76FA122419093F51005F59DF /* ViewControllerRequest.xib in Resources */,
 				76FA102819091FE8005F59DF /* today-32.png in Resources */,
 				76D632B9191121CF00514D62 /* 2338.jpg in Resources */,
+				76F599351928C401005167E9 /* ButtonTap.wav in Resources */,
 				76FB612C191511BD0053F7FC /* 1001.jpg in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				76FA102019090814005F59DF /* trash-36.png in Resources */,
