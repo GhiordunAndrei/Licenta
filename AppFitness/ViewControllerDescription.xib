@@ -65,7 +65,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bte-6P-bgh">
-                            <rect key="frame" x="99" y="13" width="36" height="36"/>
+                            <rect key="frame" x="80" y="13" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="calendar-36.png" backgroundImage="calendar-36.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,7 +75,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpg-h6-LYw">
-                            <rect key="frame" x="255" y="15" width="32" height="32"/>
+                            <rect key="frame" x="222" y="13" width="32" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="scale-32.png" backgroundImage="scale-32.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,7 +85,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbf-AC-bWD">
-                            <rect key="frame" x="174" y="15" width="32" height="32"/>
+                            <rect key="frame" x="153" y="13" width="32" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="combo-32.png" backgroundImage="combo-32.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,6 +93,13 @@
                             <connections>
                                 <action selector="chart:" destination="-1" eventType="touchUpInside" id="Pko-Ln-lsB"/>
                             </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyd-rk-u54">
+                            <rect key="frame" x="275" y="13" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="exercise-32.png" backgroundImage="exercise-32.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.97775829081632648" green="0.57439260033104522" blue="0.092615756442798111" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,6 +118,7 @@
     <resources>
         <image name="calendar-36.png" width="36" height="36"/>
         <image name="combo-32.png" width="32" height="32"/>
+        <image name="exercise-32.png" width="32" height="32"/>
         <image name="scale-32.png" width="32" height="32"/>
         <image name="weightlift-32.png" width="32" height="32"/>
     </resources>

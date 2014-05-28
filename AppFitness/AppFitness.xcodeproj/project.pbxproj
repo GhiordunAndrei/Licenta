@@ -19,6 +19,12 @@
 		7600C05118EE9EE900101286 /* title5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7600C04718EE9EE900101286 /* title5@2x.png */; };
 		7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */; };
 		7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */; };
+		760237681935269F008C19A9 /* exercise-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 760237671935269F008C19A9 /* exercise-32.png */; };
+		7602376D19352BAA008C19A9 /* ViewControllerMyPrograms.m in Sources */ = {isa = PBXBuildFile; fileRef = 7602376B19352BAA008C19A9 /* ViewControllerMyPrograms.m */; };
+		7602376E19352BAA008C19A9 /* ViewControllerMyPrograms.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7602376C19352BAA008C19A9 /* ViewControllerMyPrograms.xib */; };
+		76043C3C1930AA390099DCFF /* ViewControllerCalories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76043C3A1930AA390099DCFF /* ViewControllerCalories.m */; };
+		76043C3D1930AA390099DCFF /* ViewControllerCalories.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76043C3B1930AA390099DCFF /* ViewControllerCalories.xib */; };
+		76043C401930D7F90099DCFF /* Calories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76043C3F1930D7F90099DCFF /* Calories.m */; };
 		7605E65C191963850013CD87 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65B191963850013CD87 /* Parse.framework */; };
 		7605E65E191963D00013CD87 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65D191963D00013CD87 /* AudioToolbox.framework */; };
 		7605E660191963E40013CD87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7605E65F191963E40013CD87 /* CoreLocation.framework */; };
@@ -162,6 +168,15 @@
 		7600C05718EEA6AD00101286 /* ViewControllerMuscle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerMuscle.h; sourceTree = "<group>"; };
 		7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMuscle.m; sourceTree = "<group>"; };
 		7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerMuscle.xib; sourceTree = "<group>"; };
+		760237671935269F008C19A9 /* exercise-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-32.png"; sourceTree = "<group>"; };
+		7602376A19352BAA008C19A9 /* ViewControllerMyPrograms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerMyPrograms.h; sourceTree = "<group>"; };
+		7602376B19352BAA008C19A9 /* ViewControllerMyPrograms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMyPrograms.m; sourceTree = "<group>"; };
+		7602376C19352BAA008C19A9 /* ViewControllerMyPrograms.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerMyPrograms.xib; sourceTree = "<group>"; };
+		76043C391930AA390099DCFF /* ViewControllerCalories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCalories.h; sourceTree = "<group>"; };
+		76043C3A1930AA390099DCFF /* ViewControllerCalories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCalories.m; sourceTree = "<group>"; };
+		76043C3B1930AA390099DCFF /* ViewControllerCalories.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerCalories.xib; sourceTree = "<group>"; };
+		76043C3E1930D7F90099DCFF /* Calories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calories.h; sourceTree = "<group>"; };
+		76043C3F1930D7F90099DCFF /* Calories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calories.m; sourceTree = "<group>"; };
 		7605E65B191963850013CD87 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7605E65D191963D00013CD87 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7605E65F191963E40013CD87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -371,6 +386,28 @@
 			name = Muscles;
 			sourceTree = "<group>";
 		};
+		7602376919352B75008C19A9 /* MyPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				7602376A19352BAA008C19A9 /* ViewControllerMyPrograms.h */,
+				7602376B19352BAA008C19A9 /* ViewControllerMyPrograms.m */,
+				7602376C19352BAA008C19A9 /* ViewControllerMyPrograms.xib */,
+			);
+			name = MyPrograms;
+			sourceTree = "<group>";
+		};
+		76043C3819309CBD0099DCFF /* ProgramCalories */ = {
+			isa = PBXGroup;
+			children = (
+				76043C391930AA390099DCFF /* ViewControllerCalories.h */,
+				76043C3A1930AA390099DCFF /* ViewControllerCalories.m */,
+				76043C3B1930AA390099DCFF /* ViewControllerCalories.xib */,
+				76043C3E1930D7F90099DCFF /* Calories.h */,
+				76043C3F1930D7F90099DCFF /* Calories.m */,
+			);
+			name = ProgramCalories;
+			sourceTree = "<group>";
+		};
 		760CF70818EAA32E00875CBF /* MLAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +448,8 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				7602376919352B75008C19A9 /* MyPrograms */,
+				76043C3819309CBD0099DCFF /* ProgramCalories */,
 				76F599331928C3F5005167E9 /* Sound */,
 				76B09CDD1924DEFC00DB25C0 /* ProgressHud */,
 				76D632B8191121CF00514D62 /* 2338.jpg */,
@@ -646,6 +685,7 @@
 				76313A7118D9B645008150D8 /* Default-568h@2x.png */,
 				76FA102519091F7D005F59DF /* checklist-32.png */,
 				76FA102719091FE8005F59DF /* today-32.png */,
+				760237671935269F008C19A9 /* exercise-32.png */,
 				76FA102319090898005F59DF /* delete-32.png */,
 				76FA101F19090814005F59DF /* trash-36.png */,
 				76FA102119090838005F59DF /* trash-32.png */,
@@ -867,6 +907,7 @@
 				76139ACB18F82A5900653A75 /* cancel-32.png in Resources */,
 				76139AD118F82AD900653A75 /* left_round-32.png in Resources */,
 				76FB6130191511E70053F7FC /* 1003.jpg in Resources */,
+				7602376E19352BAA008C19A9 /* ViewControllerMyPrograms.xib in Resources */,
 				76139ACD18F82A8900653A75 /* facebook-32.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
 				76FA102419090898005F59DF /* delete-32.png in Resources */,
@@ -888,6 +929,7 @@
 				76139ABB18F81A3100653A75 /* calendar-36.png in Resources */,
 				76313A7218D9B645008150D8 /* Default-568h@2x.png in Resources */,
 				76139AC118F823BA00653A75 /* weightlift-32.png in Resources */,
+				760237681935269F008C19A9 /* exercise-32.png in Resources */,
 				76DB418818FBF5FF009FCDB1 /* lock-32.png in Resources */,
 				7600C04F18EE9EE900101286 /* title3@2x.png in Resources */,
 				7600C04A18EE9EE900101286 /* bg_03.jpg in Resources */,
@@ -901,6 +943,7 @@
 				76D632B9191121CF00514D62 /* 2338.jpg in Resources */,
 				76F599351928C401005167E9 /* ButtonTap.wav in Resources */,
 				76FB612C191511BD0053F7FC /* 1001.jpg in Resources */,
+				76043C3D1930AA390099DCFF /* ViewControllerCalories.xib in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				76FA102019090814005F59DF /* trash-36.png in Resources */,
 				761B70A218AB83A400545C6A /* Images.xcassets in Resources */,
@@ -952,8 +995,11 @@
 				76FA12271909403A005F59DF /* RequestManager.m in Sources */,
 				76E84738190A6F40009AFC2D /* Training.m in Sources */,
 				76139AB918F8160000653A75 /* NSMutableArray+TTMutableArray.m in Sources */,
+				76043C3C1930AA390099DCFF /* ViewControllerCalories.m in Sources */,
+				7602376D19352BAA008C19A9 /* ViewControllerMyPrograms.m in Sources */,
 				76FA11F619093B00005F59DF /* ASIDownloadCache.m in Sources */,
 				7650AE9918F425B10022F153 /* ViewControllerDescription.m in Sources */,
+				76043C401930D7F90099DCFF /* Calories.m in Sources */,
 				76FA11E419093A70005F59DF /* ASIHTTPRequest.m in Sources */,
 				761B70D918ABA19200545C6A /* ViewControllerModule.m in Sources */,
 				7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */,
@@ -1082,6 +1128,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1096,6 +1143,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1104,6 +1152,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1118,6 +1167,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

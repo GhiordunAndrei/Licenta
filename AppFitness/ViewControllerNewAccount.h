@@ -25,15 +25,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *textRetypeEmail;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
 @property (weak, nonatomic) IBOutlet UIButton *buttonNewAccount;
-@property (weak, nonatomic) IBOutlet UITextField *textStartKg;
-@property (weak, nonatomic) IBOutlet UITextField *textEndKg;
-@property (weak, nonatomic) IBOutlet UITextField *textAge;
-@property (weak, nonatomic) IBOutlet UISwitch *swModuleOnOff;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (weak, nonatomic) IBOutlet UIButton *buttonSelectDate;
-@property (weak, nonatomic) IBOutlet UIView *viewDatePicker;
-@property (weak, nonatomic) IBOutlet UILabel *textStartDate;
-@property (weak, nonatomic) IBOutlet UILabel *textEndDate;
 @property (strong, nonatomic) IBOutlet UIView *viewPrincipal;
+@property (weak, nonatomic) IBOutlet UIView *viewStanga;
+@property (weak, nonatomic) IBOutlet UIView *viewDreapta;
+@property (weak, nonatomic) IBOutlet UIView *viewCentru;
 
 @end

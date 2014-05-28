@@ -138,7 +138,7 @@ bool existUser;
     
             if (existUser) {
            
-                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Program"];
+                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Workout"];
                 NSArray *users=[queryProgram findObjects];
                 for (PFObject *pro in users) {
                     
@@ -146,37 +146,16 @@ bool existUser;
                         typeProgram=pro[@"NrProgram"];
                        
 
-                        PFQuery *queryProgram=[PFQuery queryWithClassName:@"Result"];
-                        NSArray *users=[queryProgram findObjects];
-                        for (PFObject *pro in users) {
-                            
-                            if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
+                        }else
+                        {
                         
-                                workout=pro[@"NrAntrenament"];
-                                int value=[workout intValue];
-                                workout=[NSNumber numberWithInt:value+1];
-                                
-                                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Antrenament"];
-                                NSArray *users=[queryProgram findObjects];
-                                for (PFObject *pro in users) {
-                                    
-                                    if ([pro[@"NrAntrenament"] isEqualToNumber: workout]) {
-                                        groupMuscle=pro[@"GroupMuscle"];
-                                        [exercises addObject:pro[@"Exercise"]];
-                                        secoundEx=pro[@"SecoundExecution"];
-                                        pause=pro[@"Pause"];
-                                        greutate=pro[@"Greutate"];
-                                        
-                                    }
-                                }
-                                
-                            }
+                        
                         
                         }
                     }
                 }
                 MLAlertView *alerprogram =[[MLAlertView alloc]initWithTitle:@"Your date" message:[NSString stringWithFormat:@"NumberProgram=%@ \n NumberWorkout=%@ \n Group Muscle=%@ ",typeProgram,workout,groupMuscle] delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
-                [alerprogram show];
+          //      [alerprogram show];
 
                 NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
                 [standardDefaults setObject:self.textUsername.text  forKey:@"Email"];

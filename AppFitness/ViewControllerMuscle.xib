@@ -50,7 +50,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QE2-rR-qHj">
-                            <rect key="frame" x="98" y="12" width="36" height="36"/>
+                            <rect key="frame" x="78" y="12" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="calendar-36.png" backgroundImage="calendar-36.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +60,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdB-Cp-HBK">
-                            <rect key="frame" x="258" y="12" width="32" height="32"/>
+                            <rect key="frame" x="221" y="12" width="32" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="scale-32.png" backgroundImage="scale-32.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,13 +70,23 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IM-W6-Yve">
-                            <rect key="frame" x="187" y="12" width="32" height="32"/>
+                            <rect key="frame" x="152" y="12" width="32" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="combo-32.png" backgroundImage="combo-32.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="buttonStatistics:" destination="-1" eventType="touchUpInside" id="Fdi-dz-7Za"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzW-xT-VyG">
+                            <rect key="frame" x="276" y="12" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="exercise-32.png" backgroundImage="exercise-32.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnSettingsWasPressed:" destination="-1" eventType="touchUpInside" id="1O0-uy-JRm"/>
                             </connections>
                         </button>
                     </subviews>
@@ -130,6 +140,7 @@
     <resources>
         <image name="calendar-36.png" width="36" height="36"/>
         <image name="combo-32.png" width="32" height="32"/>
+        <image name="exercise-32.png" width="32" height="32"/>
         <image name="scale-32.png" width="32" height="32"/>
         <image name="weightlift-32.png" width="32" height="32"/>
     </resources>

@@ -84,9 +84,9 @@ NSNumber *numberProgram;
 
     
     [self.segmentexercise setTitle:exercise[0] forSegmentAtIndex:0];
-    [self.segmentexercise setTitle:exercise[1] forSegmentAtIndex:1];
-    [self.segmentexercise setTitle:exercise[2] forSegmentAtIndex:2];
-    [self.segmentexercise setTitle:exercise[3] forSegmentAtIndex:3];
+//    [self.segmentexercise setTitle:exercise[1] forSegmentAtIndex:1];
+//    [self.segmentexercise setTitle:exercise[2] forSegmentAtIndex:2];
+//    [self.segmentexercise setTitle:exercise[3] forSegmentAtIndex:3];
     
     self.navigationController.navigationBarHidden=NO;
     self.navigationItem.hidesBackButton = YES;

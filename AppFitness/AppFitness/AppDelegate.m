@@ -13,6 +13,7 @@
 #import "ViewControllerRequest.h"
 #import "ViewControllerModule.h"
 #import "Parse/Parse.h"
+#import "ViewControllerCalories.h"
 
 @implementation AppDelegate
 

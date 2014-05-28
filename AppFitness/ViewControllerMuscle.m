@@ -12,6 +12,7 @@
 #import "ViewControllerDescription.h"
 #import "ViewControllerCalendar.h"
 #import "ViewControllerChart.h"
+#import "ViewControllerCalories.h"
 @interface ViewControllerMuscle ()
 @end
 UIBarButtonItem *logOut ;
@@ -43,6 +44,17 @@ UIBarButtonItem *logOut ;
   
 }
 
+- (IBAction)btnSettingsWasPressed:(id)sender {
+
+    ViewControllerCalories *calories=[[ViewControllerCalories alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionReveal;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:calories animated:NO];
+    self.navigationController.navigationBarHidden=NO;
+}
 
 
 - (void)ActionLogOut:(UIBarButtonItem*)sender
