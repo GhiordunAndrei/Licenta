@@ -14,6 +14,9 @@
 
 @end
 NSString *modeSel;
+int numberOfWeeks;
+float kgLoss;
+int allCalories;
 int sex;
 NSNumber *numberProgram;
 NSString *startDate;
@@ -25,6 +28,8 @@ NSString *startDate;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         dateCalories =[[NSMutableArray alloc]init];
+        arrayDificulty=[[NSMutableArray alloc]init];
+        secWorkout=[[NSMutableArray alloc]init];
         [self.datePick setMinimumDate:[[NSDate alloc]init]];
     }
     return self;
@@ -53,32 +58,117 @@ NSString *startDate;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)buttonCalculateWasPressed:(id)sender {
-  
+    int totalClaoriesPerDay=0;
+    kgLoss= [self.textFieldAmountlOSE.text floatValue];
+    numberOfWeeks=[self.textFieldNumberOfWeeks.text intValue];
+    
+    
     MLAlertView *alertProg;
-    if([self.textFieldAge.text length]!=0 && [self.textFieldAmountlOSE.text length]!=0 && [self.textFieldHeight.text length]!=0
+    if([self.textFieldAge.text length]!=0 && kgLoss!=0 && [self.textFieldHeight.text length]!=0
        && [self.textFieldWeight.text length]!=0)
     {
         if (sex!=1 || sex!=0) {
             
-            Calories *calculator=[[Calories alloc]initCalories:sex Weight:[NSNumber numberWithInt:[self.textFieldWeight.text intValue] ] Age:[NSNumber numberWithInt:[self.textFieldAge.text intValue] ] LevelAct:modeSel StartDate:startDate KgLose:[NSNumber numberWithInt:[self.textFieldAmountlOSE.text intValue]] Height:[NSNumber numberWithInt:[self.textFieldHeight.text intValue]]];
+            if (kgLoss*2>numberOfWeeks) {
+            
+                    alertProg=[[MLAlertView alloc]initWithTitle:@"Warning" message:[NSString stringWithFormat:@"For this program need minimum %d weeks, because max calories burn in one day is 500." ,[self.textFieldAmountlOSE.text intValue]*2]cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                        self.textFieldNumberOfWeeks.text=@"";
+                    [alertProg show];
+            }
+            else{
+                    Calories *calculator=[[Calories alloc]initCalories:sex Weight:[NSNumber numberWithInt:[self.textFieldWeight.text intValue] ] Age:[NSNumber numberWithInt:[self.textFieldAge.text intValue] ] LevelAct:modeSel StartDate:startDate KgLose:[NSNumber numberWithFloat:kgLoss] Height:[NSNumber numberWithInt:[self.textFieldHeight.text intValue]]];
+                        totalClaoriesPerDay=[calculator numberCaloriesWeek:numberOfWeeks lossKg:[ self.textFieldAmountlOSE.text intValue]];
+            
+                    alertProg =[[MLAlertView alloc]initWithTitle:@"Completed" message:[NSString stringWithFormat:@"You need %d /day clories to lose %d kg", totalClaoriesPerDay,[ self.textFieldAmountlOSE.text intValue]] cancelButtonTitle:@"Cancel" otherButtonTitles:[NSArray arrayWithObject:@"ok"]];
+                    [alertProg show];
           
+                
+                allCalories= totalClaoriesPerDay*numberOfWeeks*7;
+
+                    int prog1=0;
+                    int prog2=0;
+                    int prog3=0;
+                    int prog4=0;
+                    int prog5=0;
+
+                    PFQuery *query = [PFQuery queryWithClassName:@"Antrenament"];
+                    NSArray *a=[query findObjects];
             
-            alertProg =[[MLAlertView alloc]initWithTitle:@"Completed" message:[NSString stringWithFormat:@"You need %d /week clories to lose %d kg", [calculator numberCaloriesWeek:[self.textFieldNumberOfWeeks.text intValue] lossKg:[ self.textFieldAmountlOSE.text intValue]],[ self.textFieldAmountlOSE.text intValue]] cancelButtonTitle:@"Cancel" otherButtonTitles:[NSArray arrayWithObject:@"ok"]];
-            [alertProg show];
-            [dateCalories addObject:[NSString stringWithFormat:@"Workout!"]];
+                NSMutableArray *numbersWorkout=[[NSMutableArray alloc]init];
+             
+                    for (PFObject *us in a) {
+    
+                            if (![numbersWorkout containsObject:us[@"NrProgram"]]) {
+                                [numbersWorkout addObject:us[@"NrProgram"]];
+
+                            }
+                        
+                        
+                        
+                        
+                            switch ([us[@"NrProgram"] intValue]) {
+                                case 1:
+                                    prog1+= [us[@"CaloriesBurn"]intValue];
+                        
+                                    break;
+                                case 2:
+                                    prog2+= [us[@"CaloriesBurn"]intValue];
+
+                                    break;
+                                case 3:
+                                    prog3+= [us[@"CaloriesBurn"]intValue];
+
+                                    break;
+                                case 4:
+                                    prog4+= [us[@"CaloriesBurn"]intValue];
+
+                                    break;
+                                case 5:
+                                    prog5+= [us[@"CaloriesBurn"]intValue];
+
+                                    break;
+                                default:
+                        
+                                    break;
+                            }
+                
+
+            }
+                
+             //   NSLog(@"aaaa%lu",(unsigned long)[numbersWorkout count]);
+                
+                float secP1=[self numberSecPerWorkout:prog1];
+                float secP2=[self numberSecPerWorkout:prog2];
+                float secP3=[self numberSecPerWorkout:prog3];
+                float secP4=[self numberSecPerWorkout:prog4];
+                float secP5=[self numberSecPerWorkout:prog5];
+                
+                
+                [arrayDificulty addObject:[self dificulty:secP1]];
+                [arrayDificulty addObject:[self dificulty:secP2]];
+                [arrayDificulty addObject:[self dificulty:secP3]];
+                [arrayDificulty addObject:[self dificulty:secP4]];
+                [arrayDificulty addObject:[self dificulty:secP5]];
+
+                
+                [secWorkout addObject:[NSString stringWithFormat:@"%f",[self numberSecPausePerWorkout:secP1]]];
+                [secWorkout addObject:[NSString stringWithFormat:@"%f",[self numberSecPausePerWorkout:secP2]]];
+                [secWorkout addObject:[NSString stringWithFormat:@"%f",[self numberSecPausePerWorkout:secP3]]];
+                [secWorkout addObject:[NSString stringWithFormat:@"%f",[self numberSecPausePerWorkout:secP4]]];
+                [secWorkout addObject:[NSString stringWithFormat:@"%f",[self numberSecPausePerWorkout:secP5]]];
+
+
+                for ( NSNumber *a in numbersWorkout) {
+                    
+                    [dateCalories addObject:[NSString stringWithFormat:@"Workout-%d", [a intValue]]];
+                }
             [self.tableViewCalories reloadData];
-            
-            
-//            
-//                PFObject *testObject=[PFObject objectWithClassName:@"User"];
-//                testObject[@"fullName"]=self.FullName;
-//                testObject[@"Password"]=self.Password;
-//                testObject[@"Email"]=self.email;
-//                [testObject saveInBackground];
-            
            
+            NSLog(@"prog1=%d prog2=%d prog3=%d prog4=%d prog5=%d",prog1,prog2,prog3,prog4,prog5);
 
        
+            }
+        
         }
         else{
             alertProg=[[MLAlertView alloc]initWithTitle:@"Warning" message:@"Choose" cancelButtonTitle:nil otherButtonTitles:[NSArray arrayWithObject:@"OK"]];
@@ -92,6 +182,45 @@ NSString *startDate;
     }
    
  
+}
+-(NSString*)dificulty:(float)secEx
+{
+    NSString *dificultyLevel=[[NSString alloc]init];
+  
+    if (secEx>=55) {
+        dificultyLevel=@"Hard";
+    }else if (secEx<55 && secEx>40)
+    {
+        dificultyLevel=@"Medium";
+    }
+    else if (secEx<40)
+    {
+    dificultyLevel=@"Easy";
+    }
+    return dificultyLevel;
+}
+
+-(float)numberSecPerWorkout:(int)nrProg
+{
+    if (nrProg!=0) {
+        float numberDays=7*numberOfWeeks;
+        float caloriesPerDay =allCalories/numberDays;
+        float numberSecunde=caloriesPerDay/(nrProg/5);
+        return numberSecunde*10;
+    }else
+    {
+    
+        return 0;
+    }
+
+
+}
+
+-(float)numberSecPausePerWorkout:(float)numberSecExecution
+{
+
+    
+    return numberSecExecution*0.45;
 }
 - (IBAction)btnResetWasPressed:(id)sender {
     
@@ -195,23 +324,54 @@ NSString *startDate;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-   // NSString *cellText = cell.textLabel.text;
-    ViewControllerMyPrograms *objMyProg=[[ViewControllerMyPrograms alloc]init];
+    
+    
+    
+    
+//    
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    NSString *string=[dateCalories objectAtIndex:indexPath.row];
+    NSString *levelDif=[arrayDificulty objectAtIndex:indexPath.row];
+    NSString *secW=[secWorkout objectAtIndex:indexPath.row];
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+    
+    ViewControllerMyPrograms *objMyProg=[[ViewControllerMyPrograms alloc]initWithProg:(int)indexPath.row Difficulty:levelDif SecExec:[secW floatValue] DateCreate:[DateFormatter stringFromDate:[NSDate date]]];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.1f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionReveal;
     [self.navigationController.view.layer addAnimation:transition forKey:nil];
     [self.navigationController pushViewController:objMyProg animated:NO];
-   // self.navigationController.navigationBarHidden=NO;
 
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
     [dateCalories removeObjectAtIndex:indexPath.row];
+    
+    
+    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email =[standardUserDefaults stringForKey:@"Email"];
+  
+    
+    PFQuery *queryProg = [PFQuery queryWithClassName:@"Program"];
+    NSArray *findProg=[queryProg findObjects];
+    for (PFObject *us in findProg) {
+        if ([us[@"Email"] isEqualToString:email])
+        {
+            [us deleteInBackground];
+            
+            [us saveInBackground];
+        }
+    }
+
+ 
     [tableView reloadData];
 }
 

@@ -270,11 +270,7 @@
         {
             textDescription=[NSMutableString stringWithFormat:LegsTighAbductor];
                                  
-        }else if([nameExercise isEqualToString:@"Thigh Adductor "])
-        {
-            textDescription=[NSMutableString stringWithFormat:LegsTighAdductor];
-                                 
-            }
+        }
     }else if ([nameGroupMuscle isEqualToString:@"Cardio"])
     {
     

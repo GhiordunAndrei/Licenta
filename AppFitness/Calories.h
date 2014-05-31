@@ -18,5 +18,5 @@
 @property(nonatomic,strong)NSString *activityMode;
 -(id)initCalories:(int)nsex Weight:(NSNumber*)nweight Age:(NSNumber*)nage LevelAct:(NSString*)nlevelActivity StartDate:(NSString*)nstartDate KgLose:(NSNumber*)nkgLose Height:(NSNumber*)nheight;
 -(double)totalCalories;
--(int)numberCaloriesWeek:(int)weeks lossKg:(int)lkg;
+-(int)numberCaloriesWeek:(int)weeks lossKg:(float)lkg;
 @end

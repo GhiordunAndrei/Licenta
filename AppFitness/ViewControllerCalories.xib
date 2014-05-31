@@ -189,7 +189,7 @@
                     <rect key="frame" x="1" y="280" width="319" height="199"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" patternImage="59BB1460-C7F5-4569-9D0B-FFD53E047611" colorSpace="pattern"/>
+                    <color key="separatorColor" patternImage="BD962B26-D85A-477D-BA51-B9DBAD753A6F" colorSpace="pattern"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="g8L-pL-V4f"/>
                         <outlet property="delegate" destination="-1" id="BuO-MC-yGf"/>
@@ -202,7 +202,7 @@
         </view>
     </objects>
     <resources>
-        <image name="59BB1460-C7F5-4569-9D0B-FFD53E047611" width="320" height="460">
+        <image name="BD962B26-D85A-477D-BA51-B9DBAD753A6F" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

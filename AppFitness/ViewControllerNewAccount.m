@@ -8,8 +8,8 @@
 
 #import "ViewControllerNewAccount.h"
 #import "MLAlertView.h"
-#import "Reachability.h"
 #import "Training.h"
+#import "Reachability.h"
 @interface ViewControllerNewAccount ()
 
 @end

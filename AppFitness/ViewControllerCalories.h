@@ -12,6 +12,8 @@
 @interface ViewControllerCalories : UIViewController<UITableViewDelegate, UITableViewDataSource>
 {
     NSMutableArray *dateCalories;
+    NSMutableArray *arrayDificulty;
+    NSMutableArray *secWorkout;
 }
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlDif;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldAge;

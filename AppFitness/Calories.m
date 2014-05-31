@@ -75,13 +75,25 @@
     return totalCalories;
 }
 
--(int)numberCaloriesWeek:(int)weeks lossKg:(int)lkg
+
+-(int)numberCaloriesWeek:(int)weeks lossKg:(float)lkg
 {
  
-    int caloripesaptamana=(7000*lkg)/weeks;
+    float caloripesaptamana=(7000*lkg)/weeks;
+    float maxCloriesPerDay=caloripesaptamana/7;
+    if (maxCloriesPerDay>500) {
+        
+        return maxCloriesPerDay-500;
+        
+    }else{
+    
+     return maxCloriesPerDay;
+        
+    }
     
     
-    return caloripesaptamana;
+   
 }
+
 @end
 

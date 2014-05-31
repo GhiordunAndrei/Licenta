@@ -9,7 +9,6 @@
 #import "ViewControllerScreen1.h"
 #import "ViewControllerModule.h"
 #import "ViewControllerNewAccount.h"
-#import "ViewControllerNoModule.h"
 #import "ViewControllerMuscle.h"
 #import  <Parse/Parse.h>
 #import "MLAlertView.h" 
@@ -112,14 +111,14 @@ bool existUser;
 
 - (IBAction)logIn:(id)sender {
     MLAlertView *alert;
-    NSNumber *typeProgram;
-    NSNumber *workout;
-    NSString *groupMuscle;
-    NSMutableArray *exercises=[[NSMutableArray alloc]init];
-    NSNumber *secoundEx;
-    NSNumber *pause;
-    NSNumber *greutate;
-    
+    NSNumber *typeProgram=nil;
+//    NSNumber *workout;
+//    NSString *groupMuscle;
+//    NSMutableArray *exercises=[[NSMutableArray alloc]init];
+//    NSNumber *secoundEx;
+//    NSNumber *pause;
+//    NSNumber *greutate;
+    NSNumber *antrenamentNumber;
     
     if ([self verifyInternet]) {
         
@@ -131,42 +130,38 @@ bool existUser;
                     if ([us[@"Email"] isEqualToString:self.textUsername.text] && [us[@"Password"]isEqualToString:self.textPassword.text]) {
             
                                         existUser=true;
-            
-                            }
-                    }
-    
+            }
+            }
     
             if (existUser) {
            
-                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Workout"];
+                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Program "];
                 NSArray *users=[queryProgram findObjects];
                 for (PFObject *pro in users) {
                     
-                    if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
-                        typeProgram=pro[@"NrProgram"];
-                       
-
-                        }else
-                        {
-                        
-                        
+                        if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
+                                typeProgram=pro[@"NrProgram"];
+                                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Result"];
+                                NSArray *users=[queryProgram findObjects];
+                                for (PFObject *newResult in users) {
+                                    antrenamentNumber=newResult[@"NrAntrenament"];
+                            
+                                }
                         
                         }
-                    }
                 }
-                MLAlertView *alerprogram =[[MLAlertView alloc]initWithTitle:@"Your date" message:[NSString stringWithFormat:@"NumberProgram=%@ \n NumberWorkout=%@ \n Group Muscle=%@ ",typeProgram,workout,groupMuscle] delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
-          //      [alerprogram show];
-
+                
+                if (typeProgram==nil) {
+                  
+                    alert =[[MLAlertView alloc]initWithTitle:@"Warning" message:@"You don't have a workout created!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                    [alert show];
+                }
+               
+               
                 NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
                 [standardDefaults setObject:self.textUsername.text  forKey:@"Email"];
-                [standardDefaults setObject:typeProgram  forKey:@"NrProgram"];
-                [standardDefaults setObject:workout forKey:@"NrAntrenament"];
-                [standardDefaults setObject:groupMuscle forKey:@"GroupMuscle"];
-                [standardDefaults setObject:exercises forKey:@"Exercise"];
-                [standardDefaults setObject:secoundEx forKey:@"SecExecution"];
-                [standardDefaults setObject:pause forKey:@"SecPause"];
-                [standardDefaults setObject:greutate forKey:@"Greutate"];
 
+                
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLog" object:[NSString stringWithFormat:@"b"]];
                 viewScreenMuscle =[[ViewControllerMuscle alloc]init];
@@ -182,16 +177,17 @@ bool existUser;
                 existUser=FALSE;
            
         }else{
-            alert=[[MLAlertView alloc]initWithTitle:nil message:@"this account does not exist!" cancelButtonTitle:@"Ok" otherButtonTitles:[NSArray arrayWithObject:@"Try Again?"]];
+            alert=[[MLAlertView alloc]initWithTitle:nil message:@"This account does not exist!" cancelButtonTitle:@"Ok" otherButtonTitles:[NSArray arrayWithObject:@"Try Again?"]];
             [alert show];
 
-        }
+                }
 
         
+                }
     }
             
     
-}
+
 
 /*TAP OUT OFF TEXTusername TEXTPASSWORD*/
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

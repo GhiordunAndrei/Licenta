@@ -7,7 +7,6 @@
 //
 
 #import "ViewControllerMuscle.h"
-#import "ViewControllerNoModule.h"
 #import "ViewControllerModule.h"
 #import "ViewControllerDescription.h"
 #import "ViewControllerCalendar.h"

@@ -7,9 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import  <Parse/Parse.h>
+#import "ABFullScrollViewController.h"
 
-@interface ViewControllerMyPrograms : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface ViewControllerMyPrograms : ABFullScrollViewController<UITableViewDelegate, UITableViewDataSource>
 {
-    NSArray *program;
+    NSMutableArray *program;
+    NSMutableArray *workout0;
+    NSMutableArray *workout1;
+    NSMutableArray *workout2;
+    NSMutableArray *workout3;
+    NSMutableArray *workout4;
+    NSString *levelDifficulty;
+    float secPerExercise;
+    NSString *dateCreatedWorkout;
+    int nrProg;
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnSaveProg;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewExercise;
+@property (weak, nonatomic) IBOutlet UILabel *levelDificulty;
+@property (weak, nonatomic) IBOutlet UILabel *dateCreated;
+@property (weak, nonatomic) IBOutlet UILabel *secoundsExercise;
+@property (weak, nonatomic) IBOutlet UILabel *state;
+
+@property (weak, nonatomic) IBOutlet UILabel *daysRemaing;
+- (instancetype)initWithProg:(int)nerprog Difficulty:(NSString*)workOutDif SecExec:(float)secExecution DateCreate:(NSString*)date;
+
 @end
