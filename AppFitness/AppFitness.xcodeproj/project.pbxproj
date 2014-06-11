@@ -19,6 +19,13 @@
 		7600C05118EE9EE900101286 /* title5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7600C04718EE9EE900101286 /* title5@2x.png */; };
 		7600C05A18EEA6AD00101286 /* ViewControllerMuscle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */; };
 		7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */; };
+		7601213C194109F50079AF10 /* abdomenGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601213B194109F50079AF10 /* abdomenGroup.jpg */; };
+		7601213E19410BCB0079AF10 /* armsGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601213D19410BCB0079AF10 /* armsGroup.jpg */; };
+		7601214019410BFB0079AF10 /* backGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601213F19410BFB0079AF10 /* backGroup.jpg */; };
+		7601214219410C320079AF10 /* chestGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601214119410C320079AF10 /* chestGroup.jpg */; };
+		7601214419410C610079AF10 /* shouldersGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601214319410C610079AF10 /* shouldersGroup.jpg */; };
+		7601214619410C9C0079AF10 /* legsGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601214519410C9C0079AF10 /* legsGroup.jpg */; };
+		7601214819410E050079AF10 /* cardioGroup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7601214719410E050079AF10 /* cardioGroup.jpg */; };
 		760237681935269F008C19A9 /* exercise-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 760237671935269F008C19A9 /* exercise-32.png */; };
 		7602376D19352BAA008C19A9 /* ViewControllerMyPrograms.m in Sources */ = {isa = PBXBuildFile; fileRef = 7602376B19352BAA008C19A9 /* ViewControllerMyPrograms.m */; };
 		7602376E19352BAA008C19A9 /* ViewControllerMyPrograms.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7602376C19352BAA008C19A9 /* ViewControllerMyPrograms.xib */; };
@@ -156,6 +163,13 @@
 		7600C05718EEA6AD00101286 /* ViewControllerMuscle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerMuscle.h; sourceTree = "<group>"; };
 		7600C05818EEA6AD00101286 /* ViewControllerMuscle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMuscle.m; sourceTree = "<group>"; };
 		7600C05918EEA6AD00101286 /* ViewControllerMuscle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerMuscle.xib; sourceTree = "<group>"; };
+		7601213B194109F50079AF10 /* abdomenGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abdomenGroup.jpg; sourceTree = "<group>"; };
+		7601213D19410BCB0079AF10 /* armsGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = armsGroup.jpg; sourceTree = "<group>"; };
+		7601213F19410BFB0079AF10 /* backGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backGroup.jpg; sourceTree = "<group>"; };
+		7601214119410C320079AF10 /* chestGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chestGroup.jpg; sourceTree = "<group>"; };
+		7601214319410C610079AF10 /* shouldersGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shouldersGroup.jpg; sourceTree = "<group>"; };
+		7601214519410C9C0079AF10 /* legsGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = legsGroup.jpg; sourceTree = "<group>"; };
+		7601214719410E050079AF10 /* cardioGroup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardioGroup.jpg; sourceTree = "<group>"; };
 		760237671935269F008C19A9 /* exercise-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-32.png"; sourceTree = "<group>"; };
 		7602376A19352BAA008C19A9 /* ViewControllerMyPrograms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerMyPrograms.h; sourceTree = "<group>"; };
 		7602376B19352BAA008C19A9 /* ViewControllerMyPrograms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMyPrograms.m; sourceTree = "<group>"; };
@@ -347,6 +361,20 @@
 			name = Muscles;
 			sourceTree = "<group>";
 		};
+		7601213A194109C50079AF10 /* GroupMuscle */ = {
+			isa = PBXGroup;
+			children = (
+				7601214519410C9C0079AF10 /* legsGroup.jpg */,
+				7601214719410E050079AF10 /* cardioGroup.jpg */,
+				7601214319410C610079AF10 /* shouldersGroup.jpg */,
+				7601214119410C320079AF10 /* chestGroup.jpg */,
+				7601213F19410BFB0079AF10 /* backGroup.jpg */,
+				7601213D19410BCB0079AF10 /* armsGroup.jpg */,
+				7601213B194109F50079AF10 /* abdomenGroup.jpg */,
+			);
+			name = GroupMuscle;
+			sourceTree = "<group>";
+		};
 		7602376919352B75008C19A9 /* MyPrograms */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +439,7 @@
 		761B707E18AB83A400545C6A = {
 			isa = PBXGroup;
 			children = (
+				76DB417A18FBD814009FCDB1 /* imageApp */,
 				76DE164619363E04001CDF38 /* Reachability.h */,
 				76DE164719363E04001CDF38 /* Reachability.m */,
 				7602376919352B75008C19A9 /* MyPrograms */,
@@ -419,7 +448,6 @@
 				76B09CDD1924DEFC00DB25C0 /* ProgressHud */,
 				76D632B8191121CF00514D62 /* 2338.jpg */,
 				76E84735190A6EF0009AFC2D /* Program */,
-				76DB417A18FBD814009FCDB1 /* imageApp */,
 				76139AA018F80BB700653A75 /* Chart */,
 				76139A9118F7F8B700653A75 /* Calendar */,
 				7650AE9518F425960022F153 /* Description */,
@@ -617,6 +645,7 @@
 		76D632BA1911223F00514D62 /* imageExercises */ = {
 			isa = PBXGroup;
 			children = (
+				7601213A194109C50079AF10 /* GroupMuscle */,
 				76D632BF1911249200514D62 /* LegRaise.jpg */,
 				76D632BD191123E800514D62 /* CrossBodyCrunch.jpg */,
 				76D632BB1911232100514D62 /* BentKneeHipRaise.jpg */,
@@ -806,12 +835,14 @@
 				76139ACD18F82A8900653A75 /* facebook-32.png in Resources */,
 				7650AE9418F423690022F153 /* rsz_abdomen.png in Resources */,
 				76FA102419090898005F59DF /* delete-32.png in Resources */,
+				7601213C194109F50079AF10 /* abdomenGroup.jpg in Resources */,
 				761B70CF18AB899D00545C6A /* ViewControllerScreen1.xib in Resources */,
 				761DDE3018B21F1600DAFBB5 /* ViewControllerNewAccount.xib in Resources */,
 				76FA102219090838005F59DF /* trash-32.png in Resources */,
 				76139AC718F829E200653A75 /* email-32.png in Resources */,
 				76139ACF18F82AC500653A75 /* right_round-32.png in Resources */,
 				7652BCB718B0EB070011638F /* rsz_11rsz_logofitness.png in Resources */,
+				7601213E19410BCB0079AF10 /* armsGroup.jpg in Resources */,
 				76DB418C18FC0065009FCDB1 /* Bookworm.png in Resources */,
 				76D632BE191123E800514D62 /* CrossBodyCrunch.jpg in Resources */,
 				76C5FD2C190C3CCF00998CF0 /* main_background_dark.png in Resources */,
@@ -833,9 +864,11 @@
 				7652BCB518B0EA420011638F /* rsz_1rsz_logofitness.png in Resources */,
 				76139AC518F8296E00653A75 /* scale-32.png in Resources */,
 				76FA102819091FE8005F59DF /* today-32.png in Resources */,
+				7601214419410C610079AF10 /* shouldersGroup.jpg in Resources */,
 				76D632B9191121CF00514D62 /* 2338.jpg in Resources */,
 				76F599351928C401005167E9 /* ButtonTap.wav in Resources */,
 				76FB612C191511BD0053F7FC /* 1001.jpg in Resources */,
+				7601214019410BFB0079AF10 /* backGroup.jpg in Resources */,
 				76043C3D1930AA390099DCFF /* ViewControllerCalories.xib in Resources */,
 				761B70D518AB983200545C6A /* FitnessLogin.jpg in Resources */,
 				76FA102019090814005F59DF /* trash-36.png in Resources */,
@@ -846,8 +879,11 @@
 				76FB6132191511F80053F7FC /* 1004.jpg in Resources */,
 				7600C05B18EEA6AD00101286 /* ViewControllerMuscle.xib in Resources */,
 				76DB418E18FC00EC009FCDB1 /* ghback.png in Resources */,
+				7601214819410E050079AF10 /* cardioGroup.jpg in Resources */,
 				7650AE9A18F425B10022F153 /* ViewControllerDescription.xib in Resources */,
 				76DB419218FC0A77009FCDB1 /* lock-64.png in Resources */,
+				7601214219410C320079AF10 /* chestGroup.jpg in Resources */,
+				7601214619410C9C0079AF10 /* legsGroup.jpg in Resources */,
 				76DB418A18FBFA5E009FCDB1 /* background.png in Resources */,
 				76FA102619091F7D005F59DF /* checklist-32.png in Resources */,
 			);

@@ -112,12 +112,6 @@ bool existUser;
 - (IBAction)logIn:(id)sender {
     MLAlertView *alert;
     NSNumber *typeProgram=nil;
-//    NSNumber *workout;
-//    NSString *groupMuscle;
-//    NSMutableArray *exercises=[[NSMutableArray alloc]init];
-//    NSNumber *secoundEx;
-//    NSNumber *pause;
-//    NSNumber *greutate;
     NSNumber *antrenamentNumber;
     
     if ([self verifyInternet]) {
@@ -130,22 +124,79 @@ bool existUser;
                     if ([us[@"Email"] isEqualToString:self.textUsername.text] && [us[@"Password"]isEqualToString:self.textPassword.text]) {
             
                                         existUser=true;
-            }
+             }
             }
     
             if (existUser) {
            
-                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Program "];
+                PFQuery *queryProgram=[PFQuery queryWithClassName:@"Program"];
                 NSArray *users=[queryProgram findObjects];
                 for (PFObject *pro in users) {
                     
                         if ([pro[@"Email"] isEqualToString:self.textUsername.text]) {
                                 typeProgram=pro[@"NrProgram"];
+                            
                                 PFQuery *queryProgram=[PFQuery queryWithClassName:@"Result"];
                                 NSArray *users=[queryProgram findObjects];
                                 for (PFObject *newResult in users) {
                                     antrenamentNumber=newResult[@"NrAntrenament"];
-                            
+                                    if (![newResult[@"Email"] isEqualToString:self.textUsername.text]) {  // e la inceput are program dar nu a executat nimic pana acum
+                                        
+                                        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        [standardUserDefaults setObject:typeProgram forKey:@"NrProgram"];
+                                        [standardUserDefaults setObject:[NSNumber numberWithInt:1] forKey:@"NrAntrenament"];
+                                        
+                                        PFQuery *queryAntrenamentForExercise=[PFQuery queryWithClassName:@"Antrenament"];
+                                        NSArray *users=[queryAntrenamentForExercise findObjects];
+                                        NSMutableArray *exercise=[[NSMutableArray alloc]init];
+                                        NSString *groupmuscle=[[NSString alloc]init];
+                                        for (PFObject *nwAntrenament in users) {
+                                            if (nwAntrenament[@"NrProgram"]==typeProgram && nwAntrenament[@"NrAntrenament"]==antrenamentNumber) {
+                                                [exercise addObject:nwAntrenament[@"Exercise"]];
+                                                groupmuscle=nwAntrenament[@"GroupMuscle"];
+                                            }
+                                            
+                                        }
+                                        [standardUserDefaults setObject:groupmuscle forKey:@"GroupMuscle"];
+                                        [standardUserDefaults setObject:exercise forKey:@"Exercise"];
+                                        [standardUserDefaults setObject:pro[@"nrSecExec"] forKey:@"SecExecution"];
+                                        [standardUserDefaults setObject:pro[@"nrSecPau"] forKey:@"SecPause"];
+                                        
+
+                                        
+                                        
+                                    }else
+                                    {
+                                        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        [standardUserDefaults setObject:typeProgram forKey:@"NrProgram"];
+                                        [standardUserDefaults setObject:[NSNumber numberWithInt:[newResult[@"NrAntrenament"]intValue ]+1]forKey:@"NrAntrenament"];
+                                        
+                                        PFQuery *queryAntrenamentForExercise=[PFQuery queryWithClassName:@"Antrenament"];
+                                        NSArray *users=[queryAntrenamentForExercise findObjects];
+                                        NSMutableArray *exercise=[[NSMutableArray alloc]init];
+                                        NSString *groupmuscle=[[NSString alloc]init];
+                                        for (PFObject *nwAntrenament in users) {
+                                            if (nwAntrenament[@"NrProgram"]==typeProgram && nwAntrenament[@"NrAntrenament"]==antrenamentNumber) {
+                                                [exercise addObject:nwAntrenament[@"Exercise"]];
+                                                groupmuscle=nwAntrenament[@"GroupMuscle"];
+                                            }
+                                        
+                                        }
+                                        [standardUserDefaults setObject:groupmuscle forKey:@"GroupMuscle"];
+                                        [standardUserDefaults setObject:exercise forKey:@"Exercise"];
+                                        [standardUserDefaults setObject:newResult[@"nrSecExec"] forKey:@"SecExecution"];
+                                        [standardUserDefaults setObject:newResult[@"nrSecPau"] forKey:@"SecPause"];
+                                      
+                                        
+                                        
+
+                                    }
+                                    
+                                    
+                                    
+                                    
                                 }
                         
                         }
@@ -175,6 +226,14 @@ bool existUser;
                 [self.navigationController pushViewController:viewScreenMuscle animated:NO];
                 self.navigationController.navigationBarHidden=NO;
                 existUser=FALSE;
+                
+                
+                
+                
+                
+                
+                
+                
            
         }else{
             alert=[[MLAlertView alloc]initWithTitle:nil message:@"This account does not exist!" cancelButtonTitle:@"Ok" otherButtonTitles:[NSArray arrayWithObject:@"Try Again?"]];

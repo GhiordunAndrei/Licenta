@@ -119,6 +119,8 @@ UIBarButtonItem *logOut ;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSString * imageGroupMuscle;
      if(tableView==self.tableViewMuscleGroup){
             static NSString *simpleTableIdentifier = @"SimpleTableItem";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -127,10 +129,35 @@ UIBarButtonItem *logOut ;
                                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
                                 }
    
+         switch (indexPath.row) {
+             case 0:
+                 imageGroupMuscle=@"abdomenGroup.jpg";
+                 break;
+             case 1:
+                 imageGroupMuscle=@"armsGroup.jpg";
+                 break;
+             case 2:
+                 imageGroupMuscle=@"backGroup.jpg";
+                 break;
+             case 3:
+                 imageGroupMuscle=@"chestGroup.jpg";
+                 break;
+             case 4:
+                 imageGroupMuscle=@"shouldersGroup.jpg";
+                 break;
+             case 5:
+                 imageGroupMuscle=@"legsGroup.jpg";
+                 break;
+             case 6:
+                 imageGroupMuscle=@"cardioGroup.jpg";
+                 break;
+             default:
+                 break;
+         }
+         
             cell.textLabel.text = [arrayMuscleGroup objectAtIndex:indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"rsz_musclemanrunning.png"];
+            cell.imageView.image = [UIImage imageNamed:imageGroupMuscle];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_circular-32.png"]];
        return cell;
     }else 
     {
@@ -233,8 +260,10 @@ UIBarButtonItem *logOut ;
             arrayExerciseMuscle=[NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"", nil];
         }
 
-        
-        group=[arrayExerciseMuscle  objectAtIndex:indexPath.row];
+
+    //    NSLog(@"%ld",(long)indexPath.row);
+      //  NSLog(@"%@",arrayExerciseMuscle[6]);
+        group=[arrayMuscleGroup  objectAtIndex:indexPath.row];
         self.title=group;
         [self.tableViewExerciseGroup reloadData];
     

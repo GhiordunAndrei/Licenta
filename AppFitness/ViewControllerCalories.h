@@ -13,6 +13,7 @@
 {
     NSMutableArray *dateCalories;
     NSMutableArray *arrayDificulty;
+    NSMutableArray *myProject;
     NSMutableArray *secWorkout;
 }
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlDif;

@@ -18,6 +18,7 @@ int numberOfWeeks;
 float kgLoss;
 int allCalories;
 int sex;
+int totalClaoriesPerDay;
 NSNumber *numberProgram;
 NSString *startDate;
 
@@ -38,17 +39,18 @@ NSString *startDate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Workout"];
+    myProject=[[NSMutableArray alloc]init];
+    PFQuery *query = [PFQuery queryWithClassName:@"Program"];
     NSArray *a=[query findObjects];
-    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email=[standardDefaults objectForKey:@"Email"];
     for (PFObject *us in a) {
-        if (([us[@"Email"] isEqualToString:@"andrei@yahoo.com"]))
+        if (([us[@"Email"] isEqualToString:email]))
         {
-            numberProgram=us[@"NrProgram"];
+            [myProject addObject:us[@"NrProgram"]];
         }
     }
-    
+
 
 }
 
@@ -58,7 +60,7 @@ NSString *startDate;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)buttonCalculateWasPressed:(id)sender {
-    int totalClaoriesPerDay=0;
+
     kgLoss= [self.textFieldAmountlOSE.text floatValue];
     numberOfWeeks=[self.textFieldNumberOfWeeks.text intValue];
     
@@ -219,7 +221,6 @@ NSString *startDate;
 -(float)numberSecPausePerWorkout:(float)numberSecExecution
 {
 
-    
     return numberSecExecution*0.45;
 }
 - (IBAction)btnResetWasPressed:(id)sender {
@@ -261,19 +262,21 @@ NSString *startDate;
         sex=3;
     }
 }
-- (IBAction)datePickerValueChanged:(id)sender {
-    
-    
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-    [self.btnStartDate setTitle:[dateFormatter stringFromDate: self.datePick.date]
-                       forState:UIControlStateNormal] ;
-    [self.btnStartDate sizeToFit];
-    startDate =[dateFormatter stringFromDate: self.datePick.date];
-   NSLog(@"%@",[dateFormatter stringFromDate: self.datePick.date]) ;
+
+-(void)viewWillAppear:(BOOL)animated {
+    PFQuery *query = [PFQuery queryWithClassName:@"Program"];
+    NSArray *a=[query findObjects];
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email=[standardDefaults objectForKey:@"Email"];
+    for (PFObject *us in a) {
+        if (([us[@"Email"] isEqualToString:email]))
+        {
+            [myProject addObject:us[@"NrProgram"]];
+        }
+    }
+
+    [self.tableViewCalories reloadData];
 }
-
-
 - (IBAction)selectMode:(id)sender {
     
     switch (self.segmentControlDif.selectedSegmentIndex)
@@ -303,56 +306,116 @@ NSString *startDate;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    return @"My Programs";
+    NSString *nameSection=[[NSString alloc]init];
+    if(section == 0)
+    {
+        nameSection= [NSString stringWithFormat:@"My Program!"];
+    }
+    else if(section == 1){
+        nameSection= [NSString stringWithFormat:@"Programs"];
+    }
+    
+    return nameSection;
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    
-    return [dateCalories count];
+    if (section==0)
+    {
+        return [myProject count];
+    }
+    else{
+        return [dateCalories count];
+    }
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    
-    
-    return @"This is a footer";
-    
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
-    
-//    
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSString *string=[dateCalories objectAtIndex:indexPath.row];
+
+    if ([indexPath section]==1) {
+        
+   
     NSString *levelDif=[arrayDificulty objectAtIndex:indexPath.row];
     NSString *secW=[secWorkout objectAtIndex:indexPath.row];
-    
+    NSString *stringWithFloat =[secWorkout objectAtIndex:indexPath.row];
+        
+        
+        
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
-    
-    ViewControllerMyPrograms *objMyProg=[[ViewControllerMyPrograms alloc]initWithProg:(int)indexPath.row Difficulty:levelDif SecExec:[secW floatValue] DateCreate:[DateFormatter stringFromDate:[NSDate date]]];
+    ViewControllerMyPrograms *objMyProg=[[ViewControllerMyPrograms alloc]initWithProg:(int)indexPath.row+1 Difficulty:levelDif SecExec:[secW floatValue] SecPause:[stringWithFloat floatValue] DateCreate:[DateFormatter stringFromDate:[NSDate date]]];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.1f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionReveal;
     [self.navigationController.view.layer addAnimation:transition forKey:nil];
     [self.navigationController pushViewController:objMyProg animated:NO];
+        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+        [standardDefaults setObject:self.textFieldAge.text   forKey:@"Age"];
+        [standardDefaults setObject:self.textFieldAmountlOSE.text   forKey:@"kgLoss"];
+        [standardDefaults setObject:self.textFieldNumberOfWeeks.text   forKey:@"Weeks"];
+        [standardDefaults setObject:self.textFieldWeight.text   forKey:@"Weight"];
+        [standardDefaults setObject:self.textFieldHeight.text   forKey:@"Height"];
+        [standardDefaults setObject:[NSString stringWithFormat:@"%d",totalClaoriesPerDay]   forKey:@"CloriesLoss"];
+        
 
+ }
+    else{
+        PFQuery *query = [PFQuery queryWithClassName:@"Program"];
+        NSArray *a=[query findObjects];
+       
+        for (PFObject *us in a) {
+            
+                [myProject addObject:us[@"NrProgram"]];
+            
+            
+            NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"Age"]]   forKey:@"Age"];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"kgLoss"]]  forKey:@"kgLoss"];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"Weeks"]]   forKey:@"Weeks"];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"Weight"]]   forKey:@"Weight"];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"Height"]]   forKey:@"Height"];
+            [standardDefaults setObject:[NSString stringWithFormat:@"%@",us[@"CaloriesLoss"]]   forKey:@"CloriesLoss"];
+            
+            
+            ViewControllerMyPrograms *objMyProg=[[ViewControllerMyPrograms alloc]initWithProg:[us[@"NrProgram"]intValue] Difficulty:us[@"Dificulty"] SecExec:[us[@"nrSecExec"]intValue] SecPause:[us[@"nrSecPau"] intValue] DateCreate:us[@"DateCreated"]];
+            CATransition *transition = [CATransition animation];
+            transition.duration = 0.1f;
+            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            transition.type = kCATransitionReveal;
+            [self.navigationController.view.layer addAnimation:transition forKey:nil];
+            [self.navigationController pushViewController:objMyProg animated:NO];
+
+        }
+
+        
+        
+     // daca e sectiunea cu programul meu  atunci pun in standard defaults datele din baza de date
+      
+     }
+    
+    
+  
     
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([indexPath section]==1) {
+        [dateCalories removeObjectAtIndex:indexPath.row];
+
+    }else{
+    
+        [myProject removeObjectAtIndex:indexPath.row];
+}
    
-    [dateCalories removeObjectAtIndex:indexPath.row];
     
     
     
@@ -372,12 +435,15 @@ NSString *startDate;
     }
 
  
-    [tableView reloadData];
+    [self.tableViewCalories reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
+    
+    
+    
         static NSString *simpleTableIdentifier = @"SimpleTableItem";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
         
@@ -386,8 +452,21 @@ NSString *startDate;
         }
     
     
+    if (indexPath.section==0) {
+        NSLog(@"%@",[myProject objectAtIndex:indexPath.row]);
+        NSLog(@"%ld",(long)indexPath.row);
+        cell.textLabel.text =[NSString stringWithFormat:@"%@",[myProject objectAtIndex:indexPath.row]];
+        cell.textLabel.font=[UIFont systemFontOfSize:12];
+        
+    }else if (indexPath.section==1)
+    {
         cell.textLabel.text = [dateCalories objectAtIndex:indexPath.row];
-    cell.textLabel.font=[UIFont systemFontOfSize:12];
+        cell.textLabel.font=[UIFont systemFontOfSize:12];
+        
+        
+    }
+    
+    
         return cell;
         
     }

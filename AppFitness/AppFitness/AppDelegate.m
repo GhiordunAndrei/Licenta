@@ -13,7 +13,7 @@
 #import "ViewControllerModule.h"
 #import "Parse/Parse.h"
 #import "ViewControllerCalories.h"
-
+#import "ViewControllerMuscle.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;

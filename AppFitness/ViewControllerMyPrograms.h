@@ -18,8 +18,11 @@
     NSMutableArray *workout2;
     NSMutableArray *workout3;
     NSMutableArray *workout4;
+    NSMutableArray *workout5;
+    NSMutableArray *groupmuscle;
     NSString *levelDifficulty;
     float secPerExercise;
+    float nSecPause;
     NSString *dateCreatedWorkout;
     int nrProg;
 }
@@ -31,6 +34,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *state;
 
 @property (weak, nonatomic) IBOutlet UILabel *daysRemaing;
-- (instancetype)initWithProg:(int)nerprog Difficulty:(NSString*)workOutDif SecExec:(float)secExecution DateCreate:(NSString*)date;
+- (instancetype)initWithProg:(int)nerprog Difficulty:(NSString*)workOutDif SecExec:(float)secExecution SecPause:(float)secPause DateCreate:(NSString*)date;
 
 @end

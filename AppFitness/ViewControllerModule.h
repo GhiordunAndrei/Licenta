@@ -26,31 +26,32 @@
     MBProgressHUD *HUD;
     AVAudioPlayer *buttonBeep;
     AVAudioPlayer *endBeep;
+    NSMutableArray *devices;
 }
 @property (weak, nonatomic) IBOutlet UILabel *labelGroupMuscle;
 @property (weak, nonatomic) IBOutlet UILabel *labelNrAntrenament;
 @property (weak, nonatomic) IBOutlet UILabel *labelNrProgram;
+@property (weak, nonatomic) IBOutlet UILabel *labelTemp;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelDisplayMuscle;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentexercise;
 @property (weak, nonatomic) IBOutlet UISwitch *swSoundTime;
 @property (weak, nonatomic) IBOutlet UIView *viewInsertReps;
+@property (weak, nonatomic) IBOutlet UILabel *labelRepsFromBoard;
 
 @property (weak, nonatomic) IBOutlet UISwitch *swSoundEnd;
 @property(strong,nonatomic)CBCentralManager *central;
 @property(strong,nonatomic)CBPeripheral     *peripheralConnected;
+@property(strong,nonatomic)CBCharacteristic *characteristicRx;
+@property(strong,nonatomic)CBCharacteristic *characteristicTx;
+
 @property(nonatomic,assign) id<MFMailComposeViewControllerDelegate> mailComposeDelegate;
-@property (weak, nonatomic) IBOutlet UIView *viewOne;
-@property (weak, nonatomic) IBOutlet UIView *viewtwo;
-@property (weak, nonatomic) IBOutlet UIView *viewthird;
-@property (weak, nonatomic) IBOutlet UIView *viewforth;
 @property (weak, nonatomic) IBOutlet UIView *viewoneVert;
 @property (weak, nonatomic) IBOutlet UIView *viewtwoVert;
 @property (weak, nonatomic) IBOutlet UIView *viewthirdVert;
 @property (weak, nonatomic) IBOutlet UIButton *buttonSecunde;
 @property (weak, nonatomic) IBOutlet UILabel *labelTime;
-@property(strong,nonatomic)CBCharacteristic *characteristicRx;
-@property(strong,nonatomic)CBCharacteristic *characteristicTx;
+
 @property(weak,nonatomic)UITextField *textFieldEmail;
 @property(strong,nonatomic)UIAlertView *alert;
 

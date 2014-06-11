@@ -15,17 +15,32 @@ IMViewController *viewPhoto;
 @implementation ViewControllerModule
 UIBarButtonItem *backBtn ;
 
+bool inPause;
 int secound;
 int min;
+int workoutSuspend;
 int ora;
 int timeExecution;
-bool unpause;
 int timePause;
+int te;
+int tp;
+bool firstStart;
+bool pauseTimer;
+bool buttonSaveDate;
+int counterAntrenament;
+
+int numberReps;
+int indexExercise;
+int valueIndex0;
+int valueIndex1;
+int valueIndex2;
+NSMutableArray *valueFromSensor;
+
 NSTimer *timeex;
 NSTimer *timepau;
 bool redGreen;
 NSNumber *greutate;
-NSArray *exercise;
+NSMutableArray *exercise;
 NSString *groupMuscle;
 NSNumber *numberAntrenament;
 NSNumber *numberProgram;
@@ -33,9 +48,9 @@ NSNumber *numberProgram;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        unpause=true;
     self.central=[[CBCentralManager alloc]initWithDelegate:self queue:nil];
-    
+        devices=[[NSMutableArray alloc]init];
+        exercise=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -44,30 +59,18 @@ NSNumber *numberProgram;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    _alert = [[UIAlertView alloc] initWithTitle:@"Enter your friend email!"
-//                                        message:@"please press ok or cancel"
-//                                       delegate:self
-//                              cancelButtonTitle:@"OK"
-//                              otherButtonTitles:@"cancel", nil];
-//     _alert.alertViewStyle=UIAlertViewStylePlainTextInput;
-//     [[_alert textFieldAtIndex:0] setPlaceholder:@"e-mail@yahoo.com"];\
-    
-   
+    buttonSaveDate=false;
+    indexExercise=0;
+    counterAntrenament=0;
+    firstStart=true;
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
+
     // getting an NSString object
-    numberProgram =[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"NrProgram"]];
-    numberAntrenament= [NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"NrAntrenament"]];
-    groupMuscle= [standardUserDefaults stringForKey:@"GroupMuscle"];
-    exercise=[standardUserDefaults arrayForKey:@"Exercise"];
-    NSNumber *timeExec=[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"SecExecution"]];
-    NSNumber *timePaus=[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"SecPause"]];
+   
     greutate =[NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"Greutate"]];
     email=[standardUserDefaults stringForKey:@"Email"];
-    timeExecution =[timeExec intValue];
-    timePause=[timePaus intValue];
-    
- 
+    [self readValueFromDB];
+
     self.textFieldEx1.keyboardType=UIKeyboardTypeDecimalPad;
     self.textFieldEx2.keyboardType=UIKeyboardTypeDecimalPad;
     self.textFieldEx3.keyboardType=UIKeyboardTypeDecimalPad;
@@ -80,13 +83,18 @@ NSNumber *numberProgram;
     self.labelDisplayMuscle.text=groupMuscle;
     self.labelNrProgram.text=[NSString stringWithFormat:@"%i",[numberProgram intValue]];
     self.labelNrAntrenament.text=[NSString stringWithFormat:@"%i",[numberAntrenament intValue]];
-    [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
-
+    [self.buttonSecunde setTitle:[NSString stringWithFormat:@"Start"] forState:UIControlStateNormal];
     
-    [self.segmentexercise setTitle:exercise[0] forSegmentAtIndex:0];
-//    [self.segmentexercise setTitle:exercise[1] forSegmentAtIndex:1];
-//    [self.segmentexercise setTitle:exercise[2] forSegmentAtIndex:2];
-//    [self.segmentexercise setTitle:exercise[3] forSegmentAtIndex:3];
+   [[self.segmentexercise.subviews objectAtIndex:3] setTintColor:[UIColor redColor]];
+    
+    
+    if ([exercise count]>3) {
+        [self.segmentexercise setTitle:exercise[0] forSegmentAtIndex:0];
+        [self.segmentexercise setTitle:exercise[1] forSegmentAtIndex:1];
+        [self.segmentexercise setTitle:exercise[2] forSegmentAtIndex:2];
+        [self.segmentexercise setTitle:exercise[3] forSegmentAtIndex:3];
+
+    }
     
     self.navigationController.navigationBarHidden=NO;
     self.navigationItem.hidesBackButton = YES;
@@ -97,12 +105,107 @@ NSNumber *numberProgram;
     endBeep = [self setupAudioPlayerWithFile:@"SecondBeep" type:@"wav"];
     self.buttonSecunde.layer.cornerRadius=40;
 
-
 }
+
+
+
+
+
+-(void)readValueFromDB
+{
+    
+    
+   // NSNumber* numberProgram;
+    BOOL haveProgram=false;
+    MLAlertView *alert;
+    PFQuery *queryProgram=[PFQuery queryWithClassName:@"Program"];
+    NSArray *programs=[queryProgram findObjects];
+    for (PFObject *nrprogram in programs) {
+        
+        if ([nrprogram[@"Email"] isEqualToString:email]) { // are program deja
+            
+            PFQuery *queryResult=[PFQuery queryWithClassName:@"Result"];
+            NSArray *results=[queryResult findObjects];
+            
+            numberProgram=nrprogram[@"NrProgram"];
+            timeExecution =[nrprogram[@"nrSecExec"] intValue];
+            timePause=[nrprogram[@"nrSecPau"] intValue];
+            te=timeExecution;
+            tp=timePause;
+            
+            for (PFObject *nResult in results) {
+                if ([nResult[@"Email"] isEqualToString:email]) { // are facut deja antrenamente
+                    numberAntrenament=nResult[@"NrAntrenament"];
+     
+                }else // nu are antrenament
+                {
+                    numberAntrenament=[NSNumber numberWithInt:0];
+                
+                }
+                counterAntrenament =[nResult[@"CounterAntrenament"]intValue];
+            }
+            numberAntrenament=[NSNumber numberWithInt:[numberAntrenament intValue]+1];
+            PFQuery *queryAntrenament=[PFQuery queryWithClassName:@"Antrenament"];
+            NSArray *antrenamente=[queryAntrenament findObjects];
+            
+            for (PFObject *nAntrenament in antrenamente) {
+                
+                
+                if ((numberProgram ==nAntrenament[@"NrProgram"]) && ([nAntrenament[@"NrAntrenament"] intValue] == [numberAntrenament intValue])) { // gasim  programul si antrenamentele
+                    
+                    [exercise addObject:nAntrenament[@"Exercise"]];
+                    groupMuscle=nAntrenament[@"GroupMuscle"];
+
+                    
+                }
+            }
+            haveProgram=true;
+            
+            if ([numberAntrenament intValue]>5 ) { // aici am ramas daca am depasit 5 antrenamente incrementam si trebuie s ane intoarcem iara la primul
+                counterAntrenament++;
+            }
+        }else{  //nu are program
+        
+            
+        }
+    }
+
+    if (!haveProgram) {
+   
+        alert =[[MLAlertView alloc]initWithTitle:@"Warning" message:@"You don't have a workout created!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        
+        [alert show];
+    }
+
+    
+    }
+    
+    
+
+
+
+
+
+
 - (void)waitConnection {
     float progress = 0.0;
-    
-    while (![self.peripheralConnected isConnected]) {
+    UIAlertView *alert;
+    while ([self.peripheralConnected state]!=CBPeripheralStateConnected  ||(progress>0.9)) {
+        if (progress>0.9) {
+            [self.viewoneVert setHidden:NO];
+            self.viewoneVert.frame=CGRectMake(130, 500, 0, 0);
+            [UIView animateWithDuration:1 animations:^{
+                self.viewtwoVert.frame =  CGRectMake(-5, 209, 330, 150);
+                self.viewtwoVert.alpha = 0.8f;
+                self.viewoneVert.frame =  CGRectMake(-5, 59, 330, 150);
+                self.viewoneVert.alpha = 0.8f;
+            } completion:^(BOOL finished) {
+            }];
+           alert=[[UIAlertView alloc]initWithTitle:@"No Connection"  message:@"The  app has not been able to connect Arduino!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil]  ;          [alert show];
+//            alert=[[MLAlertView alloc]initWithTitle:@"No Connection" message:@"The  app has not been able to connect Arduino! "cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
         progress += 0.03;
         HUD.progress = progress;
         usleep(50000);
@@ -126,105 +229,138 @@ NSNumber *numberProgram;
 }
 
 - (IBAction)buttonPause:(id)sender {
+    NSData *state=[@"aa" dataUsingEncoding:NSUTF8StringEncoding];
+    //char *state="on";
+    [self.peripheralConnected writeValue:state forCharacteristic:self.characteristicTx type:CBCharacteristicWriteWithoutResponse];
+
     
-    if (redGreen) {
-    if (unpause ) {
-    self.buttonSecunde.backgroundColor=[UIColor redColor];
-    [self.buttonSecunde setTitle:@"Pause" forState:UIControlStateNormal];
-    [timeex invalidate];
-        unpause=false;
-    }else{
-        self.buttonSecunde.backgroundColor=[UIColor greenColor ];
-        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
-        [self setTimeExecution:5];
-        unpause=true;
+    if([self.peripheralConnected state]==CBPeripheralStateConnected)
+    {
+    if (firstStart) {
+        NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpAntrenament) userInfo:nil repeats:YES];
+        firstStart=false;
+        pauseTimer=true;
+        inPause=false;
+        
+
+        
+    }
+    
+    if(pauseTimer) // este deja pauza facem unpause
+    {
+        
+            if (inPause) {
+            
+            [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timePause] forState:UIControlStateNormal];
+            [self.buttonSecunde setBackgroundColor:[UIColor redColor]];
+            
+            timepau=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(PauseWorkout) userInfo:nil repeats:YES];
+            [timeex invalidate];
+            pauseTimer=false;
+            
+            }else{
+        
+            [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
+            [self.buttonSecunde setBackgroundColor:[UIColor greenColor]];
+            
+            timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(ExecutionWorkout) userInfo:nil repeats:YES];
+            [timepau invalidate];
+            pauseTimer=false;
             }
         
-        }
-}
-
-- (IBAction)buttonStart:(id)sender {
+        }else{ //nu este pauza facem pauza
     
-    
-    [self setTimeExecution:4];
-    redGreen=true;
-   
-    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpAntrenament) userInfo:nil repeats:YES];
 
-}
--(void)setPause:(int)secunde
-{
-    timePause=secunde;
-    timepau=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timePause) userInfo:nil repeats:YES];
-
-}
--(void)setTimeExecution:(int)secunde
-{
-    timeExecution=secunde;
-    
-    timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timpExecutie) userInfo:nil repeats:YES];
-
-}
--(void)timpExecutie
-{
-    
-    redGreen=true;
-    timeExecution--;
-    if (timeExecution>=0) {
-        if ([self.swSoundTime isOn]) {
-            [buttonBeep setVolume:0.6f];
-            [buttonBeep play];
-        }else
-        {
-            [buttonBeep stop];
-        }
-       
-        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
-    }else
-    {
-        if([self.swSoundEnd isOn])
-        {
-            [endBeep setVolume:1.6f];
-            [endBeep play];
-        }else{
-            [endBeep stop];
-        }
-        
-        [timeex invalidate];
-        self.buttonSecunde.backgroundColor=[UIColor redColor];
-        [self setPause:5];
-    }
-    
-}
--(void)timePause
-{
-    redGreen=false;
-    timePause--;
-    if (timePause>-1) {
-        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timePause] forState:UIControlStateNormal];
-        if ([self.swSoundTime isOn]) {
-            [buttonBeep setVolume:0.6f];
-            [buttonBeep play];
-        }else
-        {
-            [buttonBeep stop];
-        }
-
-    }else
-    {
-        if([self.swSoundEnd isOn])
-        {
-            [endBeep setVolume:1.6f];
-            [endBeep play];
-        }else{
-            [endBeep stop];
-        }
+        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"Pause"] forState:UIControlStateNormal];
+        [self.buttonSecunde setBackgroundColor:[UIColor redColor]];
         [timepau invalidate];
-        self.buttonSecunde.backgroundColor=[UIColor greenColor];
-        [self setTimeExecution:5];
+        [timeex invalidate];
+        pauseTimer=true;
+        
+        }
     }
+    else{
+        MLAlertView *alert=[[MLAlertView alloc]initWithTitle:@"No Connection!" message:@"Before starting the program please connect with Arduino!" cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+-(void)ExecutionWorkout
+{
+    if (timeExecution >0) {
+        timeExecution--;
+        [self.buttonSecunde setBackgroundColor:[UIColor greenColor]];
+        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timeExecution] forState:UIControlStateNormal];
+    }else{
+  
+        switch (indexExercise) {
+            case 4:
+                indexExercise=1;
+                [valueFromSensor addObject:[NSNumber numberWithInt:numberReps]];
+                [[self.segmentexercise.subviews objectAtIndex:3] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:2] setTintColor:[UIColor redColor]];
+
+                numberReps=0;
+                break;
+            case 8:
+                indexExercise=2;
+                [valueFromSensor addObject:[NSNumber numberWithInt:numberReps]];
+                [[self.segmentexercise.subviews objectAtIndex:3] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:2] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:1] setTintColor:[UIColor redColor]];
+
+                numberReps=0;
+                break;
+            case 12:
+                indexExercise=3;
+                [valueFromSensor addObject:[NSNumber numberWithInt:numberReps]];
+                [[self.segmentexercise.subviews objectAtIndex:3] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:2] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:1] setTintColor:[UIColor blackColor]];
+                [[self.segmentexercise.subviews objectAtIndex:0] setTintColor:[UIColor redColor]];
+
+                
+                numberReps=0;
+                break;
+            case 16:
+                indexExercise=4;
+                [valueFromSensor addObject:[NSNumber numberWithInt:numberReps]];
+                [self.buttonSecunde setBackgroundColor:[UIColor redColor]];
+                [self.buttonSecunde setTitle:[NSString stringWithFormat:@"End"] forState:UIControlStateNormal];
+                self.buttonSecunde.enabled=FALSE;
+                numberReps=0;// call sa salvam in baza de date
+                break;
+            default:
+                numberReps+=valueIndex0;
+
+                break;
+        }
+        indexExercise++;
+        [timeex invalidate];
+        inPause=true;
+        timepau=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(PauseWorkout) userInfo:nil repeats:YES];
+        [self.buttonSecunde setBackgroundColor:[UIColor redColor]];
+        timeExecution=te;
+    }
+   
+    
+}
+-(void)PauseWorkout
+{
+    if (timePause>0) {
+        timePause--;
+        [self.buttonSecunde setBackgroundColor:[UIColor redColor]];
+        [self.buttonSecunde setTitle:[NSString stringWithFormat:@"%i",timePause] forState:UIControlStateNormal];
+    }else{
+        inPause=false;
+        [timepau invalidate];
+        timeex=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(ExecutionWorkout) userInfo:nil repeats:YES];
+        [self.buttonSecunde setBackgroundColor:[UIColor greenColor]];
+        timePause=tp;
+    }
+   
 
 }
+
 -(void)timpAntrenament
 {
     secound++;
@@ -250,10 +386,7 @@ NSNumber *numberProgram;
 -(void)setViews
 {
     
-    self.viewOne.layer.cornerRadius=30;
-    self.viewtwo.layer.cornerRadius=30;
-    self.viewthird.layer.cornerRadius=30;
-    self.viewforth.layer.cornerRadius=30;
+ 
     self.viewoneVert.layer.opacity=0.6;
     self.viewtwoVert.layer.opacity=0.6;
     self.viewthirdVert.layer.opacity=0.6;
@@ -277,14 +410,19 @@ NSNumber *numberProgram;
 
 - (void)ActionLogOut:(UIBarButtonItem*)sender
 {
-    self.navigationController.navigationBarHidden=YES;
+    //self.navigationController.navigationBarHidden=YES;
     [self.navigationController popViewControllerAnimated:NO];
 
 }
 
+
+
+
+
+
 - (IBAction)insertReps:(id)sender {
     
-    if (self.viewInsertReps.hidden) {
+    if (self.viewInsertReps.hidden && !buttonSaveDate) {
         [self.viewInsertReps setHidden:NO];
         
         self.labelEx1.text=exercise[0];
@@ -302,6 +440,7 @@ NSNumber *numberProgram;
         
 
         self.viewInsertReps.hidden=NO;
+        buttonSaveDate=true;
         [self.buttonInsertReps setTitle:@"Save" forState:UIControlStateNormal];
     }else
     {
@@ -310,36 +449,10 @@ NSNumber *numberProgram;
         
         if (![self.textFieldEx1.text isEqual:@""] && ![self.textFieldEx2.text isEqual:@""] &&![self.textFieldEx3.text isEqual:@""] && ![self.textFieldEx4.text isEqual:@""] &&![self.textFieldEx5.text isEqual:@""] &&![self.textFieldEx6.text isEqual:@""] &&![self.textFieldEx7.text isEqual:@""] &&![self.textFieldEx8.text isEqual:@""] ) {
             
-            for (int i=0;i<exercise.count;i++  ) {
-                PFObject *testObject=[PFObject objectWithClassName:@"Result"];
-                testObject[@"Email"]=email;
-                testObject[@"NrAntrenament"]=numberAntrenament;
-                testObject[@"Exercise"]=exercise[i];
-                switch (i) {
-                    case 0:
-                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx1.text intValue]];
-                        break;
-                        
-                    case 1:
-                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx2.text intValue]];                        break;
-                        
-                    case 2:
-                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx3.text intValue]];
-                        break;
-                    
-                    case 3:
-                        testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx4.text intValue]];
-                        break;
-                    default:
-                        break;
-                }
-                NSDate *currDate = [NSDate date];
-                testObject[@"DateExecution"]=currDate;
-                
-                [testObject saveInBackground];
+            [self insertDateResult];
 
-            }
-            alert=[[MLAlertView alloc]initWithTitle:@"Workout Completed" message:[NSString stringWithFormat:@"NextWorkout %i",[numberAntrenament intValue]+1] cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                alert=[[MLAlertView alloc]initWithTitle:@"Workout Completed" message:[NSString stringWithFormat:@"NextWorkout %i",[numberAntrenament intValue]+1] cancelButtonTitle:@"OK" otherButtonTitles:nil];
+           
         }else
         {
             alert=[[MLAlertView alloc]initWithTitle:@"Workout Uncompleted" message:@"Complet all fields Please!" cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -354,25 +467,59 @@ NSNumber *numberProgram;
         }];
         
         [self.buttonInsertReps setTitle:@"Insert Reps" forState:UIControlStateNormal];
+        buttonSaveDate=false;
     }
+}
+
+-(void)insertDateResult
+{
+    
+    for (int i=0;i<exercise.count;i++  ) {
+        PFObject *testObject=[PFObject objectWithClassName:@"Result"];
+        testObject[@"Email"]=email;
+        testObject[@"NrAntrenament"]=numberAntrenament;
+        testObject[@"Exercise"]=exercise[i];
+        switch (i) {
+            case 0:
+                testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx1.text intValue]];
+                break;
+                
+            case 1:
+                testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx2.text intValue]];
+                break;
+                
+            case 2:
+                testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx3.text intValue]];
+                break;
+                
+            case 3:
+                testObject[@"Reps"]=[NSNumber numberWithInt:[self.textFieldEx4.text intValue]];
+                break;
+            default:
+                break;
+        }
+        testObject[@"CounterAntrenament"]=[NSNumber numberWithInt:counterAntrenament];
+        NSDate *currDate = [NSDate date];
+        testObject[@"DateExecution"]=currDate;
+        testObject[@"GroupMuscle"]=groupMuscle;
+
+        [testObject saveInBackground];
+        
+
+    }
+    
+    
+
 }
 
 
 - (IBAction)Disconnect:(id)sender {
     
 
-    [self.viewoneVert setHidden:NO];
-    self.viewoneVert.frame=CGRectMake(130, 500, 0, 0);
-    [UIView animateWithDuration:1 animations:^{
-        self.viewtwoVert.frame =  CGRectMake(-5, 209, 330, 150);
-        self.viewtwoVert.alpha = 0.8f;
-        self.viewoneVert.frame =  CGRectMake(-5, 59, 330, 150);
-        self.viewoneVert.alpha = 0.8f;
-    } completion:^(BOOL finished) {
-    }];
-}
+   }
 
 - (IBAction)Connect:(id)sender {
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.labelText = @"Wait";
@@ -381,8 +528,11 @@ NSNumber *numberProgram;
     
     [HUD showWhileExecuting:@selector(waitConnection) onTarget:self withObject:nil animated:YES];
     
-        [self.central scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    NSArray *services =[[NSArray alloc]initWithObjects:[CBUUID UUIDWithString:uuid_Service],nil];
+    [self.central scanForPeripheralsWithServices:services options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
+    
+   
     [UIView animateWithDuration:1.5 animations:^{
         self.viewtwoVert.frame =  CGRectMake(130, 30, 0, 0);
         [ self.viewtwoVert setAlpha:0.0f];
@@ -402,17 +552,56 @@ NSNumber *numberProgram;
 }
 
 
-/**********************CentralMan*****************************/
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    
-    self.peripheralConnected=peripheral;
-    [self.central connectPeripheral:self.peripheralConnected options:nil];
-    //self.sensorName.text=peripheral.name;
+    if(![devices containsObject:peripheral])
+    {
+        [devices addObject:peripheral];
+
+        self.peripheralConnected = peripheral;
+        [self.central connectPeripheral:self.peripheralConnected options:nil];
+
+    }
+   
     
 }
 
-///*STATE BLUETOOTH ON/OFF*/
+
+-(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    
+    
+    self.labelRepsFromBoard.text=[NSString stringWithFormat:@"%d",0];
+    self.peripheralConnected = nil;
+    devices = [[NSMutableArray alloc]init];
+   // [self.TableView reloadData];
+    NSArray *searchDevice =[[NSArray alloc]initWithObjects:[CBUUID UUIDWithString:uuid_Service],nil];
+    
+    [self.central scanForPeripheralsWithServices:searchDevice options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    [self.viewoneVert setHidden:NO];
+    self.viewoneVert.frame=CGRectMake(130, 500, 0, 0);
+    [UIView animateWithDuration:1 animations:^{
+        self.viewtwoVert.frame =  CGRectMake(-5, 209, 330, 150);
+        self.viewtwoVert.alpha = 0.8f;
+        self.viewoneVert.frame =  CGRectMake(-5, 59, 330, 150);
+        self.viewoneVert.alpha = 0.8f;
+    } completion:^(BOOL finished) {
+    }];
+
+}
+
+
+-(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    
+    //self.labelConnDisc.text = @"Connected";
+    self.peripheralConnected.delegate = self;
+    [self.peripheralConnected discoverServices:nil];
+    
+    
+}
+
+
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     if (central.state != CBCentralManagerStatePoweredOn) {
@@ -423,33 +612,7 @@ NSNumber *numberProgram;
     }
 }
 
-///*CONNECT PERIPHERAL*/
--(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
-{
-    
-   // self.labelStatus.text = @"Connected";
-    self.peripheralConnected.delegate = self;
-    [self.peripheralConnected discoverServices:nil];
-    
-    
-}
 
-
-//                                                                                                    /*DISCONNECT PERIPHERAL*/
--(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    
-    
-   // self.labelStatus.text = @"Disconnected";
-    self.peripheralConnected = nil;
-
-    NSArray *searchDevice =[[NSArray alloc]initWithObjects:[CBUUID UUIDWithString:uuid_Service],nil];
-    
-    [self.central scanForPeripheralsWithServices:searchDevice options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
-
-    
-}
-/**********************Peripheral******************************/
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
     if(error)
@@ -461,14 +624,11 @@ NSNumber *numberProgram;
     {
         if([service.UUID isEqual:[CBUUID UUIDWithString:uuid_Service]] )
         {
-            [peripheral discoverCharacteristics:nil forService:service];
+            [self.peripheralConnected discoverCharacteristics:nil forService:service];
             
         }
     }
 }
-
-
-/*DISCOVER CHARACTERISTICS FOR SERVICE*/
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     if(error)
@@ -481,19 +641,23 @@ NSNumber *numberProgram;
     {
         if([characteristic.UUID isEqual:[CBUUID UUIDWithString:uuid_RX]])
         {
-    //        self.characteristicRx = characteristic;
-            [self.peripheralConnected setNotifyValue:YES forCharacteristic:self.characteristicRx];
+            self.characteristicRx = characteristic;
+            NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(readValueForC) userInfo:nil repeats:YES];
+            
+            
+            //[self.peripheralConnected readValueForCharacteristic:self.characteristicRx];
+            
+            //   [self.peripheralConnected setNotifyValue:YES forCharacteristic:characteristic];
             
         }
         else if([characteristic.UUID isEqual:[CBUUID UUIDWithString:uuid_TX]])
         {
-         //   self.characteristicTx = characteristic;
-            [self.peripheralConnected setNotifyValue:YES forCharacteristic:self.characteristicTx];
+            self.characteristicTx = characteristic;
+             //[self.peripheralConnected setNotifyValue:YES forCharacteristic:self.characteristicTx];
             
         }
     }
 }
-
 
 /*CALL WHEN NOTIFICATION SUCCES*/
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -527,14 +691,36 @@ NSNumber *numberProgram;
         
         if([characteristic.UUID isEqual:[CBUUID UUIDWithString:uuid_RX]]){
             
-            const char *dataFromSensor = [characteristic.value bytes];
-            int value = dataFromSensor[0];
-         //   self.sensorPulse.text=[NSString stringWithFormat:@"%d",value];
-       
+            if ([characteristic.value bytes]!=nil) {
+                const char *dataFromSensor = [characteristic.value bytes];
+                if (dataFromSensor[0]>0) {
+                     valueIndex1=dataFromSensor[1];
+                     valueIndex2=dataFromSensor[2];
+                     valueIndex0 = dataFromSensor[0];
+                    NSLog(@"Am primit de la sensori -> %d \n",valueIndex0);
+                    NSLog(@"Am primit de la sensori 1 -> %d \n",valueIndex1);
+                    NSLog(@"Am primit de la sensori 2 -> %d C\n",valueIndex2);
+                    self.labelTemp.text=[NSString stringWithFormat:@"%d",valueIndex1];
+                    self.labelRepsFromBoard.text=[NSString stringWithFormat:@"%d",valueIndex0];
+                //    self.textFieldDataReceive.text=[NSString stringWithFormat:@"%d",value];
+                }
+            }
+            
             
         }
     }
 }
+
+
+
+-(void)readValueForC
+{
+    
+    [self.peripheralConnected readValueForCharacteristic:self.characteristicRx];
+    
+}
+
+
 //- (IBAction)takePhoto:(id)sender {
 //    
 //   // self.viewImage.hidden=NO;
